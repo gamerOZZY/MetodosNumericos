@@ -77,7 +77,10 @@ namespace MetodosNumericos
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+             menuDerivacion f = new menuDerivacion();
+            f.Show();
+            f.WindowState = FormWindowState.Maximized;
+            
         }
     }
 }

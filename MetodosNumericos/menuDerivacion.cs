@@ -21,5 +21,13 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            der123 f = new der123();
+            f.Show();
+            f.WindowState = FormWindowState.Maximized;
+            
+        }
     }
 }
