@@ -15,7 +15,7 @@ Todos los métodos numéricos presentados en este repositorio están siendo desa
 
 | Lenguaje | Enfoque |
 | :---: | :---: |
-| **C++** | Implementación eficiente de algoritmos y cálculos numéricos de alto rendimiento. |
+| **C#** | Implementación eficiente de algoritmos y cálculos numéricos de alto rendimiento. |
 | **Markdown/HTML/CSS** | Estructuración y presentación del `README` en GitHub. |
 
 ---
