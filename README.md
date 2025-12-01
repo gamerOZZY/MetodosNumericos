@@ -8,9 +8,9 @@ Este proyecto representa el trabajo semestral de la asignatura **Métodos Numér
 
 ### Tecnologías y Lenguaje Principal
 
-Todos los métodos numéricos presentados en este repositorio están siendo desarrollados e implementados en **C++**. 
+Todos los métodos numéricos presentados en este repositorio están siendo desarrollados e implementados en **C#**. 
 
-[Image of C++ programming language logo]
+[Image of C# programming language logo]
 
 
 | Lenguaje | Enfoque |
