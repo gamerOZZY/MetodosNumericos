@@ -29,5 +29,24 @@ namespace MetodosNumericos
             f.WindowState = FormWindowState.Maximized;
             
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            hIrregularDerivada f = new hIrregularDerivada();
+            f.Show();
+            f.WindowState= FormWindowState.Maximized;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            derivadaExtrapolacion q = new derivadaExtrapolacion (); 
+            q.Show();
+            q.WindowState = FormWindowState.Maximized;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

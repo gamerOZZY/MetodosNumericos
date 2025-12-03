@@ -90,6 +90,12 @@
     <Compile Include="der123.Designer.cs">
       <DependentUpon>der123.cs</DependentUpon>
     </Compile>
+    <Compile Include="derivadaExtrapolacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="derivadaExtrapolacion.Designer.cs">
+      <DependentUpon>derivadaExtrapolacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,12 @@
     </Compile>
     <Compile Include="frmSecante.Designer.cs">
       <DependentUpon>frmSecante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="hIrregularDerivada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hIrregularDerivada.Designer.cs">
+      <DependentUpon>hIrregularDerivada.cs</DependentUpon>
     </Compile>
     <Compile Include="menuDerivacion.cs">
       <SubType>Form</SubType>
