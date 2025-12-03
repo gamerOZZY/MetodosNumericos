@@ -129,7 +129,7 @@ namespace MetodosNumericos
 
             return (3.0 * fx - 4.0 * fxmh + fxm2h) / (2.0 * h);
         }
-
+        //prueba
         // Nota: Las fórmulas de 2 puntos (O(h)) también están disponibles si las incluyes como en la respuesta anterior, 
         // pero las de 3 y 5 puntos (O(h^2), O(h^4)) son generalmente las preferidas por su mayor precisión.
     }
