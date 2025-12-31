@@ -181,6 +181,9 @@
     <EmbeddedResource Include="frmSecante.resx">
       <DependentUpon>frmSecante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="hIrregularDerivada.resx">
+      <DependentUpon>hIrregularDerivada.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="menuDerivacion.resx">
       <DependentUpon>menuDerivacion.cs</DependentUpon>
     </EmbeddedResource>

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Python.Runtime;
+using System.Drawing;
+
 
 namespace MetodosNumericos
 {
@@ -21,7 +23,8 @@ namespace MetodosNumericos
     public class PythonBridge
     {
         private string _scriptName = "logica_math";
-        public PythonBridge(){
+        public PythonBridge()
+        {
             // 1. DEFINIR RUTAS ABSOLUTAS 
             // ESTO DE LA RUTA ESTA MUY EXTRAGNO, LO DEJE ASI PARA QUE FUNCIONE EN MI LAP PERO PUEDEN CAMBIARLA PARA QUE FUNCIONE EN LA SUYA, SOLO RECUERDEN
             // QUE DEBEN DE CREAR UN py_VENV en la carpeta del proyecyo, y ahi dentro instalar numpy, matplotlib y sympy gg:
@@ -89,7 +92,7 @@ namespace MetodosNumericos
                 sys.path.append(Directory.GetCurrentDirectory());
                 dynamic modulo = Py.Import(_scriptName);
 
-                // PythonNet convierte List<double> a lista de python automaticamente
+
                 dynamic resultado = modulo.calcular_derivada(xData, yData, indice, metodo, puntos);
 
                 try
@@ -103,6 +106,58 @@ namespace MetodosNumericos
             }
         }
 
+        public double CalcularDerivadaNewton(List<double> lx, List<double> ly, double xInt)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.derivar_interpolacion_newton(lx, ly, xInt);
+
+                try { return (double)res; }
+                catch { throw new Exception(res.ToString()); }
+            }
+        }
+
+        /*TODA LA FUNCION SIGUIENTE fue sacada de internet, su funcionamiento 
+        ya se explico en el archivo logica_math.py, en la linea 172 */
+        public Image ObtenerGraficaNewton(List<double> lx, List<double> ly, double xInt)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic pyResultado = modulo.generar_grafica_newton_bytes(lx, ly, xInt);
+
+                if (pyResultado == null) throw new Exception("Python devolvió nulo.");
+
+                byte[] netBytes = (byte[])pyResultado;
+
+                // --- VALIDACIÓN DE ERROR ---
+                // Si los bytes empiezan con "ERROR_PY:", es que falló y nos mandó texto.
+                // Leemos los primeros 20 caracteres para verificar.
+                try
+                {
+                    string posibleTexto = System.Text.Encoding.UTF8.GetString(netBytes);
+                    if (posibleTexto.StartsWith("ERROR_PY:"))
+                    {
+                        throw new Exception(posibleTexto);
+                    }
+                }
+                catch (ArgumentException)
+                {
+                  
+                }
+                using (MemoryStream ms = new MemoryStream(netBytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+        }
 
 
     }
