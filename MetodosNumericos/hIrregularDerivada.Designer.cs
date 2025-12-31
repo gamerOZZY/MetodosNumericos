@@ -143,9 +143,9 @@
             // 
             // picGrafica
             // 
-            this.picGrafica.Location = new System.Drawing.Point(322, 409);
+            this.picGrafica.Location = new System.Drawing.Point(314, 405);
             this.picGrafica.Name = "picGrafica";
-            this.picGrafica.Size = new System.Drawing.Size(395, 149);
+            this.picGrafica.Size = new System.Drawing.Size(674, 281);
             this.picGrafica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picGrafica.TabIndex = 11;
             this.picGrafica.TabStop = false;
@@ -154,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1073, 725);
+            this.ClientSize = new System.Drawing.Size(1194, 803);
             this.Controls.Add(this.picGrafica);
             this.Controls.Add(this.lblResultado);
             this.Controls.Add(this.btnLimpiar);

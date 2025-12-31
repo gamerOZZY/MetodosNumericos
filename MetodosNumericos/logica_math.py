@@ -1,3 +1,6 @@
+## P O R F A V O R
+##COMENTAR HASTA EL MAS MINIMO DETALLE DE LAS FUNCIONES, somos 3 y aunque el codigo sea basura, tenemos que
+##entender claramente que es lo que hacexd
 import sympy as sp
 import numpy as np
 import matplotlib
@@ -184,3 +187,43 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
     except Exception as e:
         print(f"Error graficando: {str(e)}")
         return None # Devolvemos None si falla
+
+################################################## EXTRAPOLACION DE RICHARDSON #############################
+def extrapolacion_richardson(func_str, x_val, h_init, niveles):
+    """
+    Retorna una matriz (lista de listas) con la tabla de Richardson.
+    func_str: Funcion texto
+    x_val: Punto a evaluar
+    h_init: Paso inicial
+    niveles: Numero de filas (iteraciones)
+    """
+    try:
+        x = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        f = sp.lambdify(x, expr, modules=['numpy', 'math'])
+        
+        # Matriz D donde guardaremos los valores
+        # D[i][j]
+        D = [[0.0] * (i + 1) for i in range(niveles)]
+
+        # 1. Llenar la primera columna (Derivadas Centradas O(h^2))
+        # Formula: (f(x+h) - f(x-h)) / 2h
+        h = h_init
+        for i in range(niveles):
+            # Derivada centrada básica (reutilizando el concepto de 3 puntos)
+            D[i][0] = (f(x_val + h) - f(x_val - h)) / (2 * h)
+            h = h / 2 # Preparamos h para la siguiente fila (mitad del paso)
+
+        # 2. Llenar el resto de columnas (Extrapolación)
+        # Fórmula: D[i,j] = (4^j * D[i, j-1] - D[i-1, j-1]) / (4^j - 1)
+        for j in range(1, niveles):
+            for i in range(j, niveles):
+                factor = 4 ** j
+                numerador = factor * D[i][j-1] - D[i-1][j-1]
+                denominador = factor - 1
+                D[i][j] = numerador / denominador
+        
+        return D
+
+    except Exception as e:
+        return f"Error: {str(e)}"

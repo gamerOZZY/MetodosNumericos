@@ -17,7 +17,7 @@ namespace MetodosNumericos
 
 
     /*INSTRUCCIONES DE CONFIGURACION
-     * 1. En la linea 57, copiar la ruta de donde se haya guardado el proyecyo en tu computadora
+     * 1. En la linea 31, copiar la ruta de donde se haya guardado el proyecyo en tu computadora
      * 2. Ejecutar (si falla algo mas o no corre bien, me mandan mensajexd
      * */
     public class PythonBridge
@@ -156,6 +156,56 @@ namespace MetodosNumericos
                 {
                     return Image.FromStream(ms);
                 }
+            }
+        }
+
+
+        /* Devuelve una lista de listas de doubles (List<List<double>>)
+         * se eligio que devolviera una lista de listas ya que pythonnet convierte listas de c
+         * en listas de python y viceversa, entonces es mas facil trabajar con ellas gg
+         */
+        
+        public List<List<double>> CalcularRichardson(string funcion, double x, double h, int niveles)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                // Llamamos a Python
+                dynamic resultado = modulo.extrapolacion_richardson(funcion, x, h, niveles);
+
+                // Verificamos si es string (error)
+                if (resultado.ToString().StartsWith("Error"))
+                {
+                    throw new Exception(resultado.ToString());
+                }
+
+                /* --- CONVERSIÓN MANUAL DE LISTA PYTHON A C# --- ASIES ya se que dijeron q era mas facil
+               dejar que pythonnet hiciera la conversion solo, pero en algun momento de la creacion d
+                la funcion, semenolvido y decidi hacerlo manual klsd;kljasdj;sad 
+                */
+
+                List<List<double>> matriz = new List<List<double>>();
+
+                int lenFilas = (int)resultado.__len__(); // Tamaño de la lista principal
+
+                for (int i = 0; i < lenFilas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = resultado[i]; // Obtenemos la sub-lista
+                    int lenCols = (int)filaPy.__len__();
+
+                    for (int j = 0; j < lenCols; j++)
+                    {
+                        double valor = (double)filaPy[j];
+                        fila.Add(valor);
+                    }
+                    matriz.Add(fila);
+                }
+
+                return matriz;
             }
         }
 

@@ -160,6 +160,9 @@
     <EmbeddedResource Include="der123.resx">
       <DependentUpon>der123.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="derivadaExtrapolacion.resx">
+      <DependentUpon>derivadaExtrapolacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
