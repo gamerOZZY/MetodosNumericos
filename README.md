@@ -8,14 +8,15 @@ Este proyecto representa el trabajo semestral de la asignatura **Métodos Numér
 
 ### Tecnologías y Lenguaje Principal
 
-Todos los métodos numéricos presentados en este repositorio están siendo desarrollados e implementados en **C#**. 
+Todos los métodos numéricos presentados en este repositorio están siendo desarrollados e implementados en **C#** y **Python**. 
 
 [Image of C# programming language logo]
 
 
 | Lenguaje | Enfoque |
 | :---: | :---: |
-| **C#** | Implementación eficiente de algoritmos y cálculos numéricos de alto rendimiento. |
+| **C#** | Creacion del front mediante forms |
+| **Python** | Logica e implementacion de todos los metodos numericos. Es el cerebro del programa |
 | **Markdown/HTML/CSS** | Estructuración y presentación del `README` en GitHub. |
 
 ---
