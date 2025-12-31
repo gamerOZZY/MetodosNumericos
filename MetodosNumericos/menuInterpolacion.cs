@@ -35,5 +35,12 @@ namespace MetodosNumericos
             neville.Show();
             neville.WindowState = FormWindowState.Maximized;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            lagranje lagranje = new lagranje();
+            lagranje.Show();
+            lagranje.WindowState = FormWindowState.Maximized;
+        }
     }
 }

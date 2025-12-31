@@ -350,3 +350,111 @@ def metodo_neville(lista_x, lista_y, x_interes):
         return Q
     except Exception as e:
         return f"Error Neville: {str(e)}"
+    
+####################################################### LAGRANJE ################################################3
+def evaluar_lagrange(lista_x, lista_y, x_val):
+    """Evalua el polinomio de Lagrange en un punto x_val."""
+    try:
+        n = len(lista_x)
+        if n < 2: return "Error: Faltan puntos"
+        
+        resultado = 0.0
+        
+        for i in range(n):
+            # Calculamos el término Li(x)
+            termino_L = 1.0
+            for j in range(n):
+                if i != j:
+                    numerador = x_val - lista_x[j]
+                    denominador = lista_x[i] - lista_x[j]
+                    if denominador == 0: return "Error: X duplicado"
+                    termino_L = termino_L * (numerador / denominador)
+            
+            # Sumamos yi * Li(x)
+            resultado += lista_y[i] * termino_L
+            
+        return float(resultado)
+    except Exception as e:
+        return f"Error Lagrange: {str(e)}"
+
+
+
+def obtener_texto_lagrange(lista_x, lista_y):
+    """Genera la representacion escrita del polinomio."""
+    try:
+        n = len(lista_x)
+        texto = "P(x) = "
+        
+        for i in range(n):
+            y_i = lista_y[i]
+            if abs(y_i) < 1e-9: continue # Saltar términos cero
+            
+            signo = "+ " if y_i >= 0 else "- "
+            if i == 0 and y_i >= 0: signo = ""
+            
+            # Formato: 2.5 * [ (x-x1)/(x0-x1) * ... ]
+            texto += f"{signo}{abs(y_i):.4f}"
+            
+            terminos_L = ""
+            denominador_total = 1.0
+            
+            for j in range(n):
+                if i != j:
+                    signo_x = "- " if lista_x[j] >= 0 else "+ "
+                    terminos_L += f"(x {signo_x}{abs(lista_x[j]):.2f})"
+                    denominador_total *= (lista_x[i] - lista_x[j])
+            
+            texto += f" * [ {terminos_L} / {denominador_total:.4f} ]\n"
+            
+        return texto
+    except Exception as e:
+        return f"Error Texto: {str(e)}"
+
+
+
+def generar_grafica_lagrange_bytes(lista_x, lista_y, x_interes):
+    """Grafica usando la formula de Lagrange."""
+    try:
+        n = len(lista_x)
+        if n < 2: return "ERROR_PY: Faltan puntos".encode('utf-8')
+
+        # Función interna para evaluar Lagrange en cualquier punto v
+        def P_Lagrange(v):
+            res = 0.0
+            for i in range(n):
+                term = 1.0
+                for j in range(n):
+                    if i != j:
+                        term *= (v - lista_x[j]) / (lista_x[i] - lista_x[j])
+                res += lista_y[i] * term
+            return res
+
+        # Configurar gráfica
+        plt.figure(figsize=(5, 3.5))
+        x_min, x_max = min(lista_x), max(lista_x)
+        pad = (x_max - x_min) * 0.1 if n > 1 else 1.0
+        
+        # Generamos 100 puntos para que la curva se vea suave
+        x_suave = np.linspace(x_min - pad, x_max + pad, 100)
+        y_suave = [P_Lagrange(val) for val in x_suave]
+
+        plt.plot(x_suave, y_suave, 'purple', label='Lagrange', linewidth=1.5) # Color morado para variar
+        plt.scatter(lista_x, lista_y, color='red', zorder=5)
+        
+        # Punto de interés
+        y_int = P_Lagrange(x_interes)
+        plt.scatter([x_interes], [y_int], color='orange', marker='*', s=150, zorder=10, label='Interpolado')
+
+        plt.title("Interpolacion de Lagrange")
+        plt.grid(True, alpha=0.3)
+        plt.legend()
+        plt.tight_layout()
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=90)
+        buf.seek(0)
+        plt.close('all')
+        return buf.getvalue()
+
+    except Exception as e:
+        return f"ERROR_PY: {str(e)}".encode('utf-8')

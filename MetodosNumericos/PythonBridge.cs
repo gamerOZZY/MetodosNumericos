@@ -293,5 +293,62 @@ namespace MetodosNumericos
         }
 
 
+        public double CalcularLagrange(List<double> lx, List<double> ly, double xInt)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+                dynamic res = modulo.evaluar_lagrange(lx, ly, xInt);
+
+                try { return (double)res; }
+                catch { throw new Exception(res.ToString()); }
+            }
+        }
+
+        // 2. Obtener Ecuación (Texto)
+        public string ObtenerTextoLagrange(List<double> lx, List<double> ly)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+                dynamic res = modulo.obtener_texto_lagrange(lx, ly);
+                return res.ToString();
+            }
+        }
+
+        // 3. Obtener Gráfica Específica de Lagrange
+        public Image ObtenerGraficaLagrange(List<double> lx, List<double> ly, double xInt)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+                dynamic res = modulo.generar_grafica_lagrange_bytes(lx, ly, xInt);
+
+                if (res == null) throw new Exception("Error gráfico nulo");
+
+                byte[] netBytes = (byte[])res;
+
+                // Validar error texto
+                try
+                {
+                    string txt = System.Text.Encoding.UTF8.GetString(netBytes);
+                    if (txt.StartsWith("ERROR_PY:")) throw new Exception(txt);
+                }
+                catch (ArgumentException) { }
+
+                using (MemoryStream ms = new MemoryStream(netBytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+        }
+
+
     }
 }
