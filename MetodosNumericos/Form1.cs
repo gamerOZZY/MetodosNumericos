@@ -99,5 +99,12 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void menuIntegracionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menu_Integracion menu_Integracion = new menu_Integracion();
+            menu_Integracion.Show();
+            menu_Integracion.WindowState = FormWindowState.Maximized;
+        }
     }
 }
