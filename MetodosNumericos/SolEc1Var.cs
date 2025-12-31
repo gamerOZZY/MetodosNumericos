@@ -26,7 +26,7 @@ namespace MetodosNumericos
         private NCalc.Expression exprFuncion;
         private NCalc.Expression exprGuncion;
         private NCalc.Expression exprDerivada;
-        private string DerivadaTexto;
+        
 
 
 
