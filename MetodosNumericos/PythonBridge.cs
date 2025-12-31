@@ -12,6 +12,12 @@ namespace MetodosNumericos
     /* Honestamente, todo el codigo de la conexion, lo saque de internet, medianamente lo comprendo
      * pero no sirve de mucho entenderlo, con que sepan que es el puente entre c# y python, esta bien
      */
+
+
+    /*INSTRUCCIONES DE CONFIGURACION
+     * 1. En la linea 57, copiar la ruta de donde se haya guardado el proyecyo en tu computadora
+     * 2. Ejecutar (si falla algo mas o no corre bien, me mandan mensajexd
+     * */
     public class PythonBridge
     {
         private string _scriptName = "logica_math";
