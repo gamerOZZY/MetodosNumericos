@@ -349,6 +349,59 @@ namespace MetodosNumericos
             }
         }
 
+        public double CalcularIntegral(List<double> ly, double h, string metodo)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = null;
+
+                if (metodo == "Trapecio") res = modulo.integrar_trapecio_compuesto(ly, h);
+                else if (metodo == "Simpson 1/3") res = modulo.integrar_simpson13_compuesto(ly, h);
+                else if (metodo == "Simpson 3/8") res = modulo.integrar_simpson38_compuesto(ly, h);
+
+                if (res == null) throw new Exception("Método no reconocido");
+
+                // Manejo de errores de texto, (realemte no se pq lo puse si en ningun momento dio error
+                // pero a este punto, todo se sostiane a base de try-catch y throw-Eceptions, entonces es lo
+                // que hayxd)
+                string resStr = res.ToString();
+                if (resStr.StartsWith("Error")) throw new Exception(resStr);
+
+                return (double)res;
+            }
+        }
+
+ 
+        public Image ObtenerGraficaIntegracion(List<double> lx, List<double> ly, string nombreMetodo, string funcion)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+
+                dynamic res = modulo.generar_grafica_integracion(lx, ly, nombreMetodo, funcion);
+
+                byte[] netBytes = (byte[])res;
+                try
+                {
+                    string txt = System.Text.Encoding.UTF8.GetString(netBytes);
+                    if (txt.StartsWith("ERROR_PY:")) throw new Exception(txt);
+                }
+                catch (ArgumentException) { }
+
+                using (MemoryStream ms = new MemoryStream(netBytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+        }
+
 
     }
 }

@@ -1,6 +1,7 @@
 ## P O R F A V O R
 ##COMENTAR HASTA EL MAS MINIMO DETALLE DE LAS FUNCIONES, somos 3 y aunque el codigo sea basura, tenemos que
 ##entender claramente que es lo que hacexd
+from urllib.request import parse_http_list
 import sympy as sp
 import numpy as np
 import matplotlib
@@ -448,6 +449,120 @@ def generar_grafica_lagrange_bytes(lista_x, lista_y, x_interes):
         plt.title("Interpolacion de Lagrange")
         plt.grid(True, alpha=0.3)
         plt.legend()
+        plt.tight_layout()
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=90)
+        buf.seek(0)
+        plt.close('all')
+        return buf.getvalue()
+
+    except Exception as e:
+        return f"ERROR_PY: {str(e)}".encode('utf-8')
+
+###################################################### INTEGRAGION NUMERICA COMPUESTA ###################################
+def integrar_trapecio_compuesto(lista_y_csharp, h):
+    """Formula: h/2 * [y0 + 2*sum(yi) + yn]"""
+    try:
+        # Convertir C# List a Python List (ESTA SOLA LINEA ME TOMO DOS HORAS CORREGIRLA PQ POR ALGUNA RAZON,
+        # ARRIBA NO ME DABA ESTE ERRR
+        lista_y = list(lista_y_csharp) 
+
+
+        n = len(lista_y) - 1 
+        if n < 1: return "Error: Faltan puntos"
+        
+        # Ahora sí podemos usar slicing de Python [1:-1]
+        suma_interna = sum(lista_y[1:-1]) 
+        resultado = (h / 2.0) * (lista_y[0] + 2 * suma_interna + lista_y[-1])
+        return float(resultado)
+    except Exception as e:
+        return f"Error Trapecio: {str(e)}"
+
+def integrar_simpson13_compuesto(lista_y_csharp, h):
+    """Formula: h/3 * [y0 + 4(impares) + 2(pares) + yn]"""
+    try:
+
+        lista_y = list(lista_y_csharp)
+
+
+        n = len(lista_y) - 1
+        if n < 2 or n % 2 != 0: return "Error: Intervalos deben ser pares (Puntos impares)"
+        
+        # Slicing: [inicio:fin:paso]
+        impares = sum(lista_y[1:-1:2]) 
+        pares = sum(lista_y[2:-1:2])   
+        
+        resultado = (h / 3.0) * (lista_y[0] + 4*impares + 2*pares + lista_y[-1])
+        return float(resultado)
+    except Exception as e:
+        return f"Error Simpson 1/3: {str(e)}"
+
+def integrar_simpson38_compuesto(lista_y_csharp, h):
+    """Formula: 3h/8 * [y0 + 3(no multiplos de 3) + 2(multiplos de 3) + yn]"""
+    try:
+
+        lista_y = list(lista_y_csharp)
+
+
+        n = len(lista_y) - 1
+        if n < 3 or n % 3 != 0: return "Error: Intervalos deben ser multiplo de 3"
+        
+        suma_total = lista_y[0] + lista_y[-1]
+        
+        for i in range(1, n):
+            if i % 3 == 0:
+                suma_total += 2 * lista_y[i]
+            else:
+                suma_total += 3 * lista_y[i]
+                
+        resultado = (3.0 * h / 8.0) * suma_total
+        return float(resultado)
+    except Exception as e:
+        return f"Error Simpson 3/8: {str(e)}"
+
+def generar_grafica_integracion(lista_x, lista_y, metodo, func_str):
+    """
+    Grafica la funcion real (suave) y sombrea el area de los trapecios.
+    """
+    try:
+        n = len(lista_x)
+        if n < 2: return "ERROR_PY: Faltan puntos".encode('utf-8')
+
+        plt.figure(figsize=(5, 3.5))
+        
+        # --- 1. DIBUJAR LA CURVA SUAVE (LA FUNCIÓN REAL) ---
+        # Creamos una 'x' simbólica y convertimos el texto a función GRACIAS SYMPY TEAMO
+        x_sym = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        f_real = sp.lambdify(x_sym, expr, modules=['numpy', 'math'])
+        
+        # Genero 200 puntos entre el inicio y el fin para que se vea curva
+        x_min, x_max = min(lista_x), max(lista_x)
+        pad = (x_max - x_min) * 0.05 # Un poquito de margen extra
+        
+        x_suave = np.linspace(x_min, x_max, 200)
+        y_suave = [f_real(val) for val in x_suave]
+        
+        # Dibujamos la función real en AZUL OSCURO
+        plt.plot(x_suave, y_suave, 'b-', linewidth=2, label=f'f(x) Real')
+
+        # --- 2. SOMBREAR EL ÁREA (LA APROXIMACIÓN) ---
+        # Usamos fill_between con los puntos ORIGINALES. 
+        # Esto conectará los puntos con lineas rectas (Trapecios),
+        # permitiendo ver visualmente la diferencia con la curva real.
+        plt.fill_between(lista_x, lista_y, color='skyblue', alpha=0.4, label='Aprox. Numerica')
+        
+        # --- 3. DIBUJAR LOS PUNTOS Y DETALLES ---
+        plt.scatter(lista_x, lista_y, color='red', zorder=5, s=30)
+        
+        # Líneas verticales para los intervalos
+        for val_x in lista_x:
+            plt.axvline(val_x, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
+
+        plt.title(f"Integracion: {metodo}")
+        plt.grid(True, alpha=0.3)
+        plt.legend(loc='upper right', fontsize='small')
         plt.tight_layout()
 
         buf = io.BytesIO()

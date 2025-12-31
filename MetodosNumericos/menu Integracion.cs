@@ -21,5 +21,12 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            integracion_Compuesta coso = new integracion_Compuesta();
+            coso.Show();
+            coso.WindowState = FormWindowState.Maximized;
+        }
     }
 }
