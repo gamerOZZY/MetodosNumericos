@@ -260,6 +260,38 @@ namespace MetodosNumericos
         }
 
 
+        public List<List<double>> CalcularNeville(List<double> lx, List<double> ly, double xInt)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.metodo_neville(lx, ly, xInt);
+
+                // Validación de error de texto
+                if (res.ToString().StartsWith("Error")) throw new Exception(res.ToString());
+
+                // Conversión manual de matriz Python a C#
+                List<List<double>> matriz = new List<List<double>>();
+                int n = (int)res.__len__();
+
+                for (int i = 0; i < n; i++)
+                {
+                    List<double> fila = new List<double>();
+                    // En Neville, la fila i tiene i+1 elementos válidos, pero la matriz es nxn
+                    // Convertimos toda la fila
+                    for (int j = 0; j < n; j++)
+                    {
+                        fila.Add((double)res[i][j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+
 
     }
 }

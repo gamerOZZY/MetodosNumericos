@@ -318,3 +318,35 @@ def obtener_polinomio_texto(lista_x, lista_y, tipo):
         return polinomio_str
     except Exception as e:
         return f"Error texto: {str(e)}"
+    
+########################################################### NEVILLE ######################################################
+def metodo_neville(lista_x, lista_y, x_interes):
+    """
+    Retorna la matriz Q de Neville.
+    Q[i][j] es la aproximacion usando i puntos.
+    """
+    try:
+        n = len(lista_x)
+        if n < 2: return "Error: Faltan puntos"
+
+        # Inicializamos la matriz Q con ceros (nxn)
+        Q = [[0.0] * n for _ in range(n)]
+
+        # Paso 1: La primera columna son las Yi (Q[i][0] = yi)
+        for i in range(n):
+            Q[i][0] = float(lista_y[i])
+
+        # Paso 2: Llenar la matriz triangular usando la fórmula recursiva
+        # Fórmula: Q[i,j] = [ (x - xi-j)*Q[i,j-1] - (x - xi)*Q[i-1,j-1] ] / (xi - xi-j)
+        for j in range(1, n):
+            for i in range(j, n):
+                numerador = (x_interes - lista_x[i-j]) * Q[i][j-1] - (x_interes - lista_x[i]) * Q[i-1][j-1]
+                denominador = lista_x[i] - lista_x[i-j]
+                
+                if denominador == 0: return "Error: Division por cero (X duplicados)"
+                
+                Q[i][j] = numerador / denominador
+
+        return Q
+    except Exception as e:
+        return f"Error Neville: {str(e)}"

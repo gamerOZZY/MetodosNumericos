@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.picGrafica = new System.Windows.Forms.PictureBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGrafica)).BeginInit();
@@ -161,11 +162,22 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1118, 599);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "salir";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // diferenciasDivididas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1271, 649);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.picGrafica);
             this.Controls.Add(this.label3);
@@ -204,5 +216,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox picGrafica;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button button1;
     }
 }

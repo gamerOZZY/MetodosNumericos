@@ -28,5 +28,12 @@ namespace MetodosNumericos
             f.Show();
             f.WindowState = FormWindowState.Maximized;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            neville neville = new neville();
+            neville.Show();
+            neville.WindowState = FormWindowState.Maximized;
+        }
     }
 }
