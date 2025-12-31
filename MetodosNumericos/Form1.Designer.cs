@@ -48,6 +48,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.interpolacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuInterpolacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,10 +59,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem,
             this.derivacionToolStripMenuItem,
+            this.interpolacionToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -74,7 +77,7 @@
             this.puntoFijoToolStripMenuItem,
             this.mullerToolStripMenuItem});
             this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Name = "solucionDeEcuacionesDeUnaVariableToolStripMenuItem";
-            this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
+            this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Size = new System.Drawing.Size(284, 24);
             this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Text = "Solucion de ecuaciones de una variable";
             // 
             // biseccionToolStripMenuItem
@@ -124,13 +127,14 @@
             this.derivacionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem});
             this.derivacionToolStripMenuItem.Name = "derivacionToolStripMenuItem";
-            this.derivacionToolStripMenuItem.Size = new System.Drawing.Size(94, 26);
+            this.derivacionToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.derivacionToolStripMenuItem.Text = "Derivacion";
+            this.derivacionToolStripMenuItem.Click += new System.EventHandler(this.derivacionToolStripMenuItem_Click);
             // 
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.menuToolStripMenuItem.Text = "menu";
             this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
             // 
@@ -139,7 +143,7 @@
             this.salirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salirToolStripMenuItem1});
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(85, 26);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.salirToolStripMenuItem.Text = "Opciones";
             // 
             // salirToolStripMenuItem1
@@ -225,6 +229,21 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
             // 
+            // interpolacionToolStripMenuItem
+            // 
+            this.interpolacionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuInterpolacionToolStripMenuItem});
+            this.interpolacionToolStripMenuItem.Name = "interpolacionToolStripMenuItem";
+            this.interpolacionToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.interpolacionToolStripMenuItem.Text = "Interpolacion";
+            // 
+            // menuInterpolacionToolStripMenuItem
+            // 
+            this.menuInterpolacionToolStripMenuItem.Name = "menuInterpolacionToolStripMenuItem";
+            this.menuInterpolacionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.menuInterpolacionToolStripMenuItem.Text = "Menu interpolacion";
+            this.menuInterpolacionToolStripMenuItem.Click += new System.EventHandler(this.menuInterpolacionToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -273,6 +292,8 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem derivacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem interpolacionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuInterpolacionToolStripMenuItem;
     }
 }
 

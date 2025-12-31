@@ -209,6 +209,57 @@ namespace MetodosNumericos
             }
         }
 
+        public List<List<double>> ObtenerTablaDiferencias(List<double> lx, List<double> ly)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.obtener_tabla_diferencias(lx, ly);
+                string posibleError = res.ToString();
+                if (posibleError.StartsWith("Error"))
+                {
+                    throw new Exception("Python falló: " + posibleError);
+                }
+
+                // Convertir matriz de Python a C#
+                List<List<double>> matriz = new List<List<double>>();
+                int n = (int)res.__len__();
+
+                for (int i = 0; i < n; i++)
+                {
+                    List<double> fila = new List<double>();
+                    for (int j = 0; j < n; j++)
+                    {
+                        fila.Add((double)res[i][j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+
+        // Obtener el Polinomio como Texto
+        public string ObtenerPolinomioTexto(List<double> lx, List<double> ly, string tipo)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                // "adelante" o "atras" (deben coincidir con el if de Python)
+                //FUN FACT, ESTA SOLA LINEA DE CODIGO FALLO MUCHISIMAS, MUCHISIMAS VECES, NO SE QUE MOVI EN EL 
+                //CODIGO PY Y POR ALGUNA RAZON FUNCIONO XASJD;KLASHJD;KLASHDKLASHDLSADH;KL
+                dynamic res = modulo.obtener_polinomio_texto(lx, ly, tipo);
+
+                return res.ToString();
+            }
+        }
+
+
 
     }
 }

@@ -87,5 +87,17 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void menuInterpolacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuInterpolacion menuInterpolacion = new menuInterpolacion();
+            menuInterpolacion.Show();
+            menuInterpolacion.WindowState = FormWindowState.Maximized;
+        }
+
+        private void derivacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -21,5 +21,12 @@ namespace MetodosNumericos
         {
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            diferenciasDivididas f = new diferenciasDivididas();
+            f.Show();
+            f.WindowState = FormWindowState.Maximized;
+        }
     }
 }

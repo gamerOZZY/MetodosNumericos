@@ -227,3 +227,94 @@ def extrapolacion_richardson(func_str, x_val, h_init, niveles):
 
     except Exception as e:
         return f"Error: {str(e)}"
+    
+#################################################### DIFERENCIAS DIVIDIDAS #####################
+def obtener_tabla_diferencias(lista_x, lista_y):
+    """Retorna la matriz de diferencias divididas como lista de listas"""
+    try:
+        n = len(lista_x)
+        # Inicializamos matriz de floats
+        F = [[0.0] * n for _ in range(n)]
+
+        # Llenar columna 0 con Y
+        for i in range(n):
+            F[i][0] = float(lista_y[i])
+
+        # Calcular diferencias divididas
+        for j in range(1, n):
+            for i in range(j, n):
+                
+                numerador = F[i][j-1] - F[i-1][j-1]
+                denominador = lista_x[i] - lista_x[i-j]
+                
+                if denominador == 0: return "Error: X duplicado (division por 0)"
+                
+                F[i][j] = numerador / denominador 
+        
+        return F 
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+def obtener_polinomio_texto(lista_x, lista_y, tipo):
+    """Retorna el string del polinomio"""
+    try:
+        n = len(lista_x)
+        # Llamamos a la función corregida de arriba
+        F = obtener_tabla_diferencias(lista_x, lista_y)
+        
+        # Validación: Si F es un string, es que hubo error en la tabla AUNQUE no creo que pase pero aja, ahi esta por si las dudas
+        if isinstance(F, str): return F 
+
+        polinomio_str = "P(x) = "
+        
+        # --- ADELANTE (Usando diagonal superior) ---
+        if tipo == 'adelante':
+            # Los coeficientes son F[0][0], F[1][1], F[2][2]...
+            coefs = [F[i][i] for i in range(n)]
+            
+            for i in range(n):
+                c = coefs[i]
+                if abs(c) < 1e-9: continue # Ignorar ceros
+                
+                signo = "+ " if c >= 0 else "- "
+                if i == 0: signo = "" if c >= 0 else "-"
+                
+                termino = f"{signo}{abs(c):.4f}"
+                
+                for k in range(i):
+                    val_x = lista_x[k]
+                    signo_x = "-" if val_x >= 0 else "+"
+                    termino += f"*(x {signo_x} {abs(val_x):.4f})"
+                
+                polinomio_str += termino + " "
+
+        # ---  ATRÁS (Usando diagonal inferior) ---
+        elif tipo == 'atras':
+            # Los coeficientes están en la última fila llena de cada columna
+            # F[n-1][0] (no se usa para el polinomio, es y), F[n-1][1]... 
+            # Corrección logica Atras: Usamos la ultima fila disponible para ese orden
+            # El coef b0 está en F[n-1][0]
+            # El coef b1 está en F[n-1][1]
+            coefs = F[n-1]
+            
+            for i in range(n):
+                c = coefs[i]
+                if abs(c) < 1e-9: continue
+                
+                signo = "+ " if c >= 0 else "- "
+                if i == 0: signo = "" if c >= 0 else "-"
+                
+                termino = f"{signo}{abs(c):.4f}"
+                
+                # Multiplicamos por (x - x_n-1), (x - x_n-2)...
+                for k in range(i):
+                    idx = (n - 1) - k
+                    val_x = lista_x[idx]
+                    signo_x = "-" if val_x >= 0 else "+"
+                    termino += f"*(x {signo_x} {abs(val_x):.4f})"
+                
+                polinomio_str += termino + " "
+
+        return polinomio_str
+    except Exception as e:
+        return f"Error texto: {str(e)}"
