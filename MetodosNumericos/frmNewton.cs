@@ -12,47 +12,67 @@ namespace MetodosNumericos
 {
     public partial class frmNewton : Form
     {
+        PythonBridge puente;
+
+        private void ConfigurarTabla()
+        {
+            dgvNewton.Columns.Clear();
+            dgvNewton.Columns.Add("Iter", "i");
+            dgvNewton.Columns.Add("p0", "p0 (Actual)");
+            dgvNewton.Columns.Add("p1", "p1 (Siguiente)");
+            dgvNewton.Columns.Add("error", "Error (|p1-p0|)");
+
+            dgvNewton.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         public frmNewton()
         {
             InitializeComponent();
+            puente = new PythonBridge();
+            ConfigurarTabla();
         }
 
         private void btmCalcular_Click(object sender, EventArgs e)
         {
-            SolEc1Var SolNewton = new SolEc1Var();
-
-            bool r;
-            float AproxRaiz = 0;
-            if (txtValorA.Text == "" ||  txtErrorMax.Text == "" || txtNumMaxIter.Text == "" || txtFuncion.Text == "")
+            try
             {
-                MessageBox.Show("Llena todos los campos para continuar", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }
-            else
-            {
-                SolNewton.a = float.Parse(txtValorA.Text);
+                if (string.IsNullOrWhiteSpace(txtFuncion.Text)) throw new Exception("Falta funcion");
 
-                SolNewton.ErrorMax = float.Parse(txtErrorMax.Text);
-                SolNewton.NumMaxIter = int.Parse(txtNumMaxIter.Text);
-                SolNewton.FuncionTexto = txtFuncion.Text;
-                SolNewton.PrepararFuncion();
+                string func = txtFuncion.Text.ToLower().Replace("^", "**");
 
-                r = SolNewton.MetNewtonRaphson(ref dgvNewton, ref AproxRaiz);
-                if (r)
+                double p0 = double.Parse(txtValorA.Text);
+
+                double tol = double.Parse(txtErrorMax.Text);
+                int maxIter = int.Parse(txtNumMaxIter.Text);
+
+                var tabla = puente.CalcularNewtonRaphson(func, p0, tol, maxIter);
+
+                dgvNewton.Rows.Clear();
+
+                foreach (var fila in tabla)
                 {
-                    MessageBox.Show("Raíz encontrada: " + AproxRaiz.ToString(),
-                                    "Resultado",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
+                    dgvNewton.Rows.Add(
+                        (int)fila[0],      
+                        fila[1].ToString("F8"), 
+                        fila[2].ToString("F8"), 
+                        fila[3].ToString("F8")  
+                    );
                 }
 
-
-
+                // Resultado
+                double raiz = tabla[tabla.Count - 1][2]; 
+                MessageBox.Show($"Raiz encontrada: {raiz:F6}");
             }
-                
-
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
+
+
+
+
+    
 
         private void frmNewton_Load(object sender, EventArgs e)
         {
@@ -62,6 +82,11 @@ namespace MetodosNumericos
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvNewton_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

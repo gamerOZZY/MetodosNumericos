@@ -158,6 +158,7 @@
             this.dgvNewton.RowTemplate.Height = 24;
             this.dgvNewton.Size = new System.Drawing.Size(1796, 405);
             this.dgvNewton.TabIndex = 20;
+            this.dgvNewton.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNewton_CellContentClick);
             // 
             // IterAct
             // 

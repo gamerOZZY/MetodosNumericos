@@ -22,6 +22,222 @@ def evaluar_y(func_str, x_val): #Funcion para evalaluar x en una f(x)
         return float(f(x_val))
     except Exception as e:
         return f"Error: {str(e)}"
+    
+####################################################### ECUACIONES DE UNA VARIABLE ######################################
+def metodo_biseccion(func_str, a, b, tol, max_iter):
+    """
+    Retorna tabla con: [iter, a, c, b, f(a), f(c), f(b), error]
+    Donde c es el punto medio y Error = b - a
+    """
+    try:
+        x = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        f = sp.lambdify(x, expr, modules=['numpy', 'math'])
+
+        if f(a) * f(b) > 0:
+            return "Error: f(a) y f(b) tienen el mismo signo. No hay raiz garantizada."
+
+        tabla = []
+        
+        for i in range(1, int(max_iter) + 1):
+            c = (a + b) / 2.0
+            
+            fa = f(a)
+            fb = f(b)
+            fc = f(c)
+            error = b - a
+            fila = [float(i), float(a), float(c), float(b), float(fa), float(fc), float(fb), float(error)]
+            tabla.append(fila)
+
+            if error < tol or abs(fc) < 1e-15: 
+                break
+            
+
+            if fa * fc < 0:
+                b = c
+            else:
+   
+                a = c
+                
+        return tabla
+
+    except Exception as e:
+        return f"Error Biseccion: {str(e)}"
+
+def metodo_falsa_posicion(func_str, a, b, tol, max_iter):
+    """
+    Retorna tabla: [iter, a, c, b, f(a), f(c), f(b), errorAprox]
+    """
+    try:
+        x = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        f = sp.lambdify(x, expr, modules=['numpy', 'math'])
+
+        fa = f(a)
+        fb = f(b)
+        
+        if fa * fb > 0:
+            return "Error: f(a) y f(b) tienen el mismo signo. No hay raIz garantizada."
+        
+        tabla = []
+        c_old = a # Valor inicial 
+        
+        for i in range(1, int(max_iter) + 1):
+            fa = f(a)
+            fb = f(b)
+            
+
+            if fb - fa == 0: return "Error: Division por cero en la formula."
+
+
+            c = (a * fb - b * fa) / (fb - fa)
+            fc = f(c)
+
+            if i == 1:
+                error = abs(b - a) 
+            else:
+                error = abs(c - c_old)
+            
+
+            fila = [
+                float(i), float(a), float(c), float(b), 
+                float(fa), float(fc), float(fb), float(error)
+            ]
+            tabla.append(fila)
+
+
+            if error < tol or abs(fc) < 1e-15:
+                break
+                
+            if fa * fc < 0:
+                b = c 
+            else:
+                a = c 
+                
+            c_old = c 
+            
+        return tabla
+
+    except Exception as e:
+        return f"Error Falsa PosiciOn: {str(e)}"
+    
+def metodo_newton_raphson(func_str, p0, tol, max_iter):
+    """
+    Retorna tabla: [iter, p0, p1, error]
+    """
+    try:
+        x = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        derivada_expr = sp.diff(expr, x) 
+    
+        f = sp.lambdify(x, expr, modules=['numpy', 'math'])
+        df = sp.lambdify(x, derivada_expr, modules=['numpy', 'math'])
+        
+        tabla = []
+        p_actual = float(p0)
+        
+        for i in range(1, int(max_iter) + 1):
+            f_val = f(p_actual)
+            df_val = df(p_actual)
+            
+            if df_val == 0:
+                return "Error: La derivada se hizo cero. El metodo falla (division por 0)."
+           
+            p_siguiente = p_actual - (f_val / df_val)
+
+            error = abs(p_siguiente - p_actual)
+
+            fila = [float(i), p_actual, p_siguiente, error]
+            tabla.append(fila)
+
+            if error < tol or abs(f(p_siguiente)) < 1e-15:
+                break
+                
+            p_actual = p_siguiente
+            
+        return tabla
+
+    except Exception as e:
+        return f"Error Newton-Raphson: {str(e)}"
+    
+def metodo_secante(func_str, p0, p1, tol, max_iter):
+    """
+    Retorna tabla: [iter, p0, p1, p2, f(p2), error]
+    """
+    try:
+        x = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        f = sp.lambdify(x, expr, modules=['numpy', 'math'])
+        
+        tabla = []
+        
+        p_prev = float(p0)  
+        p_curr = float(p1) 
+        
+        for i in range(1, int(max_iter) + 1):
+            f_prev = f(p_prev)
+            f_curr = f(p_curr)
+            
+            denom = f_curr - f_prev
+            if denom == 0:
+                return "Error: Division por cero. f(p0) y f(p1) son iguales."
+
+            p_next = p_curr - (f_curr * (p_curr - p_prev) / denom)
+
+            error = abs(p_next - p_curr)
+
+            f_next = f(p_next)
+
+            fila = [float(i), p_prev, p_curr, p_next, f_next, error]
+            tabla.append(fila)
+
+            if error < tol or abs(f_next) < 1e-15:
+                break
+
+            p_prev = p_curr
+            p_curr = p_next
+            
+        return tabla
+
+    except Exception as e:
+        return f"Error Secante: {str(e)}"
+
+def metodo_punto_fijo(g_func_str, p0, tol, max_iter):
+    """
+    Retorna tabla: [iter, p0, p1, error]
+    """
+    try:
+        x = sp.symbols('x')
+        expr_g = sp.sympify(g_func_str)
+        g = sp.lambdify(x, expr_g, modules=['numpy', 'math'])
+        
+        tabla = []
+        p_00 = float(p0)
+        
+        for i in range(1, int(max_iter) + 1):
+            p_11 = g(p_00)
+            
+            error = abs(p_11 - p_00)
+            
+            fila = [float(i), p_00, p_11, error]
+            tabla.append(fila)
+            
+            if error < tol:
+                break
+            
+            if error > 1e10: 
+                return f"Error: el error crece al infinito. Revisa tu g(x)."
+                
+
+            p_00 = p_11
+            
+        return tabla
+
+    except Exception as e:
+        return f"Error Punto Fijo: {str(e)}"
+    
+
+
 
 
 ########################################################## DERIVADAS 2,3,5 PUNTOS ###################################

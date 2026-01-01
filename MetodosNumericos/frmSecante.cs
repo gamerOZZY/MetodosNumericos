@@ -12,47 +12,68 @@ namespace MetodosNumericos
 {
     public partial class frmSecante : Form
     {
+        PythonBridge puente;
+        private void ConfigurarTabla()
+        {
+
+            dgvSecante.Columns.Clear();
+            dgvSecante.Columns.Add("Iter", "i");
+            dgvSecante.Columns.Add("p0", "p0 (Anterior)");
+            dgvSecante.Columns.Add("p1", "p1 (Actual)");
+            dgvSecante.Columns.Add("p2", "p2 (Siguiente)");
+            dgvSecante.Columns.Add("fp2", "f(p2)");
+            dgvSecante.Columns.Add("error", "Error Aprox");
+
+            dgvSecante.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         public frmSecante()
         {
             InitializeComponent();
+            puente = new PythonBridge();
+            ConfigurarTabla();
         }
 
         private void btmCalcular_Click(object sender, EventArgs e)
         {
-            SolEc1Var SolSec = new SolEc1Var();
-
-            bool r;
-            double AproxRaiz = 0;
-
-            if (txtValorA.Text == "" || txtValorB.Text == "" || txtErrorMax.Text == "" || txtNumMaxIter.Text == "" || txtFuncion.Text == "")
+            try
             {
-                MessageBox.Show("Llena todos los campos correctamente para continuar", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (string.IsNullOrWhiteSpace(txtFuncion.Text)) throw new Exception("Falta función");
 
-            }
-            else 
-            {
+                string func = txtFuncion.Text.ToLower().Replace("^", "**");
 
-                SolSec.a = float.Parse(txtValorA.Text);
-                SolSec.b = float.Parse(txtValorB.Text);
-                SolSec.ErrorMax = float.Parse(txtErrorMax.Text);
-                SolSec.NumMaxIter = int.Parse(txtNumMaxIter.Text);
-                SolSec.FuncionTexto = txtFuncion.Text;
-                SolSec.PrepararFuncion();
+                double p0 = double.Parse(txtValorA.Text);
+                double p1 = double.Parse(txtValorB.Text);
 
+                double tol = double.Parse(txtErrorMax.Text);
+                int maxIter = int.Parse(txtNumMaxIter.Text);
+
+                var tabla = puente.CalcularSecante(func, p0, p1, tol, maxIter);
 
                 dgvSecante.Rows.Clear();
 
-                r = SolSec.MetSecante(ref dgvSecante, ref AproxRaiz);
-
-                if (r)
+                foreach (var fila in tabla)
                 {
-                    MessageBox.Show("Raíz encontrada: " + AproxRaiz.ToString("F6"),
-                                    "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    dgvSecante.Rows.Add(
+                        (int)fila[0],       
+                        fila[1].ToString("F8"), 
+                        fila[2].ToString("F8"),
+                        fila[3].ToString("F8"), 
+                        fila[4].ToString("F8"),
+                        fila[5].ToString("F8")  
+                    );
                 }
+
+                double raiz = tabla[tabla.Count - 1][3]; 
+                MessageBox.Show($"Raíz encontrada: {raiz:F8}");
             }
-           
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
+
+
+    
 
         private void btnSalir_Click(object sender, EventArgs e)
         {

@@ -12,40 +12,62 @@ namespace MetodosNumericos
 {
     public partial class frmPuntoFijo : Form
     {
+        PythonBridge puente;
+        private void ConfigurarTabla()
+        {
+            dgvPuntoFijo.Columns.Clear();
+            dgvPuntoFijo.Columns.Add("Iter", "i");
+            dgvPuntoFijo.Columns.Add("p0", "p0 (Actual)");
+            dgvPuntoFijo.Columns.Add("p1", "p1 (Siguiente)");
+            dgvPuntoFijo.Columns.Add("error", "Error Aprox");
+            dgvPuntoFijo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         public frmPuntoFijo()
         {
             InitializeComponent();
+            puente = new PythonBridge();
+            ConfigurarTabla();
         }
 
         private void btmCalcular_Click(object sender, EventArgs e)
         {
-            SolEc1Var SolPF = new SolEc1Var();
-
-            bool r;
-            float AproxRaiz = 0;
-            if (txtValorA.Text == "" || txtGuncion.Text == "" || txtErrorMax.Text == "" || txtNumMaxIter.Text == "" || txtFuncion.Text == "")
+            try
             {
-                MessageBox.Show("Llena todos los campos correctamente para continuar", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                if (string.IsNullOrWhiteSpace(txtGuncion.Text)) throw new Exception("Ingresa la funcion g(x).");
+
+                string g_func = txtGuncion.Text.ToLower().Replace("^", "**");
+
+                double p0 = double.Parse(txtValorA.Text);
+
+                double tol = double.Parse(txtErrorMax.Text);
+                int maxIter = int.Parse(txtNumMaxIter.Text);
+
+                var tabla = puente.CalcularPuntoFijo(g_func, p0, tol, maxIter);
+                dgvPuntoFijo.Rows.Clear();
+
+                foreach (var fila in tabla)
+                {
+                    dgvPuntoFijo.Rows.Add(
+                        (int)fila[0],        
+                        fila[1].ToString("F8"),
+                        fila[2].ToString("F8"), 
+                        fila[3].ToString("F8")   
+                    );
+                }
+
+
+                double raiz = tabla[tabla.Count - 1][2]; 
+                MessageBox.Show($"Raíz aproximada: {raiz:F8}");
             }
-            else
+            catch (Exception ex)
             {
-                SolPF.a = float.Parse(txtValorA.Text);
-                SolPF.ErrorMax = float.Parse(txtErrorMax.Text);
-                SolPF.NumMaxIter = int.Parse(txtNumMaxIter.Text);
-                SolPF.FuncionTexto = txtFuncion.Text;
-                SolPF.GuncionTexto = txtGuncion.Text;
-                SolPF.PrepararFunciong();
-
-                r = SolPF.MetodoPuntoFijo(ref dgvPuntoFijo, ref AproxRaiz);
-
-                if (r)
-                    MessageBox.Show("Aprox raíz = " + AproxRaiz.ToString("F6"));
-                else
-                    MessageBox.Show("No convergió en el número máximo de iteraciones");
+                MessageBox.Show("Error: " + ex.Message);
             }
-                
-        }
+        
+
+
+    }
 
         private void label3_Click(object sender, EventArgs e)
         {

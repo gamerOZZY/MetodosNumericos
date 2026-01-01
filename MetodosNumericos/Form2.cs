@@ -12,9 +12,23 @@ namespace MetodosNumericos
 {
     public partial class frmBiseccion : Form
     {
+        PythonBridge puente;
+        private void ConfigurarTabla()
+        {
+            dgvBiseccion.Columns.Clear();
+            dgvBiseccion.Columns.Add("Iter", "Iter");
+            dgvBiseccion.Columns.Add("a", "a");
+            dgvBiseccion.Columns.Add("b", "b");
+            dgvBiseccion.Columns.Add("xr", "c");
+            dgvBiseccion.Columns.Add("fxr", "f(c)");
+            dgvBiseccion.Columns.Add("error", "Error ");
+            dgvBiseccion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         public frmBiseccion()
         {
             InitializeComponent();
+            puente = new PythonBridge();
+            ConfigurarTabla();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -28,36 +42,48 @@ namespace MetodosNumericos
         }
 
         private void btmCalcular_Click(object sender, EventArgs e)
-        { 
-            SolEc1Var SolBisec = new SolEc1Var();
-
-            bool r;
-            float AproxRaiz = 0;
-
-            if(txtValorA.Text=="" || txtValorB.Text =="" || txtErrorMax.Text == "" || txtNumMaxIter.Text == "" || txtFuncion.Text == "") 
+        {
+            try
             {
-                MessageBox.Show("Llena todos los campos correctamente para continuar", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // 1. Validar Inputs
+                if (string.IsNullOrWhiteSpace(txtFuncion.Text)) throw new Exception("Falta funcion");
 
-            }
-            else {
-                SolBisec.a = float.Parse(txtValorA.Text);
-                SolBisec.b = float.Parse(txtValorB.Text);
-                SolBisec.ErrorMax = float.Parse(txtErrorMax.Text);
-                SolBisec.NumMaxIter = int.Parse(txtNumMaxIter.Text);
-                SolBisec.FuncionTexto = txtFuncion.Text;
-                SolBisec.PrepararFuncion();
+                string func = txtFuncion.Text.ToLower().Replace("^", "**");
+                double a = double.Parse(txtValorA.Text);
+                double b = double.Parse(txtValorB.Text);
+                double tol = double.Parse(txtErrorMax.Text);
+                int maxIter = int.Parse(txtNumMaxIter.Text);
 
-                r = SolBisec.MetBiseccion(ref dgvBiseccion, ref AproxRaiz);
-                if (r)
+                // 2. Obtener Tabla desde Python
+                var tabla = puente.CalcularBiseccion(func, a, b, tol, maxIter);
+
+                // 3. Llenar DataGridView
+                this.dgvBiseccion.Rows.Clear();
+                ConfigurarTabla();
+
+                foreach (var fila in tabla)
                 {
-                    MessageBox.Show("Raíz encontrada: " + AproxRaiz.ToString(),
-                                    "Resultado",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
+                    this.dgvBiseccion.Rows.Add(
+                        (int)fila[0],     
+                        fila[1].ToString("F8"),  
+                        fila[2].ToString("F8"),  
+                        fila[3].ToString("F8"), 
+                        fila[4].ToString("F8"), 
+                        fila[5].ToString("F8"), 
+                        fila[6].ToString("F8"),  
+                        fila[7].ToString("F8")   
+                    );
                 }
 
+                double raizFinal = tabla[tabla.Count - 1][2]; 
+                MessageBox.Show($"Raíz aproximada: {raizFinal:F8}");
+
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
 
         }
 

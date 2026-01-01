@@ -62,6 +62,164 @@ namespace MetodosNumericos
 
         }
 
+        // =================================== ECUACIONES DE UNA VARIABLE ===========================================//
+        public List<List<double>> CalcularBiseccion(string funcion, double a, double b, double tol, int maxIter)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.metodo_biseccion(funcion, a, b, tol, maxIter);
+
+                if (res.ToString().StartsWith("Error")) throw new Exception(res.ToString());
+
+                List<List<double>> matriz = new List<List<double>>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = res[i];
+
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        fila.Add((double)filaPy[j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+
+        public List<List<double>> CalcularNewtonRaphson(string funcion, double p0, double tol, int maxIter)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.metodo_newton_raphson(funcion, p0, tol, maxIter);
+
+                if (res.ToString().StartsWith("Error")) throw new Exception(res.ToString());
+
+                List<List<double>> matriz = new List<List<double>>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = res[i];
+
+                    for (int j = 0; j < 4; j++)
+                    {
+                        fila.Add((double)filaPy[j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+
+        public List<List<double>> CalcularFalsaPosicion(string funcion, double a, double b, double tol, int maxIter)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+
+                dynamic res = modulo.metodo_falsa_posicion(funcion, a, b, tol, maxIter);
+
+                if (res.ToString().StartsWith("Error")) throw new Exception(res.ToString());
+
+                List<List<double>> matriz = new List<List<double>>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = res[i];
+
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        fila.Add((double)filaPy[j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+
+        public List<List<double>> CalcularSecante(string funcion, double p0, double p1, double tol, int maxIter)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.metodo_secante(funcion, p0, p1, tol, maxIter);
+
+                if (res.ToString().StartsWith("Error")) throw new Exception(res.ToString());
+
+                List<List<double>> matriz = new List<List<double>>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = res[i];
+
+                    for (int j = 0; j < 6; j++)
+                    {
+                        fila.Add((double)filaPy[j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+        public List<List<double>> CalcularPuntoFijo(string g_funcion, double p0, double tol, int maxIter)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+
+                dynamic res = modulo.metodo_punto_fijo(g_funcion, p0, tol, maxIter);
+
+                if (res.ToString().StartsWith("Error")) throw new Exception(res.ToString());
+
+                List<List<double>> matriz = new List<List<double>>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = res[i];
+
+                    for (int j = 0; j < 4; j++)
+                    {
+                        fila.Add((double)filaPy[j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+
+
+
+
+
         public double ObtenerY(string funcion, double x)
         {
             using (Py.GIL()) // Bloqueo de seguridad de Python
