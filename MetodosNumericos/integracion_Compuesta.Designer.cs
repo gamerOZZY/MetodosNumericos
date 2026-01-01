@@ -140,6 +140,7 @@
             this.picGrafica.Location = new System.Drawing.Point(485, 28);
             this.picGrafica.Name = "picGrafica";
             this.picGrafica.Size = new System.Drawing.Size(655, 287);
+            this.picGrafica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picGrafica.TabIndex = 11;
             this.picGrafica.TabStop = false;
             // 

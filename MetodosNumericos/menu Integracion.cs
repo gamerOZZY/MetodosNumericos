@@ -28,5 +28,19 @@ namespace MetodosNumericos
             coso.Show();
             coso.WindowState = FormWindowState.Maximized;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            cuadratura_adaptiva cuadratura = new cuadratura_adaptiva();
+            cuadratura.Show();
+            cuadratura.WindowState = FormWindowState.Maximized;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            cuadratura_gaussiana cuad = new cuadratura_gaussiana();
+            cuad.Show();
+            cuad.WindowState = FormWindowState.Maximized;
+        }
     }
 }

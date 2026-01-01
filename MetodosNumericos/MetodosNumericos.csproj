@@ -87,6 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cuadratura_adaptiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cuadratura_adaptiva.Designer.cs">
+      <DependentUpon>cuadratura_adaptiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cuadratura_gaussiana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cuadratura_gaussiana.Designer.cs">
+      <DependentUpon>cuadratura_gaussiana.cs</DependentUpon>
+    </Compile>
     <Compile Include="der123.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +205,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PythonBridge.cs" />
     <Compile Include="SolEc1Var.cs" />
+    <EmbeddedResource Include="cuadratura_adaptiva.resx">
+      <DependentUpon>cuadratura_adaptiva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cuadratura_gaussiana.resx">
+      <DependentUpon>cuadratura_gaussiana.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="der123.resx">
       <DependentUpon>der123.cs</DependentUpon>
     </EmbeddedResource>

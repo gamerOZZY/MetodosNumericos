@@ -573,3 +573,202 @@ def generar_grafica_integracion(lista_x, lista_y, metodo, func_str):
 
     except Exception as e:
         return f"ERROR_PY: {str(e)}".encode('utf-8')
+    
+########################################################### CUADRATURA ADAPTIVA ############################################
+def simpson_step(f, a, b): #definicion de sipsion (de nuevo) para no perderme con nada de lo de arriba (la reutilizacion de modulos se fue de sabatico)
+    c = (a + b) / 2.0
+    h = (b - a) / 2.0
+    return (h / 3.0) * (f(a) + 4*f(c) + f(b))
+
+# Coso recursivo gg
+def adaptive_core(f, a, b, tol, puntos_corte):
+    """
+    f: funcion compilada
+    a, b: intervalo actual
+    tol: tolerancia para este intervalo
+    puntos_corte: conjunto  para guardar coordenadas x
+    """
+    c = (a + b) / 2.0
+    S_total = simpson_step(f, a, b)
+    S_izq = simpson_step(f, a, c)
+    S_der = simpson_step(f, c, b)
+    
+    # Error estimado (Richardson)
+    error = abs(S_total - (S_izq + S_der)) / 15.0
+    
+    if error < tol:
+        # Aceptamos el paso
+        puntos_corte.add(a)
+        puntos_corte.add(b)
+        puntos_corte.add(c) # Agregamos el punto medio también
+        return S_izq + S_der + error # Devolvemos valor refinado
+    else:
+        # Rechazamos y dividimos más (tolerancia se divide por 2)
+        return adaptive_core(f, a, c, tol/2.0, puntos_corte) + \
+               adaptive_core(f, c, b, tol/2.0, puntos_corte)
+
+# --- FUNCIÓN PRINCIPAL ADAPTATIVA ---
+def integrar_adaptativa_simpson(func_str, a, b, tol):
+    try:
+        x_sym = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        f = sp.lambdify(x_sym, expr, modules=['numpy', 'math'])
+        
+        # Usamos un set para evitar puntos duplicados al guardar
+        puntos_corte = set()
+        
+        # Llamada recursiva inicial
+        area = adaptive_core(f, a, b, tol, puntos_corte)
+        
+        # Convertimos el set a lista ordenada para devolverla
+        lista_puntos = sorted(list(puntos_corte))
+        
+        return area, lista_puntos
+
+    except RecursionError:
+        return "Error: La funcion requiere demasiadas divisiones (Recursion infinita).", []
+    except Exception as e:
+        return f"Error: {str(e)}", []
+
+# --- GRAFICA ADAPTATIVA ---
+def generar_grafica_adaptativa(func_str, lista_x_cortes):
+    try:
+        lista_x_cortes = list(lista_x_cortes)
+        x_sym = sp.symbols('x')
+        f = sp.lambdify(x_sym, sp.sympify(func_str), modules=['numpy', 'math'])
+        
+        plt.figure(figsize=(5, 3.5))
+        
+        # 1. Curva Suave (f(x))
+        a, b = lista_x_cortes[0], lista_x_cortes[-1]
+        pad = (b - a) * 0.05
+        x_suave = np.linspace(a, b, 300)
+        y_suave = [f(val) for val in x_suave]
+        
+        plt.plot(x_suave, y_suave, 'b-', linewidth=2, label='f(x)')
+        
+        # 2. Sombrear Área
+        # Evaluamos Y en los puntos de corte para el relleno
+        y_cortes = [f(val) for val in lista_x_cortes]
+        plt.fill_between(lista_x_cortes, y_cortes, color='lime', alpha=0.2, label='area')
+        
+        # 3. DIBUJAR LAS LINEAS ADAPTATIVAS (La parte visual importante)
+        # Dibujamos líneas verticales rojas donde el algoritmo hizo cortes
+        for x_c in lista_x_cortes:
+            plt.axvline(x_c, color='red', linestyle='-', linewidth=0.5, alpha=0.6)
+            
+        plt.title("Malla Adaptativa (Simpson)")
+        plt.xlabel(f"Intervalos generados: {len(lista_x_cortes)-1}")
+        plt.grid(True, alpha=0.3)
+        plt.legend()
+        plt.tight_layout()
+        
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=90)
+        buf.seek(0)
+        plt.close('all')
+        return buf.getvalue()
+
+    except Exception as e:
+        return f"ERROR_PY: {str(e)}".encode('utf-8')
+    
+########################################################## CUADRATURA GAUSSIANA #######################################
+
+## Aca de chicharrines, esto de gauss_Data y una parte de las funciones de abajo, se las pedi a chat, busque 
+## el como se calculaban las raices de los polinomios de legendre y no pude hacerloxd, entonces opte por solamente
+## poner hasta grado 6 (2*6 - 1 = 11), si nos dice algo el maestro, pues ya ni modo, hice lo que pude gg
+GAUSS_DATA = {
+    2: [(-0.5773502692, 1.0), (0.5773502692, 1.0)],
+    3: [(-0.7745966692, 0.5555555556), (0.0, 0.8888888889), (0.7745966692, 0.5555555556)],
+    4: [(-0.8611363116, 0.3478548451), (-0.3399810436, 0.6521451549), 
+        (0.3399810436, 0.6521451549), (0.8611363116, 0.3478548451)],
+    5: [(-0.9061798459, 0.2369268850), (-0.5384693101, 0.4786286705), (0.0, 0.5688888889),
+        (0.5384693101, 0.4786286705), (0.9061798459, 0.2369268850)],
+    6: [(-0.9324695142, 0.1713244924), (-0.6612093865, 0.3607615730), (-0.2386191861, 0.4679139346),
+        (0.2386191861, 0.4679139346), (0.6612093865, 0.3607615730), (0.9324695142, 0.1713244924)]
+}
+
+def integrar_gauss(func_str, a, b, n_puntos):
+    try:
+        if n_puntos not in GAUSS_DATA:
+            return f"Error: No tengo datos para {n_puntos} puntos. Elige entre 2 y 6." #esto nunca va a pasar ya que se elige en un combobox pero a este punto, estoy poniendo excepciones en todos lados, me ha ahorrado agnos de vida
+
+        x_sym = sp.symbols('x')
+        expr = sp.sympify(func_str)
+        f = sp.lambdify(x_sym, expr, modules=['numpy', 'math'])
+
+        suma = 0.0
+        datos = GAUSS_DATA[n_puntos]
+
+        m = (b - a) / 2.0
+        c = (b + a) / 2.0
+
+        for raiz, peso in datos:
+            x_real = m * raiz + c
+            suma += peso * f(x_real)
+
+        resultado = m * suma
+        return float(resultado)
+
+    except Exception as e:
+        return f"Error Gauss: {str(e)}"
+
+def generar_grafica_gauss(func_str, a, b, n_puntos):
+    """
+    Grafica la funcion, sombrea el area y MARCA los puntos exactos
+    donde Gauss evaluo la funcion 
+    """
+    try:
+        x_sym = sp.symbols('x')
+        f = sp.lambdify(x_sym, sp.sympify(func_str), modules=['numpy', 'math'])
+        
+        plt.figure(figsize=(5, 3.5))
+        
+        # 1. Graficar Curva Suave
+        # Damos un margen del 5% para que se vea bien
+        margen = (b - a) * 0.05
+        if margen == 0: margen = 0.1
+        
+        x_suave = np.linspace(a - margen, b + margen, 200)
+        y_suave = [f(val) for val in x_suave]
+        plt.plot(x_suave, y_suave, 'b-', linewidth=2, label='f(x)')
+        
+        # 2. Sombrear Area Real
+        x_area = np.linspace(a, b, 100)
+        y_area = [f(val) for val in x_area]
+        plt.fill_between(x_area, y_area, color='orange', alpha=0.3, label='Area Integrada')
+
+        # 3. MOSTRAR LOS PUNTOS DE GAUSS (La parte didáctica)
+        # Calculamos dónde caen los puntos en el intervalo real
+        if n_puntos in GAUSS_DATA:
+            m = (b - a) / 2.0
+            c = (b + a) / 2.0
+            
+            puntos_x = []
+            puntos_y = []
+            
+            for raiz, _ in GAUSS_DATA[n_puntos]:
+                x_real = m * raiz + c
+                puntos_x.append(x_real)
+                puntos_y.append(f(x_real))
+            
+            # Dibujamos puntos rojos grandes
+            plt.scatter(puntos_x, puntos_y, color='red', s=60, zorder=10, label='Puntos Gauss')
+            
+            # Dibujamos lineas punteadas hacia el eje X
+            for px, py in zip(puntos_x, puntos_y):
+                plt.plot([px, px], [0, py], 'r--', linewidth=0.8, alpha=0.5)
+
+        plt.title(f"Cuadratura Gaussiana (n={n_puntos})")
+        plt.grid(True, alpha=0.3)
+        plt.legend(loc='upper right', fontsize='small')
+        plt.tight_layout()
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=90)
+        buf.seek(0)
+        plt.close('all')
+        return buf.getvalue()
+
+    except Exception as e:
+        return f"ERROR_PY: {str(e)}".encode('utf-8')

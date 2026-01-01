@@ -402,6 +402,116 @@ namespace MetodosNumericos
             }
         }
 
+        /* ==================================== CUADRATURA ADAPTIVA ================================ */
+        public class ResultadoAdaptativo
+        {
+            public double Area { get; set; }
+            public List<double> PuntosCorte { get; set; }
+        }
+        public ResultadoAdaptativo CalcularAdaptativa(string funcion, double a, double b, double tol)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                // Llamada a Python: retorna tupla (CREO XDDDDDDDDDDDDDDDDASJHDJALSDHLJAKHSDLJAS)
+                dynamic res = modulo.integrar_adaptativa_simpson(funcion, a, b, tol);
+
+                // Validación de error (si el primer elemento es string)
+                dynamic primerElemento = res[0];
+                if (primerElemento.ToString().StartsWith("Error"))
+                {
+                    throw new Exception(primerElemento.ToString());
+                }
+
+                // Convertir resultado
+                double area = (double)res[0];
+                dynamic listaPy = res[1];
+
+                List<double> puntos = new List<double>();
+                int len = (int)listaPy.__len__();
+                for (int i = 0; i < len; i++)
+                {
+                    puntos.Add((double)listaPy[i]);
+                }
+
+                return new ResultadoAdaptativo { Area = area, PuntosCorte = puntos };
+            }
+        }
+
+        // Método Gráfica Adaptativa
+        public Image ObtenerGraficaAdaptativa(string funcion, List<double> puntosCorte)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.generar_grafica_adaptativa(funcion, puntosCorte);
+
+                byte[] netBytes = (byte[])res;
+                try
+                {
+                    string txt = System.Text.Encoding.UTF8.GetString(netBytes);
+                    if (txt.StartsWith("ERROR_PY:")) throw new Exception(txt);
+                }
+                catch (ArgumentException) { }
+
+                using (MemoryStream ms = new MemoryStream(netBytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+        }
+
+        /* ========================================== CUADRATURA GAUSSIANA ==================================== */
+        public double CalcularGauss(string funcion, double a, double b, int nPuntos)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.integrar_gauss(funcion, a, b, nPuntos);
+
+                string resStr = res.ToString();
+                if (resStr.StartsWith("Error")) throw new Exception(resStr);
+
+                return (double)res;
+            }
+        }
+
+        // Método Gráfica Gauss
+        public Image ObtenerGraficaGauss(string funcion, double a, double b, int nPuntos)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.generar_grafica_gauss(funcion, a, b, nPuntos);
+
+                byte[] netBytes = (byte[])res;
+                try
+                {
+                    string txt = System.Text.Encoding.UTF8.GetString(netBytes);
+                    if (txt.StartsWith("ERROR_PY:")) throw new Exception(txt);
+                }
+                catch (ArgumentException) { }
+
+                using (MemoryStream ms = new MemoryStream(netBytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+        }
+
+
 
     }
 }

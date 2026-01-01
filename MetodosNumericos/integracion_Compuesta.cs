@@ -23,7 +23,7 @@ namespace MetodosNumericos
 
             dgvDatos.Columns.Add("X", "X");
             dgvDatos.Columns.Add("Y", "Y");
-            picGrafica.SizeMode = PictureBoxSizeMode.Zoom;
+
         }
 
         private void ActualizarMetodosDisponibles()
