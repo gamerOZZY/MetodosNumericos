@@ -317,7 +317,7 @@ def derivar_interpolacion_newton(lista_x, lista_y, x_interes):
         # Diagonal principal = coeficientes
         b = [F[i][i] for i in range(n)]
 
-        # Construir el polinomio P(x) simbólicamente
+        # Construir el polinomio P(x) simbï¿½licamente
         polinomio = b[0]
         factor = 1
         for i in range(1, n):
@@ -355,8 +355,8 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
         
         b = [F[i][i] for i in range(n)] # Coeficientes
 
-        # --- 2. Crear función para evaluar el polinomio ---
-        # Esta función "lambda" evalúa P(x) usando los coeficientes b
+        # --- 2. Crear funcion para evaluar el polinomio ---
+        # Esta funcion "lambda" evalï¿½a P(x) usando los coeficientes b
         def P(x_val):
             resultado = b[0]
             factor = 1
@@ -365,8 +365,8 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
                 resultado = resultado + b[i] * factor
             return resultado
 
-        # --- 3. Configurar la Gráfica con Matplotlib ---
-        plt.figure(figsize=(6, 4)) # Tamaño de la imagen
+        # --- 3. Configurar la Grï¿½fica con Matplotlib ---
+        plt.figure(figsize=(6, 4)) # Tamagnoo de la imagen
         plt.style.use('seaborn-v0_8-whitegrid') # Estilo bonito (opcional)
 
         # Generar dominio X suave para la curva (desde el minX hasta maxX un poco extendido)
@@ -379,7 +379,7 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
         plt.plot(x_suave, y_suave, 'b-', label='Polinomio Interpolante', linewidth=2)
         plt.scatter(lista_x, lista_y, color='red', s=50, label='Datos Originales', zorder=5)
         
-        # Marcar el punto de interés
+        # Marcar el punto de interes
         y_interes = P(x_interes)
         plt.scatter([x_interes], [y_interes], color='green', s=100, marker='*', label='Punto Interes', zorder=10)
 
@@ -393,9 +393,9 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
         ## y opte por investigar, de una forma simple, la grafica la pasamos a bytes, la mandamos al buffer,
         #la mandamos a c y c la vuelve a armar.
 
-        # --- 4. Guardar en Memoria (La parte mágica) ---
+        # --- 4. Guardar en Memoria (La parte magica) ---
         buf = io.BytesIO() # Crear un buffer en RAM
-        plt.savefig(buf, format='png', dpi=100) # Guardar la gráfica en el buffer
+        plt.savefig(buf, format='png', dpi=100) # Guardar la grafica en el buffer
         buf.seek(0) # Rebobinar el buffer al inicio
         
         plt.close() # Cerrar la figura para liberar memoria en Python
@@ -427,12 +427,12 @@ def extrapolacion_richardson(func_str, x_val, h_init, niveles):
         # Formula: (f(x+h) - f(x-h)) / 2h
         h = h_init
         for i in range(niveles):
-            # Derivada centrada básica (reutilizando el concepto de 3 puntos)
+            # Derivada centrada basica (reutilizando el concepto de 3 puntos)
             D[i][0] = (f(x_val + h) - f(x_val - h)) / (2 * h)
             h = h / 2 # Preparamos h para la siguiente fila (mitad del paso)
 
-        # 2. Llenar el resto de columnas (Extrapolación)
-        # Fórmula: D[i,j] = (4^j * D[i, j-1] - D[i-1, j-1]) / (4^j - 1)
+        # 2. Llenar el resto de columnas (Extrapolacion)
+        # Formula: D[i,j] = (4^j * D[i, j-1] - D[i-1, j-1]) / (4^j - 1)
         for j in range(1, niveles):
             for i in range(j, niveles):
                 factor = 4 ** j
@@ -476,10 +476,10 @@ def obtener_polinomio_texto(lista_x, lista_y, tipo):
     """Retorna el string del polinomio"""
     try:
         n = len(lista_x)
-        # Llamamos a la función corregida de arriba
+        # Llamamos a la funcion corregida de arriba
         F = obtener_tabla_diferencias(lista_x, lista_y)
         
-        # Validación: Si F es un string, es que hubo error en la tabla AUNQUE no creo que pase pero aja, ahi esta por si las dudas
+        # Validacion: Si F es un string, es que hubo error en la tabla AUNQUE no creo que pase pero aja, ahi esta por si las dudas
         if isinstance(F, str): return F 
 
         polinomio_str = "P(x) = "
@@ -505,13 +505,13 @@ def obtener_polinomio_texto(lista_x, lista_y, tipo):
                 
                 polinomio_str += termino + " "
 
-        # ---  ATRÁS (Usando diagonal inferior) ---
+        # ---  ATRAS (Usando diagonal inferior) ---
         elif tipo == 'atras':
-            # Los coeficientes están en la última fila llena de cada columna
+            # Los coeficientes estan en la ultima fila llena de cada columna
             # F[n-1][0] (no se usa para el polinomio, es y), F[n-1][1]... 
-            # Corrección logica Atras: Usamos la ultima fila disponible para ese orden
-            # El coef b0 está en F[n-1][0]
-            # El coef b1 está en F[n-1][1]
+            # Correcciï¿½n logica Atras: Usamos la ultima fila disponible para ese orden
+            # El coef b0 esta en F[n-1][0]
+            # El coef b1 esta en F[n-1][1]
             coefs = F[n-1]
             
             for i in range(n):
@@ -553,8 +553,8 @@ def metodo_neville(lista_x, lista_y, x_interes):
         for i in range(n):
             Q[i][0] = float(lista_y[i])
 
-        # Paso 2: Llenar la matriz triangular usando la fórmula recursiva
-        # Fórmula: Q[i,j] = [ (x - xi-j)*Q[i,j-1] - (x - xi)*Q[i-1,j-1] ] / (xi - xi-j)
+        # Paso 2: Llenar la matriz triangular usando la formula recursiva
+        # Formula: Q[i,j] = [ (x - xi-j)*Q[i,j-1] - (x - xi)*Q[i-1,j-1] ] / (xi - xi-j)
         for j in range(1, n):
             for i in range(j, n):
                 numerador = (x_interes - lista_x[i-j]) * Q[i][j-1] - (x_interes - lista_x[i]) * Q[i-1][j-1]
@@ -578,7 +578,7 @@ def evaluar_lagrange(lista_x, lista_y, x_val):
         resultado = 0.0
         
         for i in range(n):
-            # Calculamos el término Li(x)
+            # Calculamos el termino Li(x)
             termino_L = 1.0
             for j in range(n):
                 if i != j:
@@ -604,7 +604,7 @@ def obtener_texto_lagrange(lista_x, lista_y):
         
         for i in range(n):
             y_i = lista_y[i]
-            if abs(y_i) < 1e-9: continue # Saltar términos cero
+            if abs(y_i) < 1e-9: continue # Saltar trrminos cero
             
             signo = "+ " if y_i >= 0 else "- "
             if i == 0 and y_i >= 0: signo = ""
@@ -635,7 +635,7 @@ def generar_grafica_lagrange_bytes(lista_x, lista_y, x_interes):
         n = len(lista_x)
         if n < 2: return "ERROR_PY: Faltan puntos".encode('utf-8')
 
-        # Función interna para evaluar Lagrange en cualquier punto v
+        # Funcion interna para evaluar Lagrange en cualquier punto v
         def P_Lagrange(v):
             res = 0.0
             for i in range(n):
@@ -646,7 +646,7 @@ def generar_grafica_lagrange_bytes(lista_x, lista_y, x_interes):
                 res += lista_y[i] * term
             return res
 
-        # Configurar gráfica
+        # Configurar grafica
         plt.figure(figsize=(5, 3.5))
         x_min, x_max = min(lista_x), max(lista_x)
         pad = (x_max - x_min) * 0.1 if n > 1 else 1.0
@@ -658,7 +658,7 @@ def generar_grafica_lagrange_bytes(lista_x, lista_y, x_interes):
         plt.plot(x_suave, y_suave, 'purple', label='Lagrange', linewidth=1.5) # Color morado para variar
         plt.scatter(lista_x, lista_y, color='red', zorder=5)
         
-        # Punto de interés
+        # Punto de interes
         y_int = P_Lagrange(x_interes)
         plt.scatter([x_interes], [y_int], color='orange', marker='*', s=150, zorder=10, label='Interpolado')
 
@@ -688,7 +688,7 @@ def integrar_trapecio_compuesto(lista_y_csharp, h):
         n = len(lista_y) - 1 
         if n < 1: return "Error: Faltan puntos"
         
-        # Ahora sí podemos usar slicing de Python [1:-1]
+        # Ahora si podemos usar slicing de Python [1:-1]
         suma_interna = sum(lista_y[1:-1]) 
         resultado = (h / 2.0) * (lista_y[0] + 2 * suma_interna + lista_y[-1])
         return float(resultado)
@@ -747,8 +747,8 @@ def generar_grafica_integracion(lista_x, lista_y, metodo, func_str):
 
         plt.figure(figsize=(5, 3.5))
         
-        # --- 1. DIBUJAR LA CURVA SUAVE (LA FUNCIÓN REAL) ---
-        # Creamos una 'x' simbólica y convertimos el texto a función GRACIAS SYMPY TEAMO
+        # --- 1. DIBUJAR LA CURVA SUAVE (LA FUNCIï¿½N REAL) ---
+        # Creamos una 'x' simbolica y convertimos el texto a funcion GRACIAS SYMPY TEAMO
         x_sym = sp.symbols('x')
         expr = sp.sympify(func_str)
         f_real = sp.lambdify(x_sym, expr, modules=['numpy', 'math'])
@@ -760,19 +760,19 @@ def generar_grafica_integracion(lista_x, lista_y, metodo, func_str):
         x_suave = np.linspace(x_min, x_max, 200)
         y_suave = [f_real(val) for val in x_suave]
         
-        # Dibujamos la función real en AZUL OSCURO
+        # Dibujamos la funciï¿½n real en AZUL OSCURO
         plt.plot(x_suave, y_suave, 'b-', linewidth=2, label=f'f(x) Real')
 
-        # --- 2. SOMBREAR EL ÁREA (LA APROXIMACIÓN) ---
+        # --- 2. SOMBREAR EL aREA (LA APROXIMACIï¿½N) ---
         # Usamos fill_between con los puntos ORIGINALES. 
-        # Esto conectará los puntos con lineas rectas (Trapecios),
+        # Esto conectara los puntos con lineas rectas (Trapecios),
         # permitiendo ver visualmente la diferencia con la curva real.
         plt.fill_between(lista_x, lista_y, color='skyblue', alpha=0.4, label='Aprox. Numerica')
         
         # --- 3. DIBUJAR LOS PUNTOS Y DETALLES ---
         plt.scatter(lista_x, lista_y, color='red', zorder=5, s=30)
         
-        # Líneas verticales para los intervalos
+        # Lineas verticales para los intervalos
         for val_x in lista_x:
             plt.axvline(val_x, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
 
@@ -816,14 +816,14 @@ def adaptive_core(f, a, b, tol, puntos_corte):
         # Aceptamos el paso
         puntos_corte.add(a)
         puntos_corte.add(b)
-        puntos_corte.add(c) # Agregamos el punto medio también
+        puntos_corte.add(c) # Agregamos el punto medio tambien
         return S_izq + S_der + error # Devolvemos valor refinado
     else:
-        # Rechazamos y dividimos más (tolerancia se divide por 2)
+        # Rechazamos y dividimos mas (tolerancia se divide por 2)
         return adaptive_core(f, a, c, tol/2.0, puntos_corte) + \
                adaptive_core(f, c, b, tol/2.0, puntos_corte)
 
-# --- FUNCIÓN PRINCIPAL ADAPTATIVA ---
+# --- FUNCIoN PRINCIPAL ADAPTATIVA ---
 def integrar_adaptativa_simpson(func_str, a, b, tol):
     try:
         x_sym = sp.symbols('x')
@@ -863,13 +863,13 @@ def generar_grafica_adaptativa(func_str, lista_x_cortes):
         
         plt.plot(x_suave, y_suave, 'b-', linewidth=2, label='f(x)')
         
-        # 2. Sombrear Área
+        # 2. Sombrear area
         # Evaluamos Y en los puntos de corte para el relleno
         y_cortes = [f(val) for val in lista_x_cortes]
         plt.fill_between(lista_x_cortes, y_cortes, color='lime', alpha=0.2, label='area')
         
         # 3. DIBUJAR LAS LINEAS ADAPTATIVAS (La parte visual importante)
-        # Dibujamos líneas verticales rojas donde el algoritmo hizo cortes
+        # Dibujamos lineas verticales rojas donde el algoritmo hizo cortes
         for x_c in lista_x_cortes:
             plt.axvline(x_c, color='red', linestyle='-', linewidth=0.5, alpha=0.6)
             
@@ -954,8 +954,8 @@ def generar_grafica_gauss(func_str, a, b, n_puntos):
         y_area = [f(val) for val in x_area]
         plt.fill_between(x_area, y_area, color='orange', alpha=0.3, label='Area Integrada')
 
-        # 3. MOSTRAR LOS PUNTOS DE GAUSS (La parte didáctica)
-        # Calculamos dónde caen los puntos en el intervalo real
+        # 3. MOSTRAR LOS PUNTOS DE GAUSS (La parte didï¿½ctica)
+        # Calculamos donde caen los puntos en el intervalo real
         if n_puntos in GAUSS_DATA:
             m = (b - a) / 2.0
             c = (b + a) / 2.0
@@ -1013,14 +1013,14 @@ def integracion_romberg(func_str, a, b, niveles):
             # h se divide a la mitad en cada nivel
             h = h / 2.0 
             
-            # Suma de los nuevos puntos (los que están en medio de los anteriores)
+            # Suma de los nuevos puntos (los que esten en medio de los anteriores)
             # Puntos: a+h, a+3h, a+5h, etc
             suma_nuevos = sum(f(a + k*h) for k in range(1, 2**i, 2))
             
             # Formula recursiva del Trapecio: T_nuevo = 0.5 * T_anterior + h * suma_nuevos
             R[i][0] = 0.5 * R[i-1][0] + h * suma_nuevos
             
-        # --- PASO 2: Extrapolación de Richardson (Columnas 1..k) ---
+        # --- PASO 2: Extrapolacion de Richardson (Columnas 1..k) ---
         # Formula: R[i,j] = (4^j * R[i,j-1] - R[i-1,j-1]) / (4^j - 1)
         for j in range(1, niveles):
             for i in range(j, niveles):
@@ -1102,7 +1102,7 @@ def integrar_doble_trapecio_simple(func_str, a, b, c, d):
         val_ad = f(a, d)
         val_bd = f(b, d)
         
-        # 5. Aplicar formula: ÁreaBase / 4 * SumaAlturas
+        # 5. Aplicar formula: AreaBase / 4 * SumaAlturas
         area_base = (b - a) * (d - c)
         promedio_alturas = (val_ac + val_bc + val_ad + val_bd) / 4.0
         
@@ -1192,12 +1192,12 @@ def resolver_gauss_pivoteo(matriz_aumentada):
     Retorna: [Matriz_Triangular, Soluciones_X]
     """
     try:
-        # Trabajamos con una copia para no dañar la original si se reusa
-        # Convertimos a float explícitamente
+        # Trabajamos con una copia para no dagnaar la original si se reusa
+        # Convertimos a float explicitamente
         M = [[float(val) for val in fila] for fila in matriz_aumentada]
         n = len(M) # Numero de filas (ecuaciones)
 
-        # ---  ELIMINACIÓN CON PIVOTEO ---
+        # ---  ELIMINACION CON PIVOTEO ---
         for i in range(n):
             # 1. PIVOTEO PARCIAL
             # Buscamos la fila con el mayor valor absoluto en la columna i
@@ -1210,16 +1210,16 @@ def resolver_gauss_pivoteo(matriz_aumentada):
             if fila_mayor != i:
                 M[i], M[fila_mayor] = M[fila_mayor], M[i]
 
-            # Validación de que no estemos rozando el cero (como son floats, solo tenemos hasta 16 bits de precision, por eso el 1e-15)
+            # Validacion de que no estemos rozando el cero (como son floats, solo tenemos hasta 16 bits de precision, por eso el 1e-15)
             if abs(M[i][i]) < 1e-15:
                 return f"Error: El sistema no tiene solucion unica (Pivote cercano a 0 en fila {i})."
 
-            # 2. ELIMINACIÓN GAUSSIANA
+            # 2. ELIMINACION GAUSSIANA
             # Hacemos ceros debajo del pivote M[i][i]
             for j in range(i + 1, n):
                 factor = M[j][i] / M[i][i]
                 
-                # Operamos sobre toda la fila j (incluyendo el término independiente)
+                # Operamos sobre toda la fila j (incluyendo el termino independiente)
                 # M[j] = M[j] - factor * M[i]
                 for k in range(i, n + 1): 
                     M[j][k] -= factor * M[i][k]
@@ -1227,7 +1227,7 @@ def resolver_gauss_pivoteo(matriz_aumentada):
         # Guardamos la matriz triangular para mostrarla en C#
         matriz_triangular = [fila[:] for fila in M]
 
-        # --- SUSTITUCIÓN HACIA ATRÁS --- ##ESTA PARTE NO TENGO IDEA DE COMO SALIO, FUE PURA PRUEBA Y ERROR
+        # --- SUSTITUCION HACIA ATRï¿½S --- ##ESTA PARTE NO TENGO IDEA DE COMO SALIO, FUE PURA PRUEBA Y ERROR
         x = [0.0] * n
         
         for i in range(n - 1, -1, -1):
