@@ -772,3 +772,89 @@ def generar_grafica_gauss(func_str, a, b, n_puntos):
 
     except Exception as e:
         return f"ERROR_PY: {str(e)}".encode('utf-8')
+    
+############################################################ EXTRAPOLACION DE ROMBERG ################################
+def integracion_romberg(func_str, a, b, niveles):
+    """
+    Genera la matriz de Romberg (Extrapolacion de Richardson para integrales).
+    Retorna: Lista de listas (Matriz Triangular).
+    """
+    try:
+        x_sym = sp.symbols('x')
+        f = sp.lambdify(x_sym, sp.sympify(func_str), modules=['numpy', 'math'])
+        
+        # Inicializar matriz R (niveles x niveles)
+        R = [[0.0] * (i + 1) for i in range(niveles)]
+        
+        # ---  Columna 0 (Trapecio Recursivo) ---
+        # R[0,0] = Trapecio con 1 segmento (h = b-a)
+        h = b - a
+        R[0][0] = 0.5 * h * (f(a) + f(b))
+        
+        # Calcular los siguientes niveles de trapecio
+        # Usamos la formula recursiva del trapecio para no recalcular todo
+        for i in range(1, niveles):
+            # h se divide a la mitad en cada nivel
+            h = h / 2.0 
+            
+            # Suma de los nuevos puntos (los que están en medio de los anteriores)
+            # Puntos: a+h, a+3h, a+5h, etc
+            suma_nuevos = sum(f(a + k*h) for k in range(1, 2**i, 2))
+            
+            # Formula recursiva del Trapecio: T_nuevo = 0.5 * T_anterior + h * suma_nuevos
+            R[i][0] = 0.5 * R[i-1][0] + h * suma_nuevos
+            
+        # --- PASO 2: Extrapolación de Richardson (Columnas 1..k) ---
+        # Formula: R[i,j] = (4^j * R[i,j-1] - R[i-1,j-1]) / (4^j - 1)
+        for j in range(1, niveles):
+            for i in range(j, niveles):
+                factor = 4**j
+                numerador = factor * R[i][j-1] - R[i-1][j-1]
+                denominador = factor - 1
+                R[i][j] = numerador / denominador
+                
+        return R
+
+    except Exception as e:
+        return f"Error Romberg: {str(e)}"
+
+def generar_grafica_romberg(func_str, a, b):
+    """
+    Grafica la funcion y sombrea el area (Simple, para referencia visual).
+    """
+    try:
+        x_sym = sp.symbols('x')
+        f = sp.lambdify(x_sym, sp.sympify(func_str), modules=['numpy', 'math'])
+        
+        plt.figure(figsize=(5, 3.5))
+        
+        # Graficar funcion suave
+        margen = (b - a) * 0.1
+        if margen == 0: margen = 0.1
+        x_suave = np.linspace(a - margen, b + margen, 200)
+        y_suave = [f(val) for val in x_suave]
+        
+        plt.plot(x_suave, y_suave, 'b-', linewidth=2, label='f(x)')
+        
+        # Sombrear el area de integracion
+        x_area = np.linspace(a, b, 100)
+        y_area = [f(val) for val in x_area]
+        plt.fill_between(x_area, y_area, color='cyan', alpha=0.3, label='Area')
+        
+        # Lineas verticales en los limites
+        plt.axvline(a, color='gray', linestyle='--')
+        plt.axvline(b, color='gray', linestyle='--')
+
+        plt.title("Integracion (area bajo la curva)")
+        plt.grid(True, alpha=0.3)
+        plt.legend(loc='upper right')
+        plt.tight_layout()
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=90)
+        buf.seek(0)
+        plt.close('all')
+        return buf.getvalue()
+
+    except Exception as e:
+        return f"ERROR_PY: {str(e)}".encode('utf-8')

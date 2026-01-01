@@ -42,5 +42,17 @@ namespace MetodosNumericos
             cuad.Show();
             cuad.WindowState = FormWindowState.Maximized;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            romExtrapolacion romExtrapolacion = new romExtrapolacion();
+            romExtrapolacion.Show();   
+            romExtrapolacion.WindowState = FormWindowState.Maximized;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -511,6 +511,63 @@ namespace MetodosNumericos
             }
         }
 
+        // =============================================== EXTRAPOLACION DE ROMBERG =====================================
+        public List<List<double>> CalcularRomberg(string funcion, double a, double b, int niveles)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.integracion_romberg(funcion, a, b, niveles);
+
+                if (res.ToString().StartsWith("Error")) throw new Exception(res.ToString());
+
+                // Convertir matriz a List<List<double>>
+                List<List<double>> matriz = new List<List<double>>();
+                int n = (int)res.__len__();
+
+                for (int i = 0; i < n; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = res[i];
+                    int m = (int)filaPy.__len__();
+                    for (int j = 0; j < m; j++)
+                    {
+                        fila.Add((double)filaPy[j]);
+                    }
+                    matriz.Add(fila);
+                }
+                return matriz;
+            }
+        }
+
+        public Image ObtenerGraficaRomberg(string funcion, double a, double b)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.generar_grafica_romberg(funcion, a, b);
+
+                byte[] netBytes = (byte[])res;
+                try
+                {
+                    string txt = System.Text.Encoding.UTF8.GetString(netBytes);
+                    if (txt.StartsWith("ERROR_PY:")) throw new Exception(txt);
+                }
+                catch (ArgumentException) { }
+
+                using (MemoryStream ms = new MemoryStream(netBytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+        }
+
 
 
     }

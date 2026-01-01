@@ -74,7 +74,7 @@ namespace MetodosNumericos
                         dgvMatriz.Rows[rowIndex].Cells[j].Value = matriz[i][j].ToString("F8"); // 8 decimales
                     }
 
-                    // Poner encabezado de fila (opcional, para ver el h usado)
+                    // Poner encabezado de fila 
                     double hFila = hVal / Math.Pow(2, i);
                     dgvMatriz.Rows[rowIndex].HeaderCell.Value = $"h={hFila}";
                 }
