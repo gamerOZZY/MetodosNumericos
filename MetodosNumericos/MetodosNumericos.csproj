@@ -207,6 +207,12 @@
     <Compile Include="neville.Designer.cs">
       <DependentUpon>neville.cs</DependentUpon>
     </Compile>
+    <Compile Include="pivoteoParcial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pivoteoParcial.Designer.cs">
+      <DependentUpon>pivoteoParcial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PythonBridge.cs" />
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="neville.resx">
       <DependentUpon>neville.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pivoteoParcial.resx">
+      <DependentUpon>pivoteoParcial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

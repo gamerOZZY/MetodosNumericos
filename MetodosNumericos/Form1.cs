@@ -106,5 +106,12 @@ namespace MetodosNumericos
             menu_Integracion.Show();
             menu_Integracion.WindowState = FormWindowState.Maximized;
         }
+
+        private void pivoteoParcialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pivoteoParcial dadsa = new pivoteoParcial();
+            dadsa.Show();
+            dadsa.WindowState = FormWindowState.Maximized;
+        }
     }
 }

@@ -280,7 +280,7 @@ namespace MetodosNumericos
         }
 
         /*TODA LA FUNCION SIGUIENTE fue sacada de internet, su funcionamiento 
-        ya se explico en el archivo logica_math.py, en la linea 172 */
+        ya se explico en el archivo logica_math.py, en la linea 392 */
         public Image ObtenerGraficaNewton(List<double> lx, List<double> ly, double xInt)
         {
             using (Py.GIL())
@@ -776,8 +776,53 @@ namespace MetodosNumericos
         }
 
 
+        // ==================================== ALGEBRA LINEAL PIVOTEO PARCIAL ===================================
 
+        public class ResultadoSistema
+        {
+            public List<List<double>> MatrizTriangular { get; set; }
+            public List<double> Raices { get; set; }
+        }
 
+        public ResultadoSistema ResolverGauss(List<List<double>> matrizAumentada)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.resolver_gauss_pivoteo(matrizAumentada);
+
+                // Validación de error texto
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+                // Desempaquetar resultado: [MatrizTriangular, VectorX]
+                ResultadoSistema resultado = new ResultadoSistema();
+
+                // 1. Matriz Triangular
+                resultado.MatrizTriangular = new List<List<double>>();
+                dynamic mPy = res[0];
+                int filas = (int)mPy.__len__();
+                for (int i = 0; i < filas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic fPy = mPy[i];
+                    int cols = (int)fPy.__len__();
+                    for (int j = 0; j < cols; j++) fila.Add((double)fPy[j]);
+                    resultado.MatrizTriangular.Add(fila);
+                }
+
+                // 2. Raíces
+                resultado.Raices = new List<double>();
+                dynamic vPy = res[1];
+                int n = (int)vPy.__len__();
+                for (int i = 0; i < n; i++) resultado.Raices.Add((double)vPy[i]);
+
+                return resultado;
+            }
+        }
 
 
 

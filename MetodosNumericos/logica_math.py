@@ -1167,3 +1167,74 @@ def integrar_doble_simpson(func_str, a, b, c, d):
 
     except Exception as e:
         return f"Error Simpson Doble: {str(e)}"
+
+############################################ ALGEBRA LINEAL PIVOTEO NORMAL ###################################
+
+
+## A este punto, el codigo a partir de aqui, es PURA BASURA, la mayor parte salio con prueba y error,
+## se que hace la mayor parte del codigo pero si me preguntan que hace x linea explicitamente, seguramente
+## no me voy a acordar del todo (si es muy compleja) puesto que unas partes (seguramente se van a dar
+## cuenta de cuales) tuve que investigarlas como hacerlas. MUY POSIBLEMENTE, habia formas mas eficientes
+## o mas sencillas de realizarse, sin embargo, mi cerebro no me dio para masxd, si quieren, pueden tocar
+## el codigo si ven que en alguna parte se podria hacer mas eficiente, sino, dejenlo como esta, si funciona,
+## no veo razon para cambiarlo. ah si, la modularizacion se fue de sabatico, hay partes del codigo donde
+## hubiera sido mas facil crear una funcion y solo mandarla a llamar, pero como notaran, solo copiaba esas
+## partes del codigo y las volvia a pegar. Ya se que python es muy flexible en cuanto a tipos de datos, 
+## sin embargo, no modularizaba para evitarme problemas con el tipado (comportamientos extragnos).
+
+## ESA ULTIMA PARTE, la de evitarme problemas copiando y pegando codigo, la hice asi porque de esa forma me
+## era muchisimo, MUCHISIMO mas facil debuggear puesto que el codigo esta lleno de try-catch y 
+## throw-exceptionsxd
+
+def resolver_gauss_pivoteo(matriz_aumentada):
+    """
+    Aplica Eliminacion Gaussiana con Pivoteo Parcial.
+    Retorna: [Matriz_Triangular, Soluciones_X]
+    """
+    try:
+        # Trabajamos con una copia para no dañar la original si se reusa
+        # Convertimos a float explícitamente
+        M = [[float(val) for val in fila] for fila in matriz_aumentada]
+        n = len(M) # Numero de filas (ecuaciones)
+
+        # ---  ELIMINACIÓN CON PIVOTEO ---
+        for i in range(n):
+            # 1. PIVOTEO PARCIAL
+            # Buscamos la fila con el mayor valor absoluto en la columna i
+            fila_mayor = i
+            for k in range(i + 1, n):
+                if abs(M[k][i]) > abs(M[fila_mayor][i]):
+                    fila_mayor = k
+            
+            # Intercambiamos filas si es necesario
+            if fila_mayor != i:
+                M[i], M[fila_mayor] = M[fila_mayor], M[i]
+
+            # Validación de que no estemos rozando el cero (como son floats, solo tenemos hasta 16 bits de precision, por eso el 1e-15)
+            if abs(M[i][i]) < 1e-15:
+                return f"Error: El sistema no tiene solucion unica (Pivote cercano a 0 en fila {i})."
+
+            # 2. ELIMINACIÓN GAUSSIANA
+            # Hacemos ceros debajo del pivote M[i][i]
+            for j in range(i + 1, n):
+                factor = M[j][i] / M[i][i]
+                
+                # Operamos sobre toda la fila j (incluyendo el término independiente)
+                # M[j] = M[j] - factor * M[i]
+                for k in range(i, n + 1): 
+                    M[j][k] -= factor * M[i][k]
+
+        # Guardamos la matriz triangular para mostrarla en C#
+        matriz_triangular = [fila[:] for fila in M]
+
+        # --- SUSTITUCIÓN HACIA ATRÁS --- ##ESTA PARTE NO TENGO IDEA DE COMO SALIO, FUE PURA PRUEBA Y ERROR
+        x = [0.0] * n
+        
+        for i in range(n - 1, -1, -1):
+            suma = sum(M[i][j] * x[j] for j in range(i + 1, n))
+            x[i] = (M[i][n] - suma) / M[i][i]
+
+        return [matriz_triangular, x]
+
+    except Exception as e:
+        return f"Error Gauss: {str(e)}"
