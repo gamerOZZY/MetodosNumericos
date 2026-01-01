@@ -150,7 +150,7 @@ namespace MetodosNumericos
                 }
                 catch (ArgumentException)
                 {
-                  
+
                 }
                 using (MemoryStream ms = new MemoryStream(netBytes))
                 {
@@ -164,7 +164,7 @@ namespace MetodosNumericos
          * se eligio que devolviera una lista de listas ya que pythonnet convierte listas de c
          * en listas de python y viceversa, entonces es mas facil trabajar con ellas gg
          */
-        
+
         public List<List<double>> CalcularRichardson(string funcion, double x, double h, int niveles)
         {
             using (Py.GIL())
@@ -375,7 +375,7 @@ namespace MetodosNumericos
             }
         }
 
- 
+
         public Image ObtenerGraficaIntegracion(List<double> lx, List<double> ly, string nombreMetodo, string funcion)
         {
             using (Py.GIL())
@@ -567,6 +567,62 @@ namespace MetodosNumericos
                 }
             }
         }
+
+        /* =========================================== INTEGRACION MULTIPLE POR TRAPCIO ================================ */
+
+        public double CalcularIntegralDoble(string funcion, double a, double b, double c, double d)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.integrar_doble_trapecio_simple(funcion, a, b, c, d);
+
+                // Validar errores de texto
+                string resStr = res.ToString();
+                if (resStr.StartsWith("Error")) throw new Exception(resStr);
+
+                return (double)res;
+            }
+        }
+        public double CalcularIntegralDoble(string funcion, double a, double b, double c, double d, string metodo)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res;
+
+                // Decidimos que funcion llamar segun el ComboBox
+                if (metodo.Contains("Simpson"))
+                {
+                    res = modulo.integrar_doble_simpson(funcion, a, b, c, d);
+                }
+                else
+                {
+
+                    res = modulo.integrar_doble_trapecio_simple(funcion, a, b, c, d);
+                }
+
+                string resStr = res.ToString();
+                if (resStr.StartsWith("Error")) throw new Exception(resStr);
+
+                return (double)res;
+            }
+
+
+        }
+
+
+
+
+
+
+
 
 
 

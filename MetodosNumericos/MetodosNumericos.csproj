@@ -165,6 +165,12 @@
     <Compile Include="hIrregularDerivada.Designer.cs">
       <DependentUpon>hIrregularDerivada.cs</DependentUpon>
     </Compile>
+    <Compile Include="integracionMultiple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="integracionMultiple.Designer.cs">
+      <DependentUpon>integracionMultiple.cs</DependentUpon>
+    </Compile>
     <Compile Include="integracion_Compuesta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="hIrregularDerivada.resx">
       <DependentUpon>hIrregularDerivada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="integracionMultiple.resx">
+      <DependentUpon>integracionMultiple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="integracion_Compuesta.resx">
       <DependentUpon>integracion_Compuesta.cs</DependentUpon>

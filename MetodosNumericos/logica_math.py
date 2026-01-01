@@ -858,3 +858,96 @@ def generar_grafica_romberg(func_str, a, b):
 
     except Exception as e:
         return f"ERROR_PY: {str(e)}".encode('utf-8')
+    
+################################################# INTEGRACION MULTIPLE ############################################3
+## Como no vimos ninguna tecnica de integracion multiple, se investigo la tecnica del trapecio en 2d
+## y simpson 2d.
+
+def integrar_doble_trapecio_simple(func_str, a, b, c, d):
+    """
+    Calcula la integral doble aproximada usando Trapecio Simple 2D.
+    a, b: Limites de x
+    c, d: Limites de y
+    """
+    try:
+        # 1. Definir dos simbolos
+        x, y = sp.symbols('x y')
+        
+        # 2. Parsear la funcion
+        expr = sp.sympify(func_str)
+        
+        # 3. Compilar con dos letras gg (x,y)
+        f = sp.lambdify((x, y), expr, modules=['numpy', 'math'])
+        
+        # 4. Evaluar en las 4 esquinas
+        # f(a, c), f(b, c), f(a, d), f(b, d)
+        val_ac = f(a, c)
+        val_bc = f(b, c)
+        val_ad = f(a, d)
+        val_bd = f(b, d)
+        
+        # 5. Aplicar formula: ÁreaBase / 4 * SumaAlturas
+        area_base = (b - a) * (d - c)
+        promedio_alturas = (val_ac + val_bc + val_ad + val_bd) / 4.0
+        
+        resultado = area_base * promedio_alturas
+        
+        return float(resultado)
+
+    except Exception as e:
+        return f"Error Integral Doble: {str(e)}"
+    
+    
+## Esta funcion se investigo y medianamente se intento programar, diria yo que no tiene errores pero no termine
+## de entender bien la parte de la malla, vi videos y la implementacion era algo asixd
+def integrar_doble_simpson(func_str, a, b, c, d):
+    
+    """
+    Calcula la integral doble usando Simpson 1/3 
+    """
+    try:
+        x, y = sp.symbols('x y')
+        f = sp.lambdify((x, y), sp.sympify(func_str), modules=['numpy', 'math'])
+        
+        # Puntos medios y pasos
+        mx = (a + b) / 2.0
+        my = (c + d) / 2.0
+        
+        hx = (b - a) / 2.0
+        hy = (d - c) / 2.0
+        
+        # Evaluamos los 9 puntos de la malla
+        # Fila superior (d)
+        z1 = f(a, d)  # Esquina
+        z2 = f(mx, d) # Medio borde
+        z3 = f(b, d)  # Esquina
+        
+        # Fila media (my)
+        z4 = f(a, my) # Medio borde
+        z5 = f(mx, my)# CENTRO
+        z6 = f(b, my) # Medio borde
+        
+        # Fila inferior (c)
+        z7 = f(a, c)  # Esquina
+        z8 = f(mx, c) # Medio borde
+        z9 = f(b, c)  # Esquina
+        
+        # Aplicamos pesos de Simpson (1-4-1) * (1-4-1)
+        # Esquinas * 1
+        suma_esquinas = z1 + z3 + z7 + z9
+        
+        # Bordes * 4
+        suma_bordes = 4 * (z2 + z4 + z6 + z8)
+        
+        # Centro * 16
+        centro = 16 * z5
+        
+        suma_total = suma_esquinas + suma_bordes + centro
+        
+        # Formula: (hx * hy / 9) * Suma
+        resultado = (hx * hy / 9.0) * suma_total
+        
+        return float(resultado)
+
+    except Exception as e:
+        return f"Error Simpson Doble: {str(e)}"

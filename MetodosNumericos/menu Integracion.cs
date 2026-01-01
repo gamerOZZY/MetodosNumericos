@@ -54,5 +54,12 @@ namespace MetodosNumericos
         {
             this.Close();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            integracionMultiple MESTOVOLVIENDOJODIDAMENTELOCOAYUDA = new integracionMultiple();
+            MESTOVOLVIENDOJODIDAMENTELOCOAYUDA.Show();
+            MESTOVOLVIENDOJODIDAMENTELOCOAYUDA.WindowState = FormWindowState.Maximized;
+        }
     }
 }
