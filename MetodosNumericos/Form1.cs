@@ -77,9 +77,6 @@ namespace MetodosNumericos
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             menuDerivacion f = new menuDerivacion();
-            f.Show();
-            f.WindowState = FormWindowState.Maximized;
             
         }
 
@@ -90,9 +87,7 @@ namespace MetodosNumericos
 
         private void menuInterpolacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            menuInterpolacion menuInterpolacion = new menuInterpolacion();
-            menuInterpolacion.Show();
-            menuInterpolacion.WindowState = FormWindowState.Maximized;
+
         }
 
         private void derivacionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,9 +97,7 @@ namespace MetodosNumericos
 
         private void menuIntegracionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            menu_Integracion menu_Integracion = new menu_Integracion();
-            menu_Integracion.Show();
-            menu_Integracion.WindowState = FormWindowState.Maximized;
+
         }
 
         private void pivoteoParcialToolStripMenuItem_Click(object sender, EventArgs e)
@@ -119,6 +112,90 @@ namespace MetodosNumericos
             factorizaciones ola = new factorizaciones();
             ola.Show();
             ola.WindowState = FormWindowState.Maximized;
+        }
+
+        private void metodoDeEulerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            eulerEDO adsad = new eulerEDO();
+            adsad.Show();
+            adsad.WindowState = FormWindowState.Maximized;
+        }
+
+        private void derivacion235PuntosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            der123 f = new der123();
+            f.Show();
+            f.WindowState = FormWindowState.Maximized;
+        }
+
+        private void conHIrregularpuntosNoEquidistantesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hIrregularDerivada f = new hIrregularDerivada();
+            f.Show();
+            f.WindowState = FormWindowState.Maximized;
+        }
+
+        private void extrapolacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            derivadaExtrapolacion q = new derivadaExtrapolacion();
+            q.Show();
+            q.WindowState = FormWindowState.Maximized;
+        }
+
+        private void reglasCompuestasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            integracion_Compuesta coso = new integracion_Compuesta();
+            coso.Show();
+            coso.WindowState = FormWindowState.Maximized;
+        }
+
+        private void cuadraturaAdaptivaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cuadratura_adaptiva cuadratura = new cuadratura_adaptiva();
+            cuadratura.Show();
+            cuadratura.WindowState = FormWindowState.Maximized;
+        }
+
+        private void cuadraturaGaussianaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cuadratura_gaussiana cuad = new cuadratura_gaussiana();
+            cuad.Show();
+            cuad.WindowState = FormWindowState.Maximized;
+        }
+
+        private void extrapolacionDeRombergToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            romExtrapolacion romExtrapolacion = new romExtrapolacion();
+            romExtrapolacion.Show();
+            romExtrapolacion.WindowState = FormWindowState.Maximized;
+        }
+
+        private void integracionMultipleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            integracionMultiple MESTOVOLVIENDOJODIDAMENTELOCOAYUDA = new integracionMultiple();
+            MESTOVOLVIENDOJODIDAMENTELOCOAYUDA.Show();
+            MESTOVOLVIENDOJODIDAMENTELOCOAYUDA.WindowState = FormWindowState.Maximized;
+        }
+
+        private void diferenciasDivididasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            diferenciasDivididas f = new diferenciasDivididas();
+            f.Show();
+            f.WindowState = FormWindowState.Maximized;
+        }
+
+        private void nevilleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            neville neville = new neville();
+            neville.Show();
+            neville.WindowState = FormWindowState.Maximized;
+        }
+
+        private void lagranjeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lagranje lagranje = new lagranje();
+            lagranje.Show();
+            lagranje.WindowState = FormWindowState.Maximized;
         }
     }
 }

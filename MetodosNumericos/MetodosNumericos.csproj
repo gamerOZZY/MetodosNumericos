@@ -117,6 +117,12 @@
     <Compile Include="diferenciasDivididas.Designer.cs">
       <DependentUpon>diferenciasDivididas.cs</DependentUpon>
     </Compile>
+    <Compile Include="eulerEDO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eulerEDO.Designer.cs">
+      <DependentUpon>eulerEDO.cs</DependentUpon>
+    </Compile>
     <Compile Include="factorizaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,24 +195,6 @@
     <Compile Include="lagranje.Designer.cs">
       <DependentUpon>lagranje.cs</DependentUpon>
     </Compile>
-    <Compile Include="menu Integracion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menu Integracion.Designer.cs">
-      <DependentUpon>menu Integracion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="menuDerivacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menuDerivacion.Designer.cs">
-      <DependentUpon>menuDerivacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="menuInterpolacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menuInterpolacion.Designer.cs">
-      <DependentUpon>menuInterpolacion.cs</DependentUpon>
-    </Compile>
     <Compile Include="neville.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +232,9 @@
     <EmbeddedResource Include="diferenciasDivididas.resx">
       <DependentUpon>diferenciasDivididas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="eulerEDO.resx">
+      <DependentUpon>eulerEDO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="factorizaciones.resx">
       <DependentUpon>factorizaciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,15 +270,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="lagranje.resx">
       <DependentUpon>lagranje.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menu Integracion.resx">
-      <DependentUpon>menu Integracion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menuDerivacion.resx">
-      <DependentUpon>menuDerivacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menuInterpolacion.resx">
-      <DependentUpon>menuInterpolacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="neville.resx">
       <DependentUpon>neville.cs</DependentUpon>

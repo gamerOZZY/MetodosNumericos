@@ -24,7 +24,7 @@ namespace MetodosNumericos
 
 
         private NCalc.Expression exprFuncion;
-        private NCalc.Expression exprGuncion;
+
         private NCalc.Expression exprDerivada;
         
 
@@ -51,8 +51,6 @@ namespace MetodosNumericos
                 
                 exprFuncion.Parameters["e"] = Math.E;
                 exprFuncion.Parameters["pi"] = Math.PI;
-                exprGuncion.Parameters["e"] = Math.E;
-                exprGuncion.Parameters["pi"] = Math.PI;
                 exprDerivada.Parameters["e"] = Math.E;
                 exprDerivada.Parameters["pi"] = Math.PI;
             }
@@ -128,13 +126,7 @@ namespace MetodosNumericos
             
         }
 
-        public float g(float x)
-        {
-            exprGuncion.Parameters["x"] = x;
-            var resultado = exprGuncion.Evaluate();
-            return Convert.ToSingle(resultado);
 
-        }
         public double fd(double x)
         {
             exprFuncion.Parameters["x"] = x;
@@ -227,37 +219,7 @@ namespace MetodosNumericos
 
 
 
-        public bool MetodoPuntoFijo(ref DataGridView dgv, ref float AproxRaiz)
-        {
-            dgv.Rows.Clear();
-
-            float p0 = this.a;  
-            float p1;
-            float ErrorAct = 0;
-
-            for (int i = 0; i < this.NumMaxIter; i++)
-            {
-                p1 = g(p0); 
-
-                ErrorAct = Math.Abs(p1 - p0);
-
-                
-                dgv.Rows.Add(i.ToString(),
-                             p0.ToString("F6"),
-                             p1.ToString("F6"),
-                             ErrorAct.ToString("F6"));
-
-                if (ErrorAct < this.ErrorMax)
-                {
-                    AproxRaiz = p1;
-                    return true;
-                }
-
-                p0 = p1;
-            }
-
-            return false; 
-        }
+        
 
 
 

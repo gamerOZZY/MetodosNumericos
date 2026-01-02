@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io
+from math import *
 import math
 
 #SYMPY NOS AHORRO AGNOS DE VIDA GGGGGGGGGGG
@@ -1458,3 +1459,47 @@ def resolver_factorizacion(matriz, metodo):
 
     except Exception as e:
         return f"Error Algoritmo: {str(e)}"
+    
+
+############################## METODO DE EULER PARA ECUACIONES DIFERENCIALES ###########################
+""" 
+Para simplificar calculos y evitarnos hacer mucha alebra simbolica, opte por pedir la ecuacion con la y' ya 
+despejada (y tambien porque aun con sympy, no tengo ni la menor idea de como hacer despeje de variables
+de forma simbolicaxd)
+"""
+
+def resolver_euler(ecuacion_str, x0, y0, h, x_final):
+    """
+    Resuelve EDO usando Euler.
+    Asume que el usuario ingresa codigo de confianza.
+    """
+    try:
+        # 1. Convertir datos que vienen de C# (strings) a numeros
+        x = float(x0)
+        y = float(y0)
+        hh = float(h)
+        meta = float(x_final)
+        
+        resultados = []
+        i = 0
+        
+        #  Ciclo principal 
+        while x < meta + 1e-15: #por si es un numero extragno, mejor prevenir que lamentar 
+            
+            funcion = eval(ecuacion_str) 
+
+            # Formula de Euler: w_i+1 = w_actual + h * f(x,y)
+            y_siguiente = y + hh * funcion
+            
+            # Guardamos: [Iteracion, X actual, Y actual, Y calculada]
+            resultados.append([i, x, y, y_siguiente])
+            
+            # Actualizamos variables para la siguiente vuelta
+            y = y_siguiente
+            x += hh
+            i += 1
+            
+        return resultados
+
+    except Exception as e:
+        return f"Error en la formula: {str(e)}"

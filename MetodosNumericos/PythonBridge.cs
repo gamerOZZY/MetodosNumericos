@@ -885,6 +885,51 @@ namespace MetodosNumericos
             }
             return resultado;
         }
+
+        /* ========================= METODO DE EULER PARA EDOs =============================== */
+
+        public class FilaEuler
+        {
+            public int Iteracion { get; set; }
+            public double X { get; set; }
+            public double Y_Actual { get; set; }     // w_i
+            public double Y_Siguiente { get; set; }  // w_i+1
+        }
+        public List<FilaEuler> ResolverEDO_Euler(string ecuacion, double x0, double y0, double h, double xFinal)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                // Llamada a Python
+                dynamic res = modulo.resolver_euler(ecuacion, x0, y0, h, xFinal);
+
+                // Validacion de errores
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+                // Parsear lista de listas a objetos C#
+                List<FilaEuler> tabla = new List<FilaEuler>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    dynamic filaPy = res[i];
+                    FilaEuler f = new FilaEuler();
+                    f.Iteracion = (int)filaPy[0];
+                    f.X = (double)filaPy[1];
+                    f.Y_Actual = (double)filaPy[2];
+                    f.Y_Siguiente = (double)filaPy[3];
+                    tabla.Add(f);
+                }
+
+                return tabla;
+            }
+        }
+
+
     }
 
 

@@ -38,13 +38,16 @@
             this.puntoFijoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mullerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.derivacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.derivacion235PuntosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extrapolacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.integracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuIntegracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.interpolacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuInterpolacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.algebraLinealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pivoteoParcialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.factorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eDOsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metodoDeEulerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,7 +57,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.factorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reglasCompuestasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cuadraturaAdaptivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cuadraturaGaussianaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extrapolacionDeRombergToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.integracionMultipleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diferenciasDivididasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nevilleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lagranjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +78,7 @@
             this.integracionToolStripMenuItem,
             this.interpolacionToolStripMenuItem,
             this.algebraLinealToolStripMenuItem,
+            this.eDOsToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -132,48 +144,56 @@
             // derivacionToolStripMenuItem
             // 
             this.derivacionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.derivacion235PuntosToolStripMenuItem,
+            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem,
+            this.extrapolacionToolStripMenuItem});
             this.derivacionToolStripMenuItem.Name = "derivacionToolStripMenuItem";
             this.derivacionToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.derivacionToolStripMenuItem.Text = "Derivacion";
             this.derivacionToolStripMenuItem.Click += new System.EventHandler(this.derivacionToolStripMenuItem_Click);
             // 
-            // menuToolStripMenuItem
+            // derivacion235PuntosToolStripMenuItem
             // 
-            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
-            this.menuToolStripMenuItem.Text = "menu derivacion numerica";
-            this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
+            this.derivacion235PuntosToolStripMenuItem.Name = "derivacion235PuntosToolStripMenuItem";
+            this.derivacion235PuntosToolStripMenuItem.Size = new System.Drawing.Size(362, 26);
+            this.derivacion235PuntosToolStripMenuItem.Text = "Derivacion 2, 3, 5 puntos";
+            this.derivacion235PuntosToolStripMenuItem.Click += new System.EventHandler(this.derivacion235PuntosToolStripMenuItem_Click);
+            // 
+            // conHIrregularpuntosNoEquidistantesToolStripMenuItem
+            // 
+            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Name = "conHIrregularpuntosNoEquidistantesToolStripMenuItem";
+            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Size = new System.Drawing.Size(362, 26);
+            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Text = "Con h irregular (puntos no equidistantes)";
+            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Click += new System.EventHandler(this.conHIrregularpuntosNoEquidistantesToolStripMenuItem_Click);
+            // 
+            // extrapolacionToolStripMenuItem
+            // 
+            this.extrapolacionToolStripMenuItem.Name = "extrapolacionToolStripMenuItem";
+            this.extrapolacionToolStripMenuItem.Size = new System.Drawing.Size(362, 26);
+            this.extrapolacionToolStripMenuItem.Text = "Extrapolacion";
+            this.extrapolacionToolStripMenuItem.Click += new System.EventHandler(this.extrapolacionToolStripMenuItem_Click);
             // 
             // integracionToolStripMenuItem
             // 
             this.integracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuIntegracionToolStripMenuItem});
+            this.reglasCompuestasToolStripMenuItem,
+            this.cuadraturaAdaptivaToolStripMenuItem,
+            this.cuadraturaGaussianaToolStripMenuItem,
+            this.extrapolacionDeRombergToolStripMenuItem,
+            this.integracionMultipleToolStripMenuItem});
             this.integracionToolStripMenuItem.Name = "integracionToolStripMenuItem";
             this.integracionToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
             this.integracionToolStripMenuItem.Text = "Integracion";
             // 
-            // menuIntegracionToolStripMenuItem
-            // 
-            this.menuIntegracionToolStripMenuItem.Name = "menuIntegracionToolStripMenuItem";
-            this.menuIntegracionToolStripMenuItem.Size = new System.Drawing.Size(273, 26);
-            this.menuIntegracionToolStripMenuItem.Text = "Menu integracion numerica";
-            this.menuIntegracionToolStripMenuItem.Click += new System.EventHandler(this.menuIntegracionToolStripMenuItem_Click);
-            // 
             // interpolacionToolStripMenuItem
             // 
             this.interpolacionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuInterpolacionToolStripMenuItem});
+            this.diferenciasDivididasToolStripMenuItem,
+            this.nevilleToolStripMenuItem,
+            this.lagranjeToolStripMenuItem});
             this.interpolacionToolStripMenuItem.Name = "interpolacionToolStripMenuItem";
             this.interpolacionToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.interpolacionToolStripMenuItem.Text = "Interpolacion";
-            // 
-            // menuInterpolacionToolStripMenuItem
-            // 
-            this.menuInterpolacionToolStripMenuItem.Name = "menuInterpolacionToolStripMenuItem";
-            this.menuInterpolacionToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
-            this.menuInterpolacionToolStripMenuItem.Text = "Menu interpolacion";
-            this.menuInterpolacionToolStripMenuItem.Click += new System.EventHandler(this.menuInterpolacionToolStripMenuItem_Click);
             // 
             // algebraLinealToolStripMenuItem
             // 
@@ -190,6 +210,29 @@
             this.pivoteoParcialToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.pivoteoParcialToolStripMenuItem.Text = "Pivoteos para SEL";
             this.pivoteoParcialToolStripMenuItem.Click += new System.EventHandler(this.pivoteoParcialToolStripMenuItem_Click);
+            // 
+            // factorizacionesToolStripMenuItem
+            // 
+            this.factorizacionesToolStripMenuItem.Name = "factorizacionesToolStripMenuItem";
+            this.factorizacionesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.factorizacionesToolStripMenuItem.Text = "Factorizaciones";
+            this.factorizacionesToolStripMenuItem.Click += new System.EventHandler(this.factorizacionesToolStripMenuItem_Click);
+            // 
+            // eDOsToolStripMenuItem
+            // 
+            this.eDOsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.metodoDeEulerToolStripMenuItem,
+            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem});
+            this.eDOsToolStripMenuItem.Name = "eDOsToolStripMenuItem";
+            this.eDOsToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.eDOsToolStripMenuItem.Text = "EDOs";
+            // 
+            // metodoDeEulerToolStripMenuItem
+            // 
+            this.metodoDeEulerToolStripMenuItem.Name = "metodoDeEulerToolStripMenuItem";
+            this.metodoDeEulerToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.metodoDeEulerToolStripMenuItem.Text = "Metodo de Euler";
+            this.metodoDeEulerToolStripMenuItem.Click += new System.EventHandler(this.metodoDeEulerToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -282,12 +325,67 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
             // 
-            // factorizacionesToolStripMenuItem
+            // reglasCompuestasToolStripMenuItem
             // 
-            this.factorizacionesToolStripMenuItem.Name = "factorizacionesToolStripMenuItem";
-            this.factorizacionesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.factorizacionesToolStripMenuItem.Text = "Factorizaciones";
-            this.factorizacionesToolStripMenuItem.Click += new System.EventHandler(this.factorizacionesToolStripMenuItem_Click);
+            this.reglasCompuestasToolStripMenuItem.Name = "reglasCompuestasToolStripMenuItem";
+            this.reglasCompuestasToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.reglasCompuestasToolStripMenuItem.Text = "Reglas compuestas";
+            this.reglasCompuestasToolStripMenuItem.Click += new System.EventHandler(this.reglasCompuestasToolStripMenuItem_Click);
+            // 
+            // cuadraturaAdaptivaToolStripMenuItem
+            // 
+            this.cuadraturaAdaptivaToolStripMenuItem.Name = "cuadraturaAdaptivaToolStripMenuItem";
+            this.cuadraturaAdaptivaToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.cuadraturaAdaptivaToolStripMenuItem.Text = "Cuadratura adaptiva";
+            this.cuadraturaAdaptivaToolStripMenuItem.Click += new System.EventHandler(this.cuadraturaAdaptivaToolStripMenuItem_Click);
+            // 
+            // cuadraturaGaussianaToolStripMenuItem
+            // 
+            this.cuadraturaGaussianaToolStripMenuItem.Name = "cuadraturaGaussianaToolStripMenuItem";
+            this.cuadraturaGaussianaToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.cuadraturaGaussianaToolStripMenuItem.Text = "Cuadratura Gaussiana";
+            this.cuadraturaGaussianaToolStripMenuItem.Click += new System.EventHandler(this.cuadraturaGaussianaToolStripMenuItem_Click);
+            // 
+            // extrapolacionDeRombergToolStripMenuItem
+            // 
+            this.extrapolacionDeRombergToolStripMenuItem.Name = "extrapolacionDeRombergToolStripMenuItem";
+            this.extrapolacionDeRombergToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.extrapolacionDeRombergToolStripMenuItem.Text = "Extrapolacion de Romberg";
+            this.extrapolacionDeRombergToolStripMenuItem.Click += new System.EventHandler(this.extrapolacionDeRombergToolStripMenuItem_Click);
+            // 
+            // integracionMultipleToolStripMenuItem
+            // 
+            this.integracionMultipleToolStripMenuItem.Name = "integracionMultipleToolStripMenuItem";
+            this.integracionMultipleToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.integracionMultipleToolStripMenuItem.Text = "Integracion Multiple";
+            this.integracionMultipleToolStripMenuItem.Click += new System.EventHandler(this.integracionMultipleToolStripMenuItem_Click);
+            // 
+            // diferenciasDivididasToolStripMenuItem
+            // 
+            this.diferenciasDivididasToolStripMenuItem.Name = "diferenciasDivididasToolStripMenuItem";
+            this.diferenciasDivididasToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.diferenciasDivididasToolStripMenuItem.Text = "Diferencias divididas";
+            this.diferenciasDivididasToolStripMenuItem.Click += new System.EventHandler(this.diferenciasDivididasToolStripMenuItem_Click);
+            // 
+            // nevilleToolStripMenuItem
+            // 
+            this.nevilleToolStripMenuItem.Name = "nevilleToolStripMenuItem";
+            this.nevilleToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.nevilleToolStripMenuItem.Text = "Neville";
+            this.nevilleToolStripMenuItem.Click += new System.EventHandler(this.nevilleToolStripMenuItem_Click);
+            // 
+            // lagranjeToolStripMenuItem
+            // 
+            this.lagranjeToolStripMenuItem.Name = "lagranjeToolStripMenuItem";
+            this.lagranjeToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.lagranjeToolStripMenuItem.Text = "Lagranje";
+            this.lagranjeToolStripMenuItem.Click += new System.EventHandler(this.lagranjeToolStripMenuItem_Click);
+            // 
+            // metodoDeTaylorDeOrdenSuperiorToolStripMenuItem
+            // 
+            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Name = "metodoDeTaylorDeOrdenSuperiorToolStripMenuItem";
+            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Text = "Metodo de Taylor de orden superior";
             // 
             // Form1
             // 
@@ -336,14 +434,25 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem derivacionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem interpolacionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuInterpolacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem integracionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuIntegracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem algebraLinealToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pivoteoParcialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem factorizacionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eDOsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem metodoDeEulerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem derivacion235PuntosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem conHIrregularpuntosNoEquidistantesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extrapolacionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reglasCompuestasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cuadraturaAdaptivaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cuadraturaGaussianaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extrapolacionDeRombergToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem integracionMultipleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diferenciasDivididasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nevilleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lagranjeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem metodoDeTaylorDeOrdenSuperiorToolStripMenuItem;
     }
 }
 
