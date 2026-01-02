@@ -823,10 +823,71 @@ namespace MetodosNumericos
             }
         }
 
+        /* ====================================== FACTORIZACIONES DE MATRICES ============================== */
+        public class ResultadoFactorizacion
+        {
+            public List<List<double>> MatrizL { get; set; }
+            public List<List<double>> MatrizU { get; set; }
+            public List<List<double>> MatrizP { get; set; }
+        }
+        public List<string> ObtenerMetodosValidos(List<List<double>> matriz)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
 
+                dynamic listaPy = modulo.analizar_metodos_disponibles(matriz);
 
+                List<string> metodos = new List<string>();
+                int len = (int)listaPy.__len__();
+                for (int i = 0; i < len; i++) metodos.Add(listaPy[i].ToString());
 
+                return metodos;
+            }
+        }
 
+        // 2. Calcular: Retorna L, U y P
+        public ResultadoFactorizacion CalcularFactorizacion(List<List<double>> matriz, string metodo)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
 
+                dynamic res = modulo.resolver_factorizacion(matriz, metodo);
+
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+                ResultadoFactorizacion rf = new ResultadoFactorizacion();
+                rf.MatrizL = ConvertirPyList(res[0]);
+                rf.MatrizU = ConvertirPyList(res[1]);
+                rf.MatrizP = ConvertirPyList(res[2]);
+
+                return rf;
+            }
+        }
+
+        private List<List<double>> ConvertirPyList(dynamic pyList)
+        {
+            List<List<double>> resultado = new List<List<double>>();
+            int filas = (int)pyList.__len__();
+            for (int i = 0; i < filas; i++)
+            {
+                List<double> fila = new List<double>();
+                dynamic fPy = pyList[i];
+                int cols = (int)fPy.__len__();
+                for (int j = 0; j < cols; j++) fila.Add((double)fPy[j]);
+                resultado.Add(fila);
+            }
+            return resultado;
+        }
     }
+
+
+
 }
+

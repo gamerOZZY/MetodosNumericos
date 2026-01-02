@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io
+import math
 
 #SYMPY NOS AHORRO AGNOS DE VIDA GGGGGGGGGGG
 
@@ -1311,3 +1312,149 @@ def resolver_gauss_general(matriz_aumentada, metodo):
 
     except Exception as e:
         return f"Error Gauss {metodo}: {str(e)}"
+    
+#################################################### FACTORIZACIONES DE MATRICES ################################
+"""
+Seguramente ya se dieron cuenta en la parte de arriba, pero a partir de aca se nota un poco mas, comence a
+usar a cada rato ciclos del tipo [[loquesea for i in range(x)] for j in range(y)], lo que esta pasando
+aca es que creamos una lista (for entre corchetes de adentro) de listas (for de afuera de los corchetes 
+centrales), lo hice de esta forma ya que c# esta recibiendo list<list<loquesea>>, entonces para tener 
+todas las matrices de una forma similar, las cree asi
+
+Por si no sabian, el hacer [algo for i in range(k)], evalua 'algo' y posteriormente crea una lista con ello,
+al principio se ve extragno pero es realmente util para todo lo que hago mas adelante
+"""
+def obtener_determinante(matriz): #aca de amigos, esta funcion la saque de youtube (vi un tutorial y la copie), todo lo demas si lo hicexd
+    """Calculo recursivo de determinante."""
+    n = len(matriz)
+    if n == 1: return matriz[0][0]
+    if n == 2: return matriz[0][0]*matriz[1][1] - matriz[0][1]*matriz[1][0]
+    det = 0
+    for c in range(n):
+        sub_m = [fila[:c] + fila[c+1:] for fila in matriz[1:]]
+        det += ((-1)**c) * matriz[0][c] * obtener_determinante(sub_m)
+    return det
+
+def es_simetrica(M):
+    """Verifica si A == A^T"""
+    n = len(M)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if abs(M[i][j] - M[j][i]) > 1e-15: ##lo mismo que en los anteiores, usamos floats
+                return False
+    return True
+
+def esMatrizDF(M): #Esta funcion igual la saque de un tutorial de youtube j;adssadjjkl
+    """
+    Verifica si es Definida Positiva.
+    """
+    if not es_simetrica(M): return False
+    
+    n = len(M)
+    for k in range(1, n + 1):
+        # Submatriz de k x k (esquina superior izquierda)
+        sub_matriz = [fila[:k] for fila in M[:k]]
+        if obtener_determinante(sub_matriz) <= 0:
+            return False
+    return True
+
+# --- LOGICA DE SELECCION ---
+
+def analizar_metodos_disponibles(matriz_aumentada):
+    """Devuelve la lista de metodos validos para la matriz dada."""
+    M = [[float(val) for val in fila] for fila in matriz_aumentada]
+    metodos = []
+
+    # PLU siempre es una opcion (general)
+    metodos.append("PLU (Pivoteo)")
+
+    # LU Simple requiere que no haya ceros en la diagonal
+    if all(abs(M[i][i]) > 1e-10 for i in range(len(M))):
+        metodos.append("LU Simple")
+
+    # Cholesky requiere Simetrica Definida Positiva
+    if esMatrizDF(M):
+        metodos.append("LLT (Cholesky)")
+
+    return metodos
+
+# --- 3. ALGORITMOS DE FACTORIZACION ---
+
+def resolver_factorizacion(matriz, metodo):
+    """Retorna [L, U, P] dependiendo del metodo."""
+    M = [[float(val) for val in fila] for fila in matriz]
+    n = len(M)
+    
+    # Matriz P inicializada como Identidad
+    P = [[1.0 if i == j else 0.0 for j in range(n)] for i in range(n)]
+    L = [[0.0]*n for _ in range(n)]
+    U = [[0.0]*n for _ in range(n)]
+
+    try:
+        if "Cholesky" in metodo:
+            # --- CHOLESKY (LLT) ---
+            if not esMatrizDF(M): return "Error: La matriz no es Definida Positiva."
+            
+            for i in range(n):
+                for k in range(i + 1):
+                    suma = sum(L[i][j] * L[k][j] for j in range(k))
+                    if i == k: # Elementos diagonal
+                        val = M[i][i] - suma
+                        if val <= 0: return "Error: Raiz negativa en Cholesky."
+                        L[i][k] = math.sqrt(val)
+                    else: # Elementos fuera diagonal
+                        L[i][k] = (1.0 / L[k][k] * (M[i][k] - suma))
+            
+            # En Cholesky, U es la transpuesta de L
+            U = [[L[j][i] for j in range(n)] for i in range(n)]
+            return [L, U, P] # P es identidad
+
+        elif "PLU" in metodo:
+            # --- PLU (Con Pivoteo) ---
+            U = [fila[:] for fila in M] # Copia inicial
+
+            for k in range(n):
+                # Pivoteo Parcial
+                pivote = k
+                max_val = abs(U[k][k])
+                for i in range(k+1, n):
+                    if abs(U[i][k]) > max_val:
+                        max_val = abs(U[i][k])
+                        pivote = i
+                
+                # Intercambios en U, P y L
+                U[k], U[pivote] = U[pivote], U[k]
+                P[k], P[pivote] = P[pivote], P[k]
+                if k > 0:
+                    for col in range(k):
+                        L[k][col], L[pivote][col] = L[pivote][col], L[k][col]
+
+                L[k][k] = 1.0
+                for i in range(k+1, n):
+                    if abs(U[k][k]) < 1e-15: return "Error: Pivote 0 en PLU."
+                    factor = U[i][k] / U[k][k]
+                    L[i][k] = factor
+                    U[i][k] = 0.0
+                    for j in range(k+1, n):
+                        U[i][j] -= factor * U[k][j]
+            return [L, U, P] # PLU la hice con ayuda de chat pq no me salia P E R D O N, hice lo mejor que pude
+
+        else:
+            # --- LU  ---
+            for i in range(n):
+                # Calcular U
+                for k in range(i, n):
+                    suma = sum(L[i][j] * U[j][k] for j in range(i))
+                    U[i][k] = M[i][k] - suma
+                # Calcular L
+                for k in range(i, n):
+                    if i == k:
+                        L[i][i] = 1.0
+                    else:
+                        suma = sum(L[k][j] * U[j][i] for j in range(i))
+                        if abs(U[i][i]) < 1e-15: return "Error: Pivote 0 en LU Simple."
+                        L[k][i] = (M[k][i] - suma) / U[i][i]
+            return [L, U, P] # P es identidad
+
+    except Exception as e:
+        return f"Error Algoritmo: {str(e)}"

@@ -113,5 +113,12 @@ namespace MetodosNumericos
             dadsa.Show();
             dadsa.WindowState = FormWindowState.Maximized;
         }
+
+        private void factorizacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            factorizaciones ola = new factorizaciones();
+            ola.Show();
+            ola.WindowState = FormWindowState.Maximized;
+        }
     }
 }

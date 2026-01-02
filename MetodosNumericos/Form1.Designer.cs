@@ -54,6 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.factorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -177,7 +178,8 @@
             // algebraLinealToolStripMenuItem
             // 
             this.algebraLinealToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pivoteoParcialToolStripMenuItem});
+            this.pivoteoParcialToolStripMenuItem,
+            this.factorizacionesToolStripMenuItem});
             this.algebraLinealToolStripMenuItem.Name = "algebraLinealToolStripMenuItem";
             this.algebraLinealToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
             this.algebraLinealToolStripMenuItem.Text = "Algebra Lineal";
@@ -280,6 +282,13 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
             // 
+            // factorizacionesToolStripMenuItem
+            // 
+            this.factorizacionesToolStripMenuItem.Name = "factorizacionesToolStripMenuItem";
+            this.factorizacionesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.factorizacionesToolStripMenuItem.Text = "Factorizaciones";
+            this.factorizacionesToolStripMenuItem.Click += new System.EventHandler(this.factorizacionesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -334,6 +343,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuIntegracionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem algebraLinealToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pivoteoParcialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem factorizacionesToolStripMenuItem;
     }
 }
 

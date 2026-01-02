@@ -21,7 +21,7 @@ namespace MetodosNumericos
         public Complex p0, p1, p2;
         public double a1, b1;
         public string FuncionTexto;
-        public string GuncionTexto;
+
 
         private NCalc.Expression exprFuncion;
         private NCalc.Expression exprGuncion;
@@ -35,7 +35,7 @@ namespace MetodosNumericos
             try
             {
                 string textoUsuario = Normalizar(FuncionTexto.Trim());
-                string textoGsuario = Normalizar(GuncionTexto.Trim());
+
 
                 
                 Expr exprSymbolic = Expr.Parse(FuncionTexto);
@@ -45,7 +45,7 @@ namespace MetodosNumericos
 
                 
                 exprFuncion = new NCalc.Expression(textoUsuario);
-                exprGuncion = new NCalc.Expression(textoGsuario);
+
                 exprDerivada = new NCalc.Expression(derivadaNCalc);
 
                 
