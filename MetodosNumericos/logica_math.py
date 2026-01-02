@@ -1186,55 +1186,128 @@ def integrar_doble_simpson(func_str, a, b, c, d):
 ## era muchisimo, MUCHISIMO mas facil debuggear puesto que el codigo esta lleno de try-catch y 
 ## throw-exceptionsxd
 
-def resolver_gauss_pivoteo(matriz_aumentada):
+##ACTUALIZACION = mande al diablo todo el codigo de los pivoteos y lo hice casi de 0 pq de plano la funcion
+## quedo horriblemente mal y aun con los comentarios que le iba poniendo, yo mismo me perdia en el codigoxd
+## Entonces, diria yo que esta vez el codigo ya se ve bien y esta medianamente optimizado, asi mismo
+## ya no parece espageti (quiero pensar). Por otro lado, cada linea tiene su comentario de lo que hace,
+## en caso de que el profesor nos pregunte que hace cada cosa gg.
+
+def resolver_gauss_general(matriz_aumentada, metodo):
     """
-    Aplica Eliminacion Gaussiana con Pivoteo Parcial.
-    Retorna: [Matriz_Triangular, Soluciones_X]
+    Resuelve el sistema Ax=b usando Eliminacion Gaussiana con el metodo de pivoteo elegido.
+    metodo: "Parcial", "Escalado", "Total"
     """
     try:
-        # Trabajamos con una copia para no dagnaar la original si se reusa
-        # Convertimos a float explicitamente
+        # Convertimos a float y trabajamos con copias
         M = [[float(val) for val in fila] for fila in matriz_aumentada]
-        n = len(M) # Numero de filas (ecuaciones)
+        n = len(M)
+        
+        # Para Pivoteo Total: Necesitamos rastrear el orden de las variables (x0, x1, x2...)
+        # Inicialmente el orden es [0, 1, 2, ..., n-1]
+        orden_vars = list(range(n))
 
-        # ---  ELIMINACION CON PIVOTEO ---
-        for i in range(n):
-            # 1. PIVOTEO PARCIAL
-            # Buscamos la fila con el mayor valor absoluto en la columna i
-            fila_mayor = i
-            for k in range(i + 1, n):
-                if abs(M[k][i]) > abs(M[fila_mayor][i]):
-                    fila_mayor = k
+        # Para Pivoteo Escalado: Calculamos los factores de escala iniciales (maximo abs de cada fila)
+        # S[i] = max(|ai1|, |ai2|..., |ain(nein)|)xd
+        S = []
+        if metodo == "Escalado":
+            for i in range(n):
+                max_val = max(abs(M[i][j]) for j in range(n))
+                if max_val == 0: return "Error: Una fila es completamente ceros."
+                S.append(max_val)
+
+        # --- CICLO PRINCIPAL DE ELIMINACIÓN ---
+        for k in range(n - 1):
             
-            # Intercambiamos filas si es necesario
-            if fila_mayor != i:
-                M[i], M[fila_mayor] = M[fila_mayor], M[i]
+            # --- ESTRATEGIA DE SELECCIÓN DEL PIVOTE ---
+            fila_max = k
+            col_max = k # Solo usado en Total
 
-            # Validacion de que no estemos rozando el cero (como son floats, solo tenemos hasta 16 bits de precision, por eso el 1e-15)
-            if abs(M[i][i]) < 1e-15:
-                return f"Error: El sistema no tiene solucion unica (Pivote cercano a 0 en fila {i})."
+            if metodo == "Parcial":
+                # Buscar el mayor |M[i][k]| en la columna k (desde k hacia abajo)
+                mayor_valor = abs(M[k][k])
+                for i in range(k + 1, n):
+                    val = abs(M[i][k])
+                    if val > mayor_valor:
+                        mayor_valor = val
+                        fila_max = i
+            
+            elif metodo == "Escalado":
+                # Buscar el mayor cociente |M[i][k]| / S[i]
+                mayor_ratio = abs(M[k][k]) / S[k]
+                for i in range(k + 1, n):
+                    ratio = abs(M[i][k]) / S[i]
+                    if ratio > mayor_ratio:
+                        mayor_ratio = ratio
+                        fila_max = i
 
-            # 2. ELIMINACION GAUSSIANA
-            # Hacemos ceros debajo del pivote M[i][i]
-            for j in range(i + 1, n):
-                factor = M[j][i] / M[i][i]
+            elif metodo == "Total":
+                # Buscar el mayor valor absoluto en TODA la submatriz restante
+                mayor_valor = 0
+                for i in range(k, n):
+                    for j in range(k, n):
+                        if abs(M[i][j]) > mayor_valor:
+                            mayor_valor = abs(M[i][j])
+                            fila_max = i
+                            col_max = j
+
+            # --- INTERCAMBIOS ---
+            
+            # 1. Si es Pivoteo Total y el maximo esta en otra columna, cambiamos COLUMNAS
+            if metodo == "Total" and col_max != k:
+                # Intercambiar columnas en la matriz
+                for i in range(n):
+                    M[i][k], M[i][col_max] = M[i][col_max], M[i][k]
                 
-                # Operamos sobre toda la fila j (incluyendo el termino independiente)
-                # M[j] = M[j] - factor * M[i]
-                for k in range(i, n + 1): 
-                    M[j][k] -= factor * M[i][k]
+                # IMPORTANTE: Recordar que cambiamos el orden de las variables
+                orden_vars[k], orden_vars[col_max] = orden_vars[col_max], orden_vars[k]
 
-        # Guardamos la matriz triangular para mostrarla en C#
+            # 2. Intercambio de FILAS (Comun para todos los metodos)
+            if fila_max != k:
+                M[k], M[fila_max] = M[fila_max], M[k]
+                # En escalado, tambien intercambiamos el factor de escala correspondiente
+                if metodo == "Escalado":
+                    S[k], S[fila_max] = S[fila_max], S[k]
+
+            # Validacion: Si el pivote es 0, el sistema no tiene solucion unica
+            if abs(M[k][k]) < 1e-15:
+                return f"Error: Pivote cercano a cero en paso {k}."
+
+            # --- ELIMINACIÓN GAUSSIANA (Hacer ceros abajo) ---
+            for i in range(k + 1, n):
+                factor = M[i][k] / M[k][k]
+                for j in range(k, n + 1): # n+1 porque incluye la columna de resultados (i guess)
+                    M[i][j] -= factor * M[k][j]
+
+        # Guardamos la matriz triangular para mostrarla
         matriz_triangular = [fila[:] for fila in M]
 
-        # --- SUSTITUCION HACIA ATR�S --- ##ESTA PARTE NO TENGO IDEA DE COMO SALIO, FUE PURA PRUEBA Y ERROR
-        x = [0.0] * n
+        # --- SUSTITUCIoN HACIA ATRÁS ---
+        x_calc = [0.0] * n
         
-        for i in range(n - 1, -1, -1):
-            suma = sum(M[i][j] * x[j] for j in range(i + 1, n))
-            x[i] = (M[i][n] - suma) / M[i][i]
+        # Validacion final del último elemento (M[n-1][n-1])
+        if abs(M[n-1][n-1]) < 1e-15: return "Error: ultimo pivote 0."
 
-        return [matriz_triangular, x]
+        for i in range(n - 1, -1, -1):
+            suma = sum(M[i][j] * x_calc[j] for j in range(i + 1, n))
+            x_calc[i] = (M[i][n] - suma) / M[i][i]
+
+        # --- REORDENAMIENTO FINAL (Solo afecta a Total) ---
+        # Si x_calc nos dio [val1, val2], pero orden_vars es [1, 0] (se cambiaron las cols)
+        # significa que val1 corresponde a x1 y val2 a x0.
+        #ESTE SOLO BLOQUE DE CODIGO ME COSTO AGNOS DE VIDA, ACA DE CHICHARRINES
+        #ME QUERIA SACAR LOS OJOS Y NO QUERIA SABER NADA DE NADIE
+        #ESTUVE APUNTO DE DECIRLES QUE ALCH NOS FUERAMOS A EXTRA DJDSAKJASDKLASDKJLADSKJLASDL;KJDSAKJLSADKJ;L
+        
+        x_final = [0.0] * n
+        for i in range(n):
+            var_index = orden_vars[i] # Que variable es esta realmente?
+            x_final[var_index] = x_calc[i] # Es la encargada de decir que x le corresponde a cada una,
+            #por ejemplo, digamos que el orden de las columnas quedo x3,x2,x1, y si no lo guardaramos en esa
+            #lista, el messageDialog diria que el valor de las variables es x1= a, x2=b, x3=c
+            #cuando realmente deberia de decir algo como x1=c,x2=b,x3=a.
+            #mandame mensaje si no etendiste gg.
+
+        return [matriz_triangular, x_final]
 
     except Exception as e:
-        return f"Error Gauss: {str(e)}"
+        return f"Error Gauss {metodo}: {str(e)}"

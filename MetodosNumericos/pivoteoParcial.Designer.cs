@@ -40,6 +40,8 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblInstruccion = new System.Windows.Forms.Label();
+            this.cboMetodo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numDimension)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrizOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrizTriangular)).BeginInit();
@@ -156,11 +158,30 @@
             this.lblInstruccion.TabIndex = 11;
             this.lblInstruccion.Text = "Esperando...";
             // 
+            // cboMetodo
+            // 
+            this.cboMetodo.FormattingEnabled = true;
+            this.cboMetodo.Location = new System.Drawing.Point(23, 268);
+            this.cboMetodo.Name = "cboMetodo";
+            this.cboMetodo.Size = new System.Drawing.Size(121, 24);
+            this.cboMetodo.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(24, 249);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 16);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Metodo";
+            // 
             // pivoteoParcial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 649);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cboMetodo);
             this.Controls.Add(this.lblInstruccion);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLimpiar);
@@ -197,5 +218,7 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblInstruccion;
+        private System.Windows.Forms.ComboBox cboMetodo;
+        private System.Windows.Forms.Label label3;
     }
 }

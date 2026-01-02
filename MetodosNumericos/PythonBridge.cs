@@ -784,7 +784,7 @@ namespace MetodosNumericos
             public List<double> Raices { get; set; }
         }
 
-        public ResultadoSistema ResolverGauss(List<List<double>> matrizAumentada)
+        public ResultadoSistema ResolverGauss(List<List<double>> matrizAumentada, string metodo)
         {
             using (Py.GIL())
             {
@@ -792,16 +792,15 @@ namespace MetodosNumericos
                 sys.path.append(Directory.GetCurrentDirectory());
                 dynamic modulo = Py.Import("logica_math");
 
-                dynamic res = modulo.resolver_gauss_pivoteo(matrizAumentada);
+                // Pasamos el método: "Parcial", "Escalado" o "Total"
+                dynamic res = modulo.resolver_gauss_general(matrizAumentada, metodo);
 
-                // Validación de error texto
                 if (res is string || res.ToString().StartsWith("Error"))
                     throw new Exception(res.ToString());
 
-                // Desempaquetar resultado: [MatrizTriangular, VectorX]
                 ResultadoSistema resultado = new ResultadoSistema();
 
-                // 1. Matriz Triangular
+                // 1. Matriz
                 resultado.MatrizTriangular = new List<List<double>>();
                 dynamic mPy = res[0];
                 int filas = (int)mPy.__len__();

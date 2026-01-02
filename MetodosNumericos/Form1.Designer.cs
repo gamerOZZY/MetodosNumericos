@@ -43,6 +43,8 @@
             this.menuIntegracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.interpolacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuInterpolacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.algebraLinealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pivoteoParcialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,8 +54,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.algebraLinealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pivoteoParcialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -174,6 +174,21 @@
             this.menuInterpolacionToolStripMenuItem.Text = "Menu interpolacion";
             this.menuInterpolacionToolStripMenuItem.Click += new System.EventHandler(this.menuInterpolacionToolStripMenuItem_Click);
             // 
+            // algebraLinealToolStripMenuItem
+            // 
+            this.algebraLinealToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pivoteoParcialToolStripMenuItem});
+            this.algebraLinealToolStripMenuItem.Name = "algebraLinealToolStripMenuItem";
+            this.algebraLinealToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
+            this.algebraLinealToolStripMenuItem.Text = "Algebra Lineal";
+            // 
+            // pivoteoParcialToolStripMenuItem
+            // 
+            this.pivoteoParcialToolStripMenuItem.Name = "pivoteoParcialToolStripMenuItem";
+            this.pivoteoParcialToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pivoteoParcialToolStripMenuItem.Text = "Pivoteos para SEL";
+            this.pivoteoParcialToolStripMenuItem.Click += new System.EventHandler(this.pivoteoParcialToolStripMenuItem_Click);
+            // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -264,21 +279,6 @@
             this.label7.Size = new System.Drawing.Size(282, 100);
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
-            // 
-            // algebraLinealToolStripMenuItem
-            // 
-            this.algebraLinealToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pivoteoParcialToolStripMenuItem});
-            this.algebraLinealToolStripMenuItem.Name = "algebraLinealToolStripMenuItem";
-            this.algebraLinealToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
-            this.algebraLinealToolStripMenuItem.Text = "Algebra Lineal";
-            // 
-            // pivoteoParcialToolStripMenuItem
-            // 
-            this.pivoteoParcialToolStripMenuItem.Name = "pivoteoParcialToolStripMenuItem";
-            this.pivoteoParcialToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.pivoteoParcialToolStripMenuItem.Text = "Pivoteo Parcial";
-            this.pivoteoParcialToolStripMenuItem.Click += new System.EventHandler(this.pivoteoParcialToolStripMenuItem_Click);
             // 
             // Form1
             // 

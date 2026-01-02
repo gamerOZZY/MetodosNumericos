@@ -29,6 +29,11 @@ namespace MetodosNumericos
             puente = new PythonBridge();
             matrizInput = new List<List<double>>();
             ConfigurarGrids();
+            cboMetodo.Items.Add("Parcial");
+            cboMetodo.Items.Add("Escalado");
+            cboMetodo.Items.Add("Total");
+            cboMetodo.SelectedIndex = 0; 
+            cboMetodo.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,34 +105,41 @@ namespace MetodosNumericos
         {
             try
             {
-                var resultado = puente.ResolverGauss(matrizInput);
+                // Validar que eligieron un metodo
+                if (cboMetodo.SelectedItem == null) throw new Exception("Selecciona un metodo de pivoteo.");
+                string metodoElegido = cboMetodo.SelectedItem.ToString();
 
-                // A) Mostrar Matriz Triangular resultante
+                // Llamar al puente con el metodo
+                var resultado = puente.ResolverGauss(matrizInput, metodoElegido);
+
+                // A) Mostrar Matriz Triangular
+                dgvMatrizTriangular.Rows.Clear();
                 dgvMatrizTriangular.Columns.Clear();
-                // Copiamos las mismas columnas
+
                 for (int i = 0; i < dimensionN; i++) dgvMatrizTriangular.Columns.Add($"x{i + 1}", $"x{i + 1}");
                 dgvMatrizTriangular.Columns.Add("b", "=");
 
                 foreach (var fila in resultado.MatrizTriangular)
                 {
-                    object[] rowObj = fila.Select(x => (object)x.ToString("F4")).ToArray();
+                    object[] rowObj = fila.Select(x => (object)x.ToString("F8")).ToArray();
                     dgvMatrizTriangular.Rows.Add(rowObj);
                 }
 
-                // B) Mostrar Raíces en MessageBox
-                string mensajeRaices = "Solución del Sistema:\n\n";
+                // B) Mostrar Raices (Ya reordenadas por Python si fue Pivoteo Total)
+                string mensajeRaices = $"Solucion ({metodoElegido}):\n\n";
                 for (int i = 0; i < resultado.Raices.Count; i++)
                 {
-                    mensajeRaices += $"x{i + 1} = {resultado.Raices[i]:F6}\n";
+                    mensajeRaices += $"x{i + 1} = {resultado.Raices[i]:F8}\n";
                 }
 
-                MessageBox.Show(mensajeRaices, "Resultado Eliminación Gaussiana");
-
+                MessageBox.Show(mensajeRaices, "Resultado Eliminacion Gaussiana");
+                lblInstruccion.Text = "Resultado";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Matemático: " + ex.Message);
+                MessageBox.Show("Error Matematico: " + ex.Message);
             }
+
 
         }
 
@@ -141,6 +153,7 @@ namespace MetodosNumericos
             btnCalcular.Enabled = false;
             txtFilaInput.Clear();
             lblInstruccion.Text = "Esperando...";
+            cboMetodo.SelectedIndex = 0;
 
         }
 
