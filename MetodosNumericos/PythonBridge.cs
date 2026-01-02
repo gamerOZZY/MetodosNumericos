@@ -20,31 +20,56 @@ namespace MetodosNumericos
      * 1. En la linea 31, copiar la ruta de donde se haya guardado el proyecyo en tu computadora
      * 2. Ejecutar (si falla algo mas o no corre bien, me mandan mensajexd
      * */
+
+    /*ACTUALIZACION, YA FUNCIONA TODO Y YA NO HAY QUE MOVER LA RUTA, HONESTAMENTE LE PEDI A
+     * GEMINI QUE ME AYUDARA A QUITAR LAS RUTAS ABSOLUTAS Y LAS HICIERA DINAMICAS PUESTO QUE 
+     * SOLO CORRIA EN MI PC EL PUENTE PERO AHORA YA DEBERIA DE CORRER EN TODOS LADOS. 
+     * PRUEBENLO Y ME AVISAN
+     */
+
     public class PythonBridge
     {
         private string _scriptName = "logica_math";
         public PythonBridge()
         {
-            // 1. DEFINIR RUTAS ABSOLUTAS 
-            // ESTO DE LA RUTA ESTA MUY EXTRAGNO, LO DEJE ASI PARA QUE FUNCIONE EN MI LAP PERO PUEDEN CAMBIARLA PARA QUE FUNCIONE EN LA SUYA, SOLO RECUERDEN
-            // QUE DEBEN DE CREAR UN py_VENV en la carpeta del proyecyo, y ahi dentro instalar numpy, matplotlib y sympy gg:
-            string rutaProyecto = @"C:\Users\Acer\source\repos\MetodosNumericos";
+            // 1. DEFINIR RUTAS DINÁMICAS (EL FIX)
+            // Obtenemos dónde está corriendo el .exe (usualmente bin/Debug/net...)
+            string directorioBase = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Buscamos la carpeta py_venv hacia "arriba" (saliendo de bin/Debug...)
+            string rutaProyecto = BuscarCarpetaHaciaArriba(directorioBase, "py_venv");
+
+            if (string.IsNullOrEmpty(rutaProyecto))
+            {
+                // Si no la encuentra buscando hacia arriba, asumimos que estamos en la raíz o es un deploy
+                rutaProyecto = directorioBase;
+            }
+
+            // OJO: 'rutaProyecto' ahora es la carpeta que CONTIENE a py_venv
             string rutaVenv = Path.Combine(rutaProyecto, "py_venv");
+
+            // Nota: Asegúrate que el nombre de la DLL coincida con la versión de Python instalada en el venv
             string rutaDll = Path.Combine(rutaVenv, "Scripts", "python311.dll");
 
-            // Validaciones de seguridad para saber que falla (ME AHORRO angos de vida gg)
-            if (!Directory.Exists(rutaVenv)) throw new Exception($"No encuentro la carpeta py_venv en: {rutaVenv}");
-            if (!File.Exists(rutaDll)) throw new Exception($"No encuentro la DLL en: {rutaDll}");
+            // Validaciones (Salvan vidas)
+            if (!Directory.Exists(rutaVenv))
+                throw new Exception($"No encuentro la carpeta 'py_venv'. Busqué hasta: {rutaProyecto}");
+
+            if (!File.Exists(rutaDll))
+                throw new Exception($"No encuentro la DLL de Python en: {rutaDll}. ¿Crearon el venv correctamente?");
 
             // 2. CONFIGURACIÓN DE VARIABLES DE ENTORNO 
             Environment.SetEnvironmentVariable("PYTHONNET_PYDLL", rutaDll);
             Environment.SetEnvironmentVariable("PYTHONHOME", rutaVenv);
-            Environment.SetEnvironmentVariable("PYTHONPATH", $"{Path.Combine(rutaVenv, "Lib")};{Path.Combine(rutaVenv, "Lib", "site-packages")};{Path.Combine(rutaVenv, "DLLs")}");
+            // Agregamos DLLs, Lib y site-packages al path
+            Environment.SetEnvironmentVariable("PYTHONPATH",
+                $"{Path.Combine(rutaVenv, "Lib")};" +
+                $"{Path.Combine(rutaVenv, "Lib", "site-packages")};" +
+                $"{Path.Combine(rutaVenv, "DLLs")}");
 
             // 3. CONFIGURACIÓN DEL MOTOR
             PythonEngine.PythonHome = rutaVenv;
-            // Forzamos el Path explícitamente incluyendo site-packages (donde está numpy)
-            PythonEngine.PythonPath = $"{Path.Combine(rutaVenv, "Lib\\site-packages")};{Path.Combine(rutaVenv, "Lib")};{Path.Combine(rutaVenv, "DLLs")}";
+            PythonEngine.PythonPath = Environment.GetEnvironmentVariable("PYTHONPATH");
 
             // 4. INICIALIZAR
             if (!PythonEngine.IsInitialized)
@@ -55,11 +80,26 @@ namespace MetodosNumericos
                 }
                 catch (Exception ex)
                 {
-                    // Si falla, el mensaje nos dirá exactamente el pq
-                    throw new Exception($"Error fatal al iniciar Python: {ex.Message}");
+                    throw new Exception($"Error fatal al iniciar Python: {ex.Message} \nStack: {ex.StackTrace}");
                 }
             }
+        }
 
+        // MÉTODO AUXILIAR 
+        private string BuscarCarpetaHaciaArriba(string rutaInicial, string carpetaBuscada)
+        {
+            DirectoryInfo directorio = new DirectoryInfo(rutaInicial);
+
+            while (directorio != null)
+            {
+                string rutaPosible = Path.Combine(directorio.FullName, carpetaBuscada);
+                if (Directory.Exists(rutaPosible))
+                {
+                    return directorio.FullName; // Encontró la raíz donde vive py_venv
+                }
+                directorio = directorio.Parent; // Sube un nivel
+            }
+            return null; // No encontró nada
         }
 
         // =================================== ECUACIONES DE UNA VARIABLE ===========================================//
