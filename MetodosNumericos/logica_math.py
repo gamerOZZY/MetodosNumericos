@@ -1623,7 +1623,7 @@ def resolver_rk_general(ecuacion_str, t0, w0, h, t_final, metodo_tipo):
         # Formato: [i, t, w, [k1, k2, k3, k4]], efectivamente, estoy abusando de las listas, otra vez
         resultados.append([i, t, w, [0.0, 0.0, 0.0, 0.0]]) 
         
-        while t < meta + 1e-15: # Tolerancia para el ultimo paso
+        while t < meta 
             
             # Funcion auxiliar para evaluar f(t, y) rapido sin repetir codigo
             def f(t_val, y_val):
@@ -1818,3 +1818,98 @@ def resolver_rkf(ecuacion_str, t0, w0, h_input, t_final, tol_input, factor_input
 
     except Exception as e:
         return f"Error RKF: {str(e)}"
+    
+
+################################################ ADAMS BACHFORT GG ##########################################
+def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
+    """
+    Resuelve EDO usando Adams-Bashforth (Explicito).
+    Requiere arrancar con RK4.
+    pasos_int: Numero de pasos hacia atras (2, 3, 4, 5).
+    (Investigue eso de los pasos y lo puse en el programa pq no encontraba la libreta y solo tenia foto
+    de las formulas de la clase)
+    """
+    try:
+        t = float(t0)
+        w = float(w0)
+        paso = float(h)
+        meta = float(t_final)
+        orden = int(pasos_int)
+        
+        resultados = [] # [i, t, w, metodo_usado]
+        funciones = [] # Historial de f(t, w) necesario para Adams
+        
+        # Funcion auxiliar f(t,y)
+        def f(t_val, y_val):
+            return eval(ecuacion_str, globals(), {"t": t_val, "y": y_val})
+
+        i = 0
+        resultados.append([i, t, w, "Inicio"])
+        funciones.append(f(t, w)) # Guardamos f0
+
+        # --- FASE 1: ARRANQUE (Motor RK4) ---
+        # Necesitamos generar 'orden - 1' puntos extra para tener suficiente historia.
+        # Ejemplo: Si es Adams de 4 pasos, necesitamos 3 puntos extra (tenemos 0, necesitamos 1, 2, 3).
+        
+        for _ in range(orden - 1):
+            if t >= meta: break # Seguridad
+
+            # Logica RK4 (Si, podria haber hecho a funcion simple y madnarla a llamar pero a este punto prefiero copiar y
+            # pegar codigo para saber donde fue el error al debbugear, gracias a los throw Exceptions)
+            k1 = paso * f(t, w)
+            k2 = paso * f(t + paso/2, w + k1/2)
+            k3 = paso * f(t + paso/2, w + k2/2)
+            k4 = paso * f(t + paso, w + k3)
+            
+            w = w + (k1 + 2*k2 + 2*k3 + k4) / 6.0
+            t += paso
+            i += 1
+            
+            resultados.append([i, t, w, "Arranque (RK4)"])
+            funciones.append(f(t, w)) # Guardamos la funcion de este nuevo punto
+
+        # --- FASE 2: ADAMS-BASHFORTH ---
+        # Ahora que tenemos la lista 'pendientes' llena con los puntos necesarios...
+        
+        max_iter = 10000
+        while t < meta and i < max_iter:
+            
+            w_sig = 0
+            
+            # Accedemos a las funciones guardadas desde el final hacia atras
+            # p[-1] es fi, p[-2] es fi-1, etc.
+            p = funciones
+            
+            if orden == 2:
+                # w_i+1 = w_i + h/2 * (3fi - fi-1)
+                w_sig = w + (paso/2.0) * (3*p[-1] - p[-2])
+                
+            elif orden == 3:
+                # w_i+1 = w_i + h/12 * (23fi - 16fi-1 + 5fi-2)
+                w_sig = w + (paso/12.0) * (23*p[-1] - 16*p[-2] + 5*p[-3])
+                
+            elif orden == 4:
+                # w_i+1 = w_i + h/24 * (55fi - 59fi-1 + 37fi-2 - 9fi-3)
+                w_sig = w + (paso/24.0) * (55*p[-1] - 59*p[-2] + 37*p[-3] - 9*p[-4])
+                
+            elif orden == 5:
+                # w_i+1 = w_i + h/720 * (1901fi - 2774fi-1 + 2616fi-2 - 1274fi-3 + 251fi-4)
+                w_sig = w + (paso/720.0) * (1901*p[-1] - 2774*p[-2] + 2616*p[-3] - 1274*p[-4] + 251*p[-5])
+
+            # Actualizamos variables
+            w = w_sig
+            t += paso
+            i += 1
+            
+            resultados.append([i, t, w, f"Adams (Orden {orden})"])
+            
+            # Guardamos la nueva funcion para el futuro
+            funciones.append(f(t, w))
+            
+
+        return resultados
+
+    except Exception as e:
+        return f"Error Adams: {str(e)}"
+
+

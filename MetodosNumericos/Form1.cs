@@ -218,5 +218,12 @@ namespace MetodosNumericos
             rKF.Show();
             rKF.WindowState = FormWindowState.Maximized;
         }
+
+        private void adamsBashforthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            adamsBa adamsBa = new adamsBa();
+            adamsBa.Show();
+            adamsBa.WindowState = FormWindowState.Maximized;
+        }
     }
 }

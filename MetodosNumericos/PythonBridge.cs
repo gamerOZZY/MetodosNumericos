@@ -1130,12 +1130,52 @@ namespace MetodosNumericos
                 }
                 return tabla;
             }
-
-
-
-
-
         }
+
+
+
+            /* =============================== ADAMS BASHHCOFT =========================== */
+
+         public class FilaAdams{
+            public int Iteracion { get; set; }
+            public double T { get; set; }
+            public double W { get; set; }
+            public string Metodo { get; set; } 
+         }
+
+        public List<FilaAdams> ResolverAdams(string ec, double t0, double w0, double h, double tf, int pasos)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                // Llamada a Python
+                dynamic res = modulo.resolver_adams_bashforth(ec, t0, w0, h, tf, pasos);
+
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+                List<FilaAdams> tabla = new List<FilaAdams>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    dynamic f = res[i];
+                    FilaAdams row = new FilaAdams();
+                    row.Iteracion = (int)f[0];
+                    row.T = (double)f[1];
+                    row.W = (double)f[2];
+                    row.Metodo = f[3].ToString();
+                    tabla.Add(row);
+                }
+                return tabla;
+            }
+        }
+
+
+
 
 
 
@@ -1144,4 +1184,8 @@ namespace MetodosNumericos
 
 
 }
+
+
+
+
 
