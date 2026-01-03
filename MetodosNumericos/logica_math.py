@@ -1503,3 +1503,100 @@ def resolver_euler(ecuacion_str, x0, y0, h, x_final):
 
     except Exception as e:
         return f"Error en la formula: {str(e)}"
+
+########################################### TAYLOR DE ORDEN SUPERIOR ##################################
+# La verdad es que aca si abuse de sympy, la biblioteca hizo casi todo (derivo y evaluo) gg
+def resolver_taylor_comparativo(ecuacion_str, t0, w0, h, t_final):
+    """
+    Calcula Taylor de Orden 2, 3 y 4 simultaneamente.
+    Usa sympy para derivadas simbolicas.
+    """
+    try:
+        # 1. Definir variables simbolicas
+        t, y = sp.symbols('t y')
+        
+        # 2. Parsear la ecuacion del usuario (f)
+        # y' = f(t,y)
+        f = sp.sympify(ecuacion_str)
+
+        # 3. Calcular Derivadas Totales (Regla de la cadena)
+        # y'' = f' = df/dt + df/dy * y'
+        # y''' = f'' ...
+        
+        # Derivada 1 (f) -> Ya la tenemos, es f
+        d1 = f 
+        
+        # Derivada 2 (f') -> df/dt + df/dy * f
+        d2 = sp.diff(d1, t) + sp.diff(d1, y) * d1
+        
+        # Derivada 3 (f'') -> d(d2)/dt + d(d2)/dy * f
+        d3 = sp.diff(d2, t) + sp.diff(d2, y) * d1
+        
+        # Derivada 4 (f''') 
+        d4 = sp.diff(d3, t) + sp.diff(d3, y) * d1
+
+        # 4. Crear funciones Python rapidas (lambdify)
+        # Esto convierte la expresion simbolica en una funcion normal de python
+        # para evaluarla rapido en el bucle.
+        F1 = sp.lambdify((t, y), d1, 'math')
+        F2 = sp.lambdify((t, y), d2, 'math')
+        F3 = sp.lambdify((t, y), d3, 'math')
+        F4 = sp.lambdify((t, y), d4, 'math')
+        
+        # 5. Inicializar variables numericas
+        ti = float(t0)
+        paso = float(h)
+        meta = float(t_final)
+        
+        # Mantenemos 3 simulaciones independientes
+        w2 = float(w0) # Para Orden 2
+        w3 = float(w0) # Para Orden 3
+        w4 = float(w0) # Para Orden 4
+        
+        resultados = []
+        iteracion = 0
+        
+        # Guardar estado inicial
+        resultados.append([iteracion, ti, w2, w3, w4])
+        
+        # 6. Bucle de resolucion
+        while ti < meta - (paso/1000.0): # Tolerancia flotante
+            
+            # --- TLO (Termino Local de Orden) ---
+            # Taylor formula: w_next = w + h * (f + h/2*f' + ...)
+            
+            # Calculos para Orden 2 (usa w2)
+            val_f = F1(ti, w2)
+            val_f_prime = F2(ti, w2)
+            T2 = val_f + (paso/2)*val_f_prime
+            w2_sig = w2 + paso * T2
+            
+            # Calculos para Orden 3 (usa w3)
+            # Reevaluamos derivadas con w3 porque las trayectorias divergen
+            v3_f = F1(ti, w3)
+            v3_fp = F2(ti, w3)
+            v3_fpp = F3(ti, w3)
+            T3 = v3_f + (paso/2)*v3_fp + (paso**2/6)*v3_fpp
+            w3_sig = w3 + paso * T3
+            
+            # Calculos para Orden 4 (usa w4)
+            v4_f = F1(ti, w4)
+            v4_fp = F2(ti, w4)
+            v4_fpp = F3(ti, w4)
+            v4_fppp = F4(ti, w4)
+            T4 = v4_f + (paso/2)*v4_fp + (paso**2/6)*v4_fpp + (paso**3/24)*v4_fppp
+            w4_sig = w4 + paso * T4
+            
+            # Actualizar tiempos y valores
+            ti += paso
+            w2 = w2_sig
+            w3 = w3_sig
+            w4 = w4_sig
+            iteracion += 1
+            
+            resultados.append([iteracion, ti, w2, w3, w4])
+            
+        return resultados
+
+    except Exception as e:
+        return f"Error Taylor: {str(e)}"

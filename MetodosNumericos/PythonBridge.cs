@@ -969,6 +969,54 @@ namespace MetodosNumericos
             }
         }
 
+        /* ========================== TAYLOR DE ORDEN SUPERIOR =============================== */
+
+        public class FilaTaylor
+        {
+            public int Iteracion { get; set; }
+            public double T { get; set; }
+            public double W_Orden2 { get; set; }
+            public double W_Orden3 { get; set; }
+            public double W_Orden4 { get; set; }
+        }
+
+
+        public List<FilaTaylor> ResolverEDO_Taylor(string ecuacion, double t0, double w0, double h, double tFinal)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.resolver_taylor_comparativo(ecuacion, t0, w0, h, tFinal);
+
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+                List<FilaTaylor> tabla = new List<FilaTaylor>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    dynamic filaPy = res[i];
+                    FilaTaylor f = new FilaTaylor();
+                    f.Iteracion = (int)filaPy[0];
+                    f.T = (double)filaPy[1];
+                    f.W_Orden2 = (double)filaPy[2];
+                    f.W_Orden3 = (double)filaPy[3];
+                    f.W_Orden4 = (double)filaPy[4];
+                    tabla.Add(f);
+                }
+
+                return tabla;
+            }
+        }
+
+
+
+
+
 
     }
 

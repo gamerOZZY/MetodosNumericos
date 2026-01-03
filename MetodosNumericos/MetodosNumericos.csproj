@@ -217,6 +217,12 @@
       <DependentUpon>romExtrapolacion.cs</DependentUpon>
     </Compile>
     <Compile Include="SolEc1Var.cs" />
+    <Compile Include="taylorSuperior.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="taylorSuperior.Designer.cs">
+      <DependentUpon>taylorSuperior.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="cuadratura_adaptiva.resx">
       <DependentUpon>cuadratura_adaptiva.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,6 +295,9 @@
     </Compile>
     <EmbeddedResource Include="romExtrapolacion.resx">
       <DependentUpon>romExtrapolacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="taylorSuperior.resx">
+      <DependentUpon>taylorSuperior.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

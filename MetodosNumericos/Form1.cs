@@ -197,5 +197,12 @@ namespace MetodosNumericos
             lagranje.Show();
             lagranje.WindowState = FormWindowState.Maximized;
         }
+
+        private void metodoDeTaylorDeOrdenSuperiorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            taylorSuperior taylorSuperior = new taylorSuperior();
+            taylorSuperior.Show();
+            taylorSuperior.WindowState = FormWindowState.Maximized;
+        }
     }
 }
