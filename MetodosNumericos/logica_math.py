@@ -1484,7 +1484,7 @@ def resolver_euler(ecuacion_str, x0, y0, h, x_final):
         i = 0
         
         #  Ciclo principal 
-        while x < meta + 1e-15: #por si es un numero extragno, mejor prevenir que lamentar 
+        while x < meta + 1e-15: #por si es un numero extragno (muchisimos decimales), mejor prevenir que lamentar 
             
             funcion = eval(ecuacion_str) 
 
@@ -1600,3 +1600,94 @@ def resolver_taylor_comparativo(ecuacion_str, t0, w0, h, t_final):
 
     except Exception as e:
         return f"Error Taylor: {str(e)}"
+    
+######################################## RUNGEKUTTA DE ORDEN 2,3,4 ################################
+#Este fue probabemente el metodo ams facil de todo el programa, salio como en 15 minutos pq
+# ya teniamos las formulasxd
+def resolver_rk_general(ecuacion_str, t0, w0, h, t_final, metodo_tipo):
+    """
+    Resuelve EDO usando RK2, RK3 o RK4.
+    metodo_tipo: 2, 3 o 4 (int) indicando el orden.
+    Retorna: [iter, t, w, [k1, k2, k3, k4]]
+    """
+    try:
+        t = float(t0)
+        w = float(w0)
+        paso = float(h)
+        meta = float(t_final)
+        
+        resultados = [] # Lista principal
+        i = 0
+        
+        # Guardamos la fila inicial (iteracion 0). Las K son 0 porque no se han calculado.
+        # Formato: [i, t, w, [k1, k2, k3, k4]], efectivamente, estoy abusando de las listas, otra vez
+        resultados.append([i, t, w, [0.0, 0.0, 0.0, 0.0]]) 
+        
+        while t < meta + 1e-15: # Tolerancia para el ultimo paso
+            
+            # Funcion auxiliar para evaluar f(t, y) rapido sin repetir codigo
+            def f(t_val, y_val):
+                # Contexto local para eval
+                local_vars = {"t": t_val, "y": y_val}
+                # eval usa globals() para tomar funciones de math (sin, cos, etc),
+                # estas 3 lineas de codigo las caque de chat pq por alguna razon, el evaluarlas asi nadamas como en Euler daba error, no tengo idea porque pero bueno
+                return eval(ecuacion_str, globals(), local_vars)
+
+            # Inicializamos lista de Ks
+            ks = [0.0, 0.0, 0.0, 0.0] 
+            w_sig = 0.0
+
+            if metodo_tipo == 2:
+                # --- RK2  ---
+                # k1 = h * f(t, w)
+                # k2 = h * f(t + h/2, w + k1/2)
+                # w_sig = w + k2
+                
+                k1 = paso * f(t, w)
+                k2 = paso * f(t + paso/2, w + k1/2)
+                
+                w_sig = w + k2
+                ks = [k1, k2, 0.0, 0.0]
+
+            elif metodo_tipo == 3:
+                # --- RK3 o huen ---
+                # k1 = h * f(t, w)
+                # k2 = h * f(t + h/2, w + k1/2)
+                # k3 = h * f(t + h, w - k1 + 2*k2)
+                # w_sig = w + (k1 + 4*k2 + k3) / 6
+                
+                k1 = paso * f(t, w)
+                k2 = paso * f(t + paso/2, w + k1/2)
+                k3 = paso * f(t + paso, w - k1 + 2*k2)
+                
+                w_sig = w + (k1 + 4*k2 + k3) / 6.0
+                ks = [k1, k2, k3, 0.0]
+
+            elif metodo_tipo == 4:
+                # --- RK4  ---
+                # k1 = h * f(t, w)
+                # k2 = h * f(t + h/2, w + k1/2)
+                # k3 = h * f(t + h/2, w + k2/2)
+                # k4 = h * f(t + h, w + k3)
+                # w_sig = w + (k1 + 2*k2 + 2*k3 + k4) / 6
+                
+                k1 = paso * f(t, w)
+                k2 = paso * f(t + paso/2, w + k1/2)
+                k3 = paso * f(t + paso/2, w + k2/2)
+                k4 = paso * f(t + paso, w + k3)
+                
+                w_sig = w + (k1 + 2*k2 + 2*k3 + k4) / 6.0
+                ks = [k1, k2, k3, k4]
+            
+            # Avanzamos
+            i += 1
+            t += paso
+            w = w_sig
+            
+            # Guardamos la fila completa con las Ks que generaron este nuevo W
+            resultados.append([i, t, w, ks])
+
+        return resultados
+
+    except Exception as e:
+        return f"Error RK: {str(e)}"

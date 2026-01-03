@@ -204,5 +204,12 @@ namespace MetodosNumericos
             taylorSuperior.Show();
             taylorSuperior.WindowState = FormWindowState.Maximized;
         }
+
+        private void rungenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rk2_3_4 rk2_3_4 = new rk2_3_4();
+            rk2_3_4.Show();
+            rk2_3_4.WindowState = FormWindowState.Maximized;
+        }
     }
 }

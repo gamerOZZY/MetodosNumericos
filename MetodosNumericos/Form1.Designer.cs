@@ -66,6 +66,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.rungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -278,7 +279,8 @@
             // 
             this.eDOsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.metodoDeEulerToolStripMenuItem,
-            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem});
+            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem,
+            this.rungenToolStripMenuItem});
             this.eDOsToolStripMenuItem.Name = "eDOsToolStripMenuItem";
             this.eDOsToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.eDOsToolStripMenuItem.Text = "EDOs";
@@ -388,6 +390,13 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
             // 
+            // rungenToolStripMenuItem
+            // 
+            this.rungenToolStripMenuItem.Name = "rungenToolStripMenuItem";
+            this.rungenToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.rungenToolStripMenuItem.Text = "Runge-Kutta 2,3,4";
+            this.rungenToolStripMenuItem.Click += new System.EventHandler(this.rungenToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -454,6 +463,7 @@
         private System.Windows.Forms.ToolStripMenuItem nevilleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lagranjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem metodoDeTaylorDeOrdenSuperiorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rungenToolStripMenuItem;
     }
 }
 

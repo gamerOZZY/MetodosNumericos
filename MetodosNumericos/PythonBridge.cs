@@ -1013,7 +1013,56 @@ namespace MetodosNumericos
             }
         }
 
+        /* ============================== RK DE ORDEN 2,3,4 ============================= */
+        public class FilaRK
+        {
+            public int Iteracion { get; set; }
+            public double T { get; set; }
+            public double W { get; set; }
+            public double K1 { get; set; }
+            public double K2 { get; set; }
+            public double K3 { get; set; }
+            public double K4 { get; set; }
+        }
+        public List<FilaRK> ResolverRungeKutta(string ecuacion, double t0, double w0, double h, double tFinal, int orden)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
 
+                // Llamamos a la funcion con el orden (2, 3 o 4)
+                dynamic res = modulo.resolver_rk_general(ecuacion, t0, w0, h, tFinal, orden);
+
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+                List<FilaRK> tabla = new List<FilaRK>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    dynamic filaPy = res[i]; // [i, t, w, [k1, k2...]]
+
+                    FilaRK f = new FilaRK();
+                    f.Iteracion = (int)filaPy[0];
+                    f.T = (double)filaPy[1];
+                    f.W = (double)filaPy[2];
+
+                    // Extraemos la lista interna de Ks
+                    dynamic listaKs = filaPy[3];
+                    f.K1 = (double)listaKs[0];
+                    f.K2 = (double)listaKs[1];
+                    f.K3 = (double)listaKs[2];
+                    f.K4 = (double)listaKs[3];
+
+                    tabla.Add(f);
+                }
+
+                return tabla;
+            }
+        }
 
 
 
