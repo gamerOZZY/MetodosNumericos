@@ -1064,6 +1064,78 @@ namespace MetodosNumericos
             }
         }
 
+        /* ============================================= RK FELBERG ==================================== */
+        public class FilaRKF
+        {
+            public int Iteracion { get; set; }
+            public double H { get; set; }
+            public double T { get; set; }
+            public double K1 { get; set; }
+            public double K2 { get; set; }
+            public double K3 { get; set; }
+            public double K4 { get; set; }
+            public double K5 { get; set; }
+            public double K6 { get; set; }
+            public double W4 { get; set; }        // wi
+            public double W5 { get; set; }        // Wi Mejor
+            public double R { get; set; }
+            public string Aceptado { get; set; }  // "Si" o "No"
+            public double ParteFormula { get; set; } // (Err/R)^1/4
+            public double Q { get; set; }
+            public double QH { get; set; }
+
+            }
+        public List<FilaRKF> ResolverRKF(string ec, double t0, double w0, double h, double tf, double tol, double fac)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+                dynamic res = modulo.resolver_rkf(ec, t0, w0, h, tf, tol, fac);
+
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+                List<FilaRKF> tabla = new List<FilaRKF>();
+                int filas = (int)res.__len__();
+
+                for (int i = 0; i < filas; i++)
+                {
+                    dynamic f = res[i];
+                    FilaRKF row = new FilaRKF();
+
+                    row.Iteracion = (int)f[0];
+                    row.H = (double)f[1];
+                    row.T = (double)f[2];
+
+                    // Ks
+                    row.K1 = (double)f[3];
+                    row.K2 = (double)f[4];
+                    row.K3 = (double)f[5];
+                    row.K4 = (double)f[6];
+                    row.K5 = (double)f[7];
+                    row.K6 = (double)f[8];
+
+                    row.W4 = (double)f[9];
+                    row.W5 = (double)f[10];
+                    row.R = (double)f[11];
+                    row.Aceptado = f[12].ToString();
+                    row.ParteFormula = (double)f[13];
+                    row.Q = (double)f[14];
+                    row.QH = (double)f[15];
+
+                    tabla.Add(row);
+                }
+                return tabla;
+            }
+
+
+
+
+
+        }
 
 
 

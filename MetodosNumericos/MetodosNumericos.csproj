@@ -216,6 +216,12 @@
     <Compile Include="rk2,3,4.Designer.cs">
       <DependentUpon>rk2,3,4.cs</DependentUpon>
     </Compile>
+    <Compile Include="RKF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RKF.Designer.cs">
+      <DependentUpon>RKF.cs</DependentUpon>
+    </Compile>
     <Compile Include="romExtrapolacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     </Compile>
     <EmbeddedResource Include="rk2,3,4.resx">
       <DependentUpon>rk2,3,4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RKF.resx">
+      <DependentUpon>RKF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="romExtrapolacion.resx">
       <DependentUpon>romExtrapolacion.cs</DependentUpon>

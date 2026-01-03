@@ -57,6 +57,7 @@
             this.eDOsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodoDeEulerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,7 +67,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.rungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rKFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -280,7 +281,8 @@
             this.eDOsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.metodoDeEulerToolStripMenuItem,
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem,
-            this.rungenToolStripMenuItem});
+            this.rungenToolStripMenuItem,
+            this.rKFToolStripMenuItem});
             this.eDOsToolStripMenuItem.Name = "eDOsToolStripMenuItem";
             this.eDOsToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.eDOsToolStripMenuItem.Text = "EDOs";
@@ -298,6 +300,13 @@
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Text = "Metodo de Taylor de orden superior";
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Click += new System.EventHandler(this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem_Click);
+            // 
+            // rungenToolStripMenuItem
+            // 
+            this.rungenToolStripMenuItem.Name = "rungenToolStripMenuItem";
+            this.rungenToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.rungenToolStripMenuItem.Text = "Runge-Kutta 2,3,4";
+            this.rungenToolStripMenuItem.Click += new System.EventHandler(this.rungenToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -390,12 +399,12 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
             // 
-            // rungenToolStripMenuItem
+            // rKFToolStripMenuItem
             // 
-            this.rungenToolStripMenuItem.Name = "rungenToolStripMenuItem";
-            this.rungenToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
-            this.rungenToolStripMenuItem.Text = "Runge-Kutta 2,3,4";
-            this.rungenToolStripMenuItem.Click += new System.EventHandler(this.rungenToolStripMenuItem_Click);
+            this.rKFToolStripMenuItem.Name = "rKFToolStripMenuItem";
+            this.rKFToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.rKFToolStripMenuItem.Text = "RKF";
+            this.rKFToolStripMenuItem.Click += new System.EventHandler(this.rKFToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -464,6 +473,7 @@
         private System.Windows.Forms.ToolStripMenuItem lagranjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem metodoDeTaylorDeOrdenSuperiorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rungenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rKFToolStripMenuItem;
     }
 }
 

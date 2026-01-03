@@ -211,5 +211,12 @@ namespace MetodosNumericos
             rk2_3_4.Show();
             rk2_3_4.WindowState = FormWindowState.Maximized;
         }
+
+        private void rKFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RKF rKF = new RKF();
+            rKF.Show();
+            rKF.WindowState = FormWindowState.Maximized;
+        }
     }
 }

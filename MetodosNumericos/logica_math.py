@@ -1691,3 +1691,130 @@ def resolver_rk_general(ecuacion_str, t0, w0, h, t_final, metodo_tipo):
 
     except Exception as e:
         return f"Error RK: {str(e)}"
+    
+######################################### RK FELBERG ################################################
+"""
+Este fue posiblemente (junto a factorizacion de matrices) el metodo que mas tiempo y trabajo me costo,
+aparentemente era sencillo (o eso pense) pero me lleve MUCHO, MUCHO en este metodo, creo que en git
+solo aparece una pequena diferencia de horas entre push y push pero es pq esas diferencias fue el tiempo que
+tarde en hacer la conexion en python bridge. Para hacer cada metodo lo hacia en notebooks y los probaba ahi.
+
+Comente todo lo mejor que pude pero hay algunas partes pequenas que salieron de pura prueba y error,
+solo dios y yo sabiamos como funcionaban esas partes, y ahora solo dios lo sabe
+"""
+
+def resolver_rkf(ecuacion_str, t0, w0, h_input, t_final, tol_input, factor_input):
+    """
+    Implementa Runge-Kutta-Fehlberg con paso adaptativo.
+    Retorna filas con estado de aceptacion y calculo de nuevo h.
+    """
+    try:
+        t = float(t0)
+        w = float(w0)
+        h = float(h_input)
+        meta = float(t_final)
+        tol = float(tol_input)
+        factor = float(factor_input)
+        
+        resultados = []
+        i = 0
+        
+        # Agregamos fila inicial
+        # [i, h, t, k1..k6, w4, w5, R, Aceptado?, ParteFormula, q, qh]
+        resultados.append([i, h, t, 0,0,0,0,0,0, w, w, 0, "Inicio", 0, 0, 0])
+        
+        # Funcion auxiliar para evaluar f(t,y)
+        def f(t_val, y_val):
+            return eval(ecuacion_str, globals(), {"t": t_val, "y": y_val})
+
+        # Loop principal (con proteccion de iteraciones infinitas)
+        max_iter = 5000
+        while t < meta and i < max_iter:
+            
+            # --- 1. Calcular Coeficientes K ---
+            k1 = h * f(t, w)
+            
+            k2 = h * f(t + h/4, w + k1/4)
+            
+            k3 = h * f(t + 3*h/8, w + 3*k1/32 + 9*k2/32)
+            
+            k4 = h * f(t + 12*h/13, w + 1932*k1/2197 - 7200*k2/2197 + 7296*k3/2197)
+            
+            k5 = h * f(t + h, w + 439*k1/216 - 8*k2 + 3680*k3/513 - 845*k4/4104)
+            
+            k6 = h * f(t + h/2, w - 8*k1/27 + 2*k2 - 3544*k3/2565 + 1859*k4/4104 - 11*k5/40)
+
+            # ---  Calcular Aproximaciones ---
+            # Orden 4 (wi)
+            w4 = w + 25*k1/216 + 1408*k3/2565 + 2197*k4/4104 - k5/5
+            
+            # Orden 5 (Wi_Mejor)
+            w5 = w + 16*k1/135 + 6656*k3/12825 + 28561*k4/56430 - 9*k5/50 + 2*k6/55
+
+            # --- 3. Calcular Error R ---
+            # Formula : R = 1/h * |wi+1_MEJOR - wi+1|
+            diff = abs(w5 - w4)
+            if h == 0: R = 0 # Evitar error div/0
+            else: R = (1.0 / h) * diff
+            
+            # Evitar R=0 exacto para no dividir entre cero luego 
+            """
+            ESA SOLA LINEA ME DEJO LOCO AMIGO, SALIO A PURA PRUEBA Y ERROR KJADKLADSDSAKJ
+            """
+            if R < 1e-15: R = 1e-15 
+
+            # --- 4. Calcular Factores de Ajuste (q) ---
+            # Formula: q = factor * (tol / R)^(1/4)
+            parte_formula = (tol / R)**0.25
+            q = factor * parte_formula
+            
+            # Nuevo h propuesto
+            qh = q * h
+            
+            # --- 5. Decision: Aceptar o Rechazar ---
+            aceptado = ""
+            
+            if R <= tol:
+                # CASO: EXITO
+                aceptado = "Si"
+                
+                # Guardamos la fila del calculo exitoso
+                i += 1
+                resultados.append([
+                    i, h, t + h, 
+                    k1, k2, k3, k4, k5, k6, 
+                    w4, w5, 
+                    R, aceptado, parte_formula, q, qh
+                ])
+                
+                # Actualizamos variables para el SIGUIENTE paso
+                w = w5     # Nos quedamos con la aproximacion mas precisa
+                t = t + h  # Avanzamos t
+                
+                # Para la siguiente iteracion, usamos el q*h calculado como nuevo h
+                if t + qh > meta:
+                    h = meta - t
+                else:
+                    h = qh #Lo que dijo el maestro gg
+                
+            else:
+                # CASO: FALLO (El error es muy grande)
+                aceptado = "No (Repetir)"
+                
+                # Guardamos la fila para mostrar que falló (pero no incrementamos i ni t)
+                resultados.append([
+                    i+1, h, t + h, # Mostramos t+h tentativo
+                    k1, k2, k3, k4, k5, k6, 
+                    w4, w5, 
+                    R, aceptado, parte_formula, q, qh
+                ])
+                
+                # RECHAZAMOS h. 
+                # No actualizamos ni w ni t.
+                # Simplemente cambiamos h por el nuevo qh (que sera mas pequeño) y repetimos.
+                h = qh
+
+        return resultados
+
+    except Exception as e:
+        return f"Error RKF: {str(e)}"
