@@ -61,9 +61,10 @@
             this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 40.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(718, 9);
+            this.label1.Location = new System.Drawing.Point(538, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(615, 76);
+            this.label1.Size = new System.Drawing.Size(489, 62);
             this.label1.TabIndex = 0;
             this.label1.Text = "Metodo de biseccion";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -72,11 +73,12 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(64, 137);
+            this.label2.Location = new System.Drawing.Point(30, 78);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 36);
+            this.label2.Size = new System.Drawing.Size(49, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "a =";
             // 
@@ -84,29 +86,32 @@
             // 
             this.txtValorA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtValorA.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorA.Location = new System.Drawing.Point(136, 134);
+            this.txtValorA.Location = new System.Drawing.Point(84, 76);
+            this.txtValorA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtValorA.Name = "txtValorA";
-            this.txtValorA.Size = new System.Drawing.Size(149, 38);
+            this.txtValorA.Size = new System.Drawing.Size(113, 32);
             this.txtValorA.TabIndex = 2;
             // 
             // txtValorB
             // 
             this.txtValorB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtValorB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorB.Location = new System.Drawing.Point(136, 234);
+            this.txtValorB.Location = new System.Drawing.Point(84, 144);
+            this.txtValorB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtValorB.Name = "txtValorB";
-            this.txtValorB.Size = new System.Drawing.Size(149, 38);
+            this.txtValorB.Size = new System.Drawing.Size(113, 32);
             this.txtValorB.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(64, 236);
+            this.label3.Location = new System.Drawing.Point(30, 146);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 36);
+            this.label3.Size = new System.Drawing.Size(50, 29);
             this.label3.TabIndex = 3;
             this.label3.Text = "b =";
             // 
@@ -114,20 +119,22 @@
             // 
             this.txtNumMaxIter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtNumMaxIter.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumMaxIter.Location = new System.Drawing.Point(828, 131);
+            this.txtNumMaxIter.Location = new System.Drawing.Point(462, 76);
+            this.txtNumMaxIter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNumMaxIter.Name = "txtNumMaxIter";
-            this.txtNumMaxIter.Size = new System.Drawing.Size(163, 38);
+            this.txtNumMaxIter.Size = new System.Drawing.Size(123, 32);
             this.txtNumMaxIter.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(468, 133);
+            this.label4.Location = new System.Drawing.Point(256, 76);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(303, 36);
+            this.label4.Size = new System.Drawing.Size(202, 29);
             this.label4.TabIndex = 7;
             this.label4.Text = "Num. Max. Iter =";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -136,22 +143,25 @@
             // 
             this.txtErrorMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtErrorMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtErrorMax.Location = new System.Drawing.Point(737, 232);
+            this.txtErrorMax.Location = new System.Drawing.Point(462, 143);
+            this.txtErrorMax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtErrorMax.Name = "txtErrorMax";
-            this.txtErrorMax.Size = new System.Drawing.Size(254, 38);
+            this.txtErrorMax.Size = new System.Drawing.Size(123, 32);
             this.txtErrorMax.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(468, 234);
+            this.label5.Location = new System.Drawing.Point(256, 146);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(213, 36);
+            this.label5.Size = new System.Drawing.Size(204, 29);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Error Max =";
+            this.label5.Text = "Error Max         =";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // btmCalcular
             // 
@@ -159,9 +169,10 @@
             this.btmCalcular.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btmCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btmCalcular.Image = global::MetodosNumericos.Properties.Resources.Contraste_entre_negro_y_rojo;
-            this.btmCalcular.Location = new System.Drawing.Point(1668, 153);
+            this.btmCalcular.Location = new System.Drawing.Point(1007, 88);
+            this.btmCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btmCalcular.Name = "btmCalcular";
-            this.btmCalcular.Size = new System.Drawing.Size(233, 93);
+            this.btmCalcular.Size = new System.Drawing.Size(175, 76);
             this.btmCalcular.TabIndex = 9;
             this.btmCalcular.Text = "Calcular Raiz";
             this.btmCalcular.UseVisualStyleBackColor = true;
@@ -186,14 +197,16 @@
             this.ErrorAprox});
             this.dgvBiseccion.GridColor = System.Drawing.Color.Black;
             this.dgvBiseccion.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dgvBiseccion.Location = new System.Drawing.Point(118, 354);
+            this.dgvBiseccion.Location = new System.Drawing.Point(11, 218);
+            this.dgvBiseccion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvBiseccion.Name = "dgvBiseccion";
             this.dgvBiseccion.ReadOnly = true;
             this.dgvBiseccion.RowHeadersWidth = 51;
             this.dgvBiseccion.RowTemplate.Height = 24;
             this.dgvBiseccion.ShowRowErrors = false;
-            this.dgvBiseccion.Size = new System.Drawing.Size(1769, 472);
+            this.dgvBiseccion.Size = new System.Drawing.Size(1327, 384);
             this.dgvBiseccion.TabIndex = 10;
+            this.dgvBiseccion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBiseccion_CellContentClick);
             // 
             // Num_Iter
             // 
@@ -267,9 +280,10 @@
             this.btnSalir.ForeColor = System.Drawing.Color.Red;
             this.btnSalir.Image = global::MetodosNumericos.Properties.Resources.Contraste_entre_negro_y_rojo;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalir.Location = new System.Drawing.Point(960, 890);
+            this.btnSalir.Location = new System.Drawing.Point(644, 617);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(186, 49);
+            this.btnSalir.Size = new System.Drawing.Size(140, 40);
             this.btnSalir.TabIndex = 11;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
@@ -279,31 +293,33 @@
             // 
             this.txtFuncion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtFuncion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFuncion.Location = new System.Drawing.Point(1271, 179);
+            this.txtFuncion.Location = new System.Drawing.Point(748, 109);
+            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFuncion.Name = "txtFuncion";
-            this.txtFuncion.Size = new System.Drawing.Size(266, 38);
+            this.txtFuncion.Size = new System.Drawing.Size(200, 32);
             this.txtFuncion.TabIndex = 13;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(1102, 181);
+            this.label6.Location = new System.Drawing.Point(621, 111);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 36);
+            this.label6.Size = new System.Drawing.Size(81, 29);
             this.label6.TabIndex = 12;
             this.label6.Text = "F(x) =";
             // 
             // frmBiseccion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.BackgroundImage = global::MetodosNumericos.Properties.Resources.Contraste_entre_negro_y_rojo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1924, 988);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.txtFuncion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSalir);
@@ -319,7 +335,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmBiseccion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBiseccion";
             this.Load += new System.EventHandler(this.frmBiseccion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBiseccion)).EndInit();

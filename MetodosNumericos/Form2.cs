@@ -97,5 +97,15 @@ namespace MetodosNumericos
 
 
         }
+
+        private void dgvBiseccion_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

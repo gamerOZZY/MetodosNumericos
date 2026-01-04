@@ -85,9 +85,11 @@
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // solucionDeEcuacionesDeUnaVariableToolStripMenuItem
             // 
@@ -99,48 +101,48 @@
             this.puntoFijoToolStripMenuItem,
             this.mullerToolStripMenuItem});
             this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Name = "solucionDeEcuacionesDeUnaVariableToolStripMenuItem";
-            this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Size = new System.Drawing.Size(284, 24);
+            this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Size = new System.Drawing.Size(226, 20);
             this.solucionDeEcuacionesDeUnaVariableToolStripMenuItem.Text = "Solucion de ecuaciones de una variable";
             // 
             // biseccionToolStripMenuItem
             // 
             this.biseccionToolStripMenuItem.Name = "biseccionToolStripMenuItem";
-            this.biseccionToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.biseccionToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.biseccionToolStripMenuItem.Text = "Biseccion";
             this.biseccionToolStripMenuItem.Click += new System.EventHandler(this.biseccionToolStripMenuItem_Click);
             // 
             // secanteToolStripMenuItem
             // 
             this.secanteToolStripMenuItem.Name = "secanteToolStripMenuItem";
-            this.secanteToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.secanteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.secanteToolStripMenuItem.Text = "Secante";
             this.secanteToolStripMenuItem.Click += new System.EventHandler(this.secanteToolStripMenuItem_Click);
             // 
             // falsaPosicionToolStripMenuItem
             // 
             this.falsaPosicionToolStripMenuItem.Name = "falsaPosicionToolStripMenuItem";
-            this.falsaPosicionToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.falsaPosicionToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.falsaPosicionToolStripMenuItem.Text = "Falsa posicion";
             this.falsaPosicionToolStripMenuItem.Click += new System.EventHandler(this.falsaPosicionToolStripMenuItem_Click);
             // 
             // newtonToolStripMenuItem
             // 
             this.newtonToolStripMenuItem.Name = "newtonToolStripMenuItem";
-            this.newtonToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.newtonToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.newtonToolStripMenuItem.Text = "Newton";
             this.newtonToolStripMenuItem.Click += new System.EventHandler(this.newtonToolStripMenuItem_Click);
             // 
             // puntoFijoToolStripMenuItem
             // 
             this.puntoFijoToolStripMenuItem.Name = "puntoFijoToolStripMenuItem";
-            this.puntoFijoToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.puntoFijoToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.puntoFijoToolStripMenuItem.Text = "Punto fijo";
             this.puntoFijoToolStripMenuItem.Click += new System.EventHandler(this.puntoFijoToolStripMenuItem_Click);
             // 
             // mullerToolStripMenuItem
             // 
             this.mullerToolStripMenuItem.Name = "mullerToolStripMenuItem";
-            this.mullerToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.mullerToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.mullerToolStripMenuItem.Text = "Muller";
             this.mullerToolStripMenuItem.Click += new System.EventHandler(this.mullerToolStripMenuItem_Click);
             // 
@@ -151,28 +153,28 @@
             this.conHIrregularpuntosNoEquidistantesToolStripMenuItem,
             this.extrapolacionToolStripMenuItem});
             this.derivacionToolStripMenuItem.Name = "derivacionToolStripMenuItem";
-            this.derivacionToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
+            this.derivacionToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.derivacionToolStripMenuItem.Text = "Derivacion";
             this.derivacionToolStripMenuItem.Click += new System.EventHandler(this.derivacionToolStripMenuItem_Click);
             // 
             // derivacion235PuntosToolStripMenuItem
             // 
             this.derivacion235PuntosToolStripMenuItem.Name = "derivacion235PuntosToolStripMenuItem";
-            this.derivacion235PuntosToolStripMenuItem.Size = new System.Drawing.Size(362, 26);
+            this.derivacion235PuntosToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
             this.derivacion235PuntosToolStripMenuItem.Text = "Derivacion 2, 3, 5 puntos";
             this.derivacion235PuntosToolStripMenuItem.Click += new System.EventHandler(this.derivacion235PuntosToolStripMenuItem_Click);
             // 
             // conHIrregularpuntosNoEquidistantesToolStripMenuItem
             // 
             this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Name = "conHIrregularpuntosNoEquidistantesToolStripMenuItem";
-            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Size = new System.Drawing.Size(362, 26);
+            this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
             this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Text = "Con h irregular (puntos no equidistantes)";
             this.conHIrregularpuntosNoEquidistantesToolStripMenuItem.Click += new System.EventHandler(this.conHIrregularpuntosNoEquidistantesToolStripMenuItem_Click);
             // 
             // extrapolacionToolStripMenuItem
             // 
             this.extrapolacionToolStripMenuItem.Name = "extrapolacionToolStripMenuItem";
-            this.extrapolacionToolStripMenuItem.Size = new System.Drawing.Size(362, 26);
+            this.extrapolacionToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
             this.extrapolacionToolStripMenuItem.Text = "Extrapolacion";
             this.extrapolacionToolStripMenuItem.Click += new System.EventHandler(this.extrapolacionToolStripMenuItem_Click);
             // 
@@ -185,41 +187,41 @@
             this.extrapolacionDeRombergToolStripMenuItem,
             this.integracionMultipleToolStripMenuItem});
             this.integracionToolStripMenuItem.Name = "integracionToolStripMenuItem";
-            this.integracionToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.integracionToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.integracionToolStripMenuItem.Text = "Integracion";
             // 
             // reglasCompuestasToolStripMenuItem
             // 
             this.reglasCompuestasToolStripMenuItem.Name = "reglasCompuestasToolStripMenuItem";
-            this.reglasCompuestasToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.reglasCompuestasToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.reglasCompuestasToolStripMenuItem.Text = "Reglas compuestas";
             this.reglasCompuestasToolStripMenuItem.Click += new System.EventHandler(this.reglasCompuestasToolStripMenuItem_Click);
             // 
             // cuadraturaAdaptivaToolStripMenuItem
             // 
             this.cuadraturaAdaptivaToolStripMenuItem.Name = "cuadraturaAdaptivaToolStripMenuItem";
-            this.cuadraturaAdaptivaToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.cuadraturaAdaptivaToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.cuadraturaAdaptivaToolStripMenuItem.Text = "Cuadratura adaptiva";
             this.cuadraturaAdaptivaToolStripMenuItem.Click += new System.EventHandler(this.cuadraturaAdaptivaToolStripMenuItem_Click);
             // 
             // cuadraturaGaussianaToolStripMenuItem
             // 
             this.cuadraturaGaussianaToolStripMenuItem.Name = "cuadraturaGaussianaToolStripMenuItem";
-            this.cuadraturaGaussianaToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.cuadraturaGaussianaToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.cuadraturaGaussianaToolStripMenuItem.Text = "Cuadratura Gaussiana";
             this.cuadraturaGaussianaToolStripMenuItem.Click += new System.EventHandler(this.cuadraturaGaussianaToolStripMenuItem_Click);
             // 
             // extrapolacionDeRombergToolStripMenuItem
             // 
             this.extrapolacionDeRombergToolStripMenuItem.Name = "extrapolacionDeRombergToolStripMenuItem";
-            this.extrapolacionDeRombergToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.extrapolacionDeRombergToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.extrapolacionDeRombergToolStripMenuItem.Text = "Extrapolacion de Romberg";
             this.extrapolacionDeRombergToolStripMenuItem.Click += new System.EventHandler(this.extrapolacionDeRombergToolStripMenuItem_Click);
             // 
             // integracionMultipleToolStripMenuItem
             // 
             this.integracionMultipleToolStripMenuItem.Name = "integracionMultipleToolStripMenuItem";
-            this.integracionMultipleToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
+            this.integracionMultipleToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.integracionMultipleToolStripMenuItem.Text = "Integracion Multiple";
             this.integracionMultipleToolStripMenuItem.Click += new System.EventHandler(this.integracionMultipleToolStripMenuItem_Click);
             // 
@@ -230,27 +232,27 @@
             this.nevilleToolStripMenuItem,
             this.lagranjeToolStripMenuItem});
             this.interpolacionToolStripMenuItem.Name = "interpolacionToolStripMenuItem";
-            this.interpolacionToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.interpolacionToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.interpolacionToolStripMenuItem.Text = "Interpolacion";
             // 
             // diferenciasDivididasToolStripMenuItem
             // 
             this.diferenciasDivididasToolStripMenuItem.Name = "diferenciasDivididasToolStripMenuItem";
-            this.diferenciasDivididasToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.diferenciasDivididasToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.diferenciasDivididasToolStripMenuItem.Text = "Diferencias divididas";
             this.diferenciasDivididasToolStripMenuItem.Click += new System.EventHandler(this.diferenciasDivididasToolStripMenuItem_Click);
             // 
             // nevilleToolStripMenuItem
             // 
             this.nevilleToolStripMenuItem.Name = "nevilleToolStripMenuItem";
-            this.nevilleToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.nevilleToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.nevilleToolStripMenuItem.Text = "Neville";
             this.nevilleToolStripMenuItem.Click += new System.EventHandler(this.nevilleToolStripMenuItem_Click);
             // 
             // lagranjeToolStripMenuItem
             // 
             this.lagranjeToolStripMenuItem.Name = "lagranjeToolStripMenuItem";
-            this.lagranjeToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.lagranjeToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.lagranjeToolStripMenuItem.Text = "Lagranje";
             this.lagranjeToolStripMenuItem.Click += new System.EventHandler(this.lagranjeToolStripMenuItem_Click);
             // 
@@ -260,20 +262,20 @@
             this.pivoteoParcialToolStripMenuItem,
             this.factorizacionesToolStripMenuItem});
             this.algebraLinealToolStripMenuItem.Name = "algebraLinealToolStripMenuItem";
-            this.algebraLinealToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
+            this.algebraLinealToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.algebraLinealToolStripMenuItem.Text = "Algebra Lineal";
             // 
             // pivoteoParcialToolStripMenuItem
             // 
             this.pivoteoParcialToolStripMenuItem.Name = "pivoteoParcialToolStripMenuItem";
-            this.pivoteoParcialToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.pivoteoParcialToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.pivoteoParcialToolStripMenuItem.Text = "Pivoteos para SEL";
             this.pivoteoParcialToolStripMenuItem.Click += new System.EventHandler(this.pivoteoParcialToolStripMenuItem_Click);
             // 
             // factorizacionesToolStripMenuItem
             // 
             this.factorizacionesToolStripMenuItem.Name = "factorizacionesToolStripMenuItem";
-            this.factorizacionesToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.factorizacionesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.factorizacionesToolStripMenuItem.Text = "Factorizaciones";
             this.factorizacionesToolStripMenuItem.Click += new System.EventHandler(this.factorizacionesToolStripMenuItem_Click);
             // 
@@ -286,41 +288,41 @@
             this.rKFToolStripMenuItem,
             this.adamsBashforthToolStripMenuItem});
             this.eDOsToolStripMenuItem.Name = "eDOsToolStripMenuItem";
-            this.eDOsToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.eDOsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.eDOsToolStripMenuItem.Text = "EDOs";
             // 
             // metodoDeEulerToolStripMenuItem
             // 
             this.metodoDeEulerToolStripMenuItem.Name = "metodoDeEulerToolStripMenuItem";
-            this.metodoDeEulerToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.metodoDeEulerToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.metodoDeEulerToolStripMenuItem.Text = "Metodo de Euler";
             this.metodoDeEulerToolStripMenuItem.Click += new System.EventHandler(this.metodoDeEulerToolStripMenuItem_Click);
             // 
             // metodoDeTaylorDeOrdenSuperiorToolStripMenuItem
             // 
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Name = "metodoDeTaylorDeOrdenSuperiorToolStripMenuItem";
-            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Text = "Metodo de Taylor de orden superior";
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem.Click += new System.EventHandler(this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem_Click);
             // 
             // rungenToolStripMenuItem
             // 
             this.rungenToolStripMenuItem.Name = "rungenToolStripMenuItem";
-            this.rungenToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.rungenToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.rungenToolStripMenuItem.Text = "Runge-Kutta 2,3,4";
             this.rungenToolStripMenuItem.Click += new System.EventHandler(this.rungenToolStripMenuItem_Click);
             // 
             // rKFToolStripMenuItem
             // 
             this.rKFToolStripMenuItem.Name = "rKFToolStripMenuItem";
-            this.rKFToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.rKFToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.rKFToolStripMenuItem.Text = "RKF";
             this.rKFToolStripMenuItem.Click += new System.EventHandler(this.rKFToolStripMenuItem_Click);
             // 
             // adamsBashforthToolStripMenuItem
             // 
             this.adamsBashforthToolStripMenuItem.Name = "adamsBashforthToolStripMenuItem";
-            this.adamsBashforthToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.adamsBashforthToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.adamsBashforthToolStripMenuItem.Text = "Adams Bashforth y Moulton";
             this.adamsBashforthToolStripMenuItem.Click += new System.EventHandler(this.adamsBashforthToolStripMenuItem_Click);
             // 
@@ -329,13 +331,13 @@
             this.salirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salirToolStripMenuItem1});
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.salirToolStripMenuItem.Text = "Opciones";
             // 
             // salirToolStripMenuItem1
             // 
             this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
-            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(119, 26);
+            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(95, 22);
             this.salirToolStripMenuItem1.Text = "salir";
             this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem1_Click);
             // 
@@ -345,27 +347,30 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(443, 30);
+            this.label2.Location = new System.Drawing.Point(332, 24);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 53);
+            this.label2.Size = new System.Drawing.Size(0, 43);
             this.label2.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(197, 120);
+            this.label1.Location = new System.Drawing.Point(148, 98);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 16);
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Minecraft", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(297, 84);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(183, 67);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1443, 150);
+            this.label3.Size = new System.Drawing.Size(895, 108);
             this.label3.TabIndex = 4;
             this.label3.Text = "Metodos Numericos";
             // 
@@ -373,10 +378,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Minecraft", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(543, 510);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(309, 346);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1000, 76);
+            this.label4.Size = new System.Drawing.Size(611, 55);
             this.label4.TabIndex = 5;
             this.label4.Text = "Ramirez Cortes Axel Osiris.";
             // 
@@ -384,10 +390,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Minecraft", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(595, 679);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(309, 434);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(948, 76);
+            this.label5.Size = new System.Drawing.Size(588, 55);
             this.label5.TabIndex = 6;
             this.label5.Text = "Morales Vega Juan Pablo.";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -396,10 +403,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Minecraft", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(570, 809);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(291, 519);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(1105, 76);
+            this.label6.Size = new System.Drawing.Size(672, 55);
             this.label6.TabIndex = 7;
             this.label6.Text = "Edgar Andres Reynoso Pablo.";
             this.label6.Click += new System.EventHandler(this.label6_Click);
@@ -408,20 +416,21 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Minecraft", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(932, 324);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(518, 264);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(282, 100);
+            this.label7.Size = new System.Drawing.Size(200, 73);
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::MetodosNumericos.Properties.Resources.fondoMosaico;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1924, 988);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -432,7 +441,9 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frm_Principal";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);

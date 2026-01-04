@@ -225,5 +225,10 @@ namespace MetodosNumericos
             adamsBa.Show();
             adamsBa.WindowState = FormWindowState.Maximized;
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }
