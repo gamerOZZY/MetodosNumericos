@@ -59,6 +59,7 @@
             this.metodoDeTaylorDeOrdenSuperiorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rKFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adamsBashforthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.adamsBashforthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -317,6 +317,13 @@
             this.rKFToolStripMenuItem.Text = "RKF";
             this.rKFToolStripMenuItem.Click += new System.EventHandler(this.rKFToolStripMenuItem_Click);
             // 
+            // adamsBashforthToolStripMenuItem
+            // 
+            this.adamsBashforthToolStripMenuItem.Name = "adamsBashforthToolStripMenuItem";
+            this.adamsBashforthToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
+            this.adamsBashforthToolStripMenuItem.Text = "Adams Bashforth y Moulton";
+            this.adamsBashforthToolStripMenuItem.Click += new System.EventHandler(this.adamsBashforthToolStripMenuItem_Click);
+            // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -407,13 +414,6 @@
             this.label7.Size = new System.Drawing.Size(282, 100);
             this.label7.TabIndex = 8;
             this.label7.Text = "3AM2";
-            // 
-            // adamsBashforthToolStripMenuItem
-            // 
-            this.adamsBashforthToolStripMenuItem.Name = "adamsBashforthToolStripMenuItem";
-            this.adamsBashforthToolStripMenuItem.Size = new System.Drawing.Size(331, 26);
-            this.adamsBashforthToolStripMenuItem.Text = "Adams Bashforth";
-            this.adamsBashforthToolStripMenuItem.Click += new System.EventHandler(this.adamsBashforthToolStripMenuItem_Click);
             // 
             // Form1
             // 

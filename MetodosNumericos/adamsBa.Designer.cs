@@ -30,7 +30,7 @@
         {
             this.txtEcuacion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboPasos = new System.Windows.Forms.ComboBox();
+            this.cboOrden = new System.Windows.Forms.ComboBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dgvTablaAdams = new System.Windows.Forms.DataGridView();
             this.txtT0 = new System.Windows.Forms.TextBox();
@@ -44,6 +44,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnCalcular = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.cboTipoMetodo = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablaAdams)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,17 +65,17 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "f(t,y)";
             // 
-            // cboPasos
+            // cboOrden
             // 
-            this.cboPasos.FormattingEnabled = true;
-            this.cboPasos.Location = new System.Drawing.Point(672, 26);
-            this.cboPasos.Name = "cboPasos";
-            this.cboPasos.Size = new System.Drawing.Size(121, 24);
-            this.cboPasos.TabIndex = 2;
+            this.cboOrden.FormattingEnabled = true;
+            this.cboOrden.Location = new System.Drawing.Point(672, 26);
+            this.cboOrden.Name = "cboOrden";
+            this.cboOrden.Size = new System.Drawing.Size(121, 24);
+            this.cboOrden.TabIndex = 2;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(920, 26);
+            this.btnLimpiar.Location = new System.Drawing.Point(1079, 26);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 3;
@@ -88,7 +90,7 @@
             this.dgvTablaAdams.Name = "dgvTablaAdams";
             this.dgvTablaAdams.RowHeadersWidth = 51;
             this.dgvTablaAdams.RowTemplate.Height = 24;
-            this.dgvTablaAdams.Size = new System.Drawing.Size(980, 444);
+            this.dgvTablaAdams.Size = new System.Drawing.Size(1139, 444);
             this.dgvTablaAdams.TabIndex = 4;
             // 
             // txtT0
@@ -160,13 +162,13 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(669, 6);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 16);
+            this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 13;
-            this.label6.Text = "t Final";
+            this.label6.Text = "Orden";
             // 
             // btnCalcular
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(823, 26);
+            this.btnCalcular.Location = new System.Drawing.Point(982, 26);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(75, 23);
             this.btnCalcular.TabIndex = 14;
@@ -184,11 +186,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cboTipoMetodo
+            // 
+            this.cboTipoMetodo.FormattingEnabled = true;
+            this.cboTipoMetodo.Location = new System.Drawing.Point(829, 28);
+            this.cboTipoMetodo.Name = "cboTipoMetodo";
+            this.cboTipoMetodo.Size = new System.Drawing.Size(121, 24);
+            this.cboTipoMetodo.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(826, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 16);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Metodo";
+            // 
             // adamsBa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 600);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cboTipoMetodo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.label6);
@@ -202,7 +223,7 @@
             this.Controls.Add(this.txtT0);
             this.Controls.Add(this.dgvTablaAdams);
             this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.cboPasos);
+            this.Controls.Add(this.cboOrden);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtEcuacion);
             this.Name = "adamsBa";
@@ -218,7 +239,7 @@
 
         private System.Windows.Forms.TextBox txtEcuacion;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboPasos;
+        private System.Windows.Forms.ComboBox cboOrden;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.DataGridView dgvTablaAdams;
         private System.Windows.Forms.TextBox txtT0;
@@ -232,5 +253,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cboTipoMetodo;
+        private System.Windows.Forms.Label label7;
     }
 }

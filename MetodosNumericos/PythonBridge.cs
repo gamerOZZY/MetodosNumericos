@@ -1134,16 +1134,51 @@ namespace MetodosNumericos
 
 
 
-            /* =============================== ADAMS BASHHCOFT =========================== */
+        /* =============================== ADAMS BASHHCOFT Y ADAMS MOULTON =========================== */
 
-         public class FilaAdams{
+        public class FilaBashforth
+        {
             public int Iteracion { get; set; }
             public double T { get; set; }
             public double W { get; set; }
-            public string Metodo { get; set; } 
-         }
+            public string Metodo { get; set; }
+        }
+        public class FilaMoulton
+        {
+            public int Iteracion { get; set; }
+            public double T { get; set; }
+            public double W_Pred { get; set; }
+            public double W_Corr { get; set; }
+            public string Metodo { get; set; }
+        }
 
-        public List<FilaAdams> ResolverAdams(string ec, double t0, double w0, double h, double tf, int pasos)
+        public List<FilaBashforth> ResolverBashforth(string ec, double t0, double w0, double h, double tf, int pasos)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+                dynamic res = modulo.resolver_adams_bashforth(ec, t0, w0, h, tf, pasos);
+
+                var tabla = new List<FilaBashforth>();
+                int filas = (int)res.__len__();
+                for (int i = 0; i < filas; i++)
+                {
+                    dynamic f = res[i];
+                    tabla.Add(new FilaBashforth
+                    {
+                        Iteracion = (int)f[0],
+                        T = (double)f[1],
+                        W = (double)f[2],
+                        Metodo = f[3].ToString()
+                    });
+                }
+                return tabla;
+            }
+        }
+
+        public List<FilaMoulton> ResolverMoulton(string ec, double t0, double w0, double h, double tf, int orden)
         {
             using (Py.GIL())
             {
@@ -1151,29 +1186,57 @@ namespace MetodosNumericos
                 sys.path.append(Directory.GetCurrentDirectory());
                 dynamic modulo = Py.Import("logica_math");
 
-                // Llamada a Python
-                dynamic res = modulo.resolver_adams_bashforth(ec, t0, w0, h, tf, pasos);
+                dynamic res = modulo.resolver_adams_moulton(ec, t0, w0, h, tf, orden);
 
-                if (res is string || res.ToString().StartsWith("Error"))
-                    throw new Exception(res.ToString());
+                if (CheckError(res)) throw new Exception(res.ToString());
 
-                List<FilaAdams> tabla = new List<FilaAdams>();
+                var tabla = new List<FilaMoulton>();
                 int filas = (int)res.__len__();
 
                 for (int i = 0; i < filas; i++)
                 {
                     dynamic f = res[i];
-                    FilaAdams row = new FilaAdams();
-                    row.Iteracion = (int)f[0];
-                    row.T = (double)f[1];
-                    row.W = (double)f[2];
-                    row.Metodo = f[3].ToString();
-                    tabla.Add(row);
+
+                    /*
+                     Seguramente se preguntaran que calajo es As<int>(), As<double>(), etc, pues bien, aca ya no solo estamos 
+                    pasando valores al azar, estamos pasado listas de python y estamos accediendo a sus valores mediante indices,
+                    se hace el parse con estas funciones para que no haya errores puesto que si no se hacen, lanza un error
+                    de q segun c no entiende lo que es un pythonObject cuando realmente es un dato primitivo (entre comillasxd)
+
+                    Es por eso que aca si no lo ponia, lanzaba un error
+                     */
+                    tabla.Add(new FilaMoulton
+                    {
+                        Iteracion = f[0].As<int>(),       
+                        T = f[1].As<double>(),            
+                        W_Pred = f[2].As<double>(),
+                        W_Corr = f[3].As<double>(),
+                        Metodo = f[4].As<string>()
+                    });
                 }
                 return tabla;
             }
         }
 
+
+        /*
+         * Esta funcion la llegue a usar en la prepa cuando usaba netbeans djkl;jdasldk, no sabia cual era el error
+         * y me vi forzado a improvisar, practicamente copia y pegue la funcion pq la tenia en una memoria, solamente 
+         * pues cambie las funciones de java a c#, pero en escencia, es lo mismo
+         * */
+        private bool CheckError(dynamic res)
+        {
+            // Si es un string o empieza con "Error", lanzamos excepción
+            try
+            {
+                string s = res.ToString();
+                return s.StartsWith("Error");
+            }
+            catch
+            {
+                return false; // Si no se puede convertir a string, asumimos que es una lista válida
+            }
+        }
 
 
 

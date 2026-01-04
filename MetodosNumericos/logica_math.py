@@ -1623,7 +1623,7 @@ def resolver_rk_general(ecuacion_str, t0, w0, h, t_final, metodo_tipo):
         # Formato: [i, t, w, [k1, k2, k3, k4]], efectivamente, estoy abusando de las listas, otra vez
         resultados.append([i, t, w, [0.0, 0.0, 0.0, 0.0]]) 
         
-        while t < meta 
+        while t < meta:
             
             # Funcion auxiliar para evaluar f(t, y) rapido sin repetir codigo
             def f(t_val, y_val):
@@ -1820,7 +1820,7 @@ def resolver_rkf(ecuacion_str, t0, w0, h_input, t_final, tol_input, factor_input
         return f"Error RKF: {str(e)}"
     
 
-################################################ ADAMS BACHFORT GG ##########################################
+################################################ ADAMS BACHFORT Y MOULTON GG ##########################################
 def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
     """
     Resuelve EDO usando Adams-Bashforth (Explicito).
@@ -1912,4 +1912,80 @@ def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
     except Exception as e:
         return f"Error Adams: {str(e)}"
 
+def resolver_adams_moulton(ecuacion_str, t0, w0, h, t_final, orden_input):
+    """
+    Implementa Predictor-Corrector (Adams-Bashforth + Adams-Moulton).
+    Variables renombradas al español.
+    """
+    try:
+        t = float(t0)
+        w = float(w0)
+        paso = float(h) 
+        meta = float(t_final)
+        orden = int(orden_input)
+        
+        resultados = [] 
+        # [i, t, w_pred, w_corr, metodo]
+        resultados.append([0, t, w, w, "Inicio"])
+        
+        # --- DEFINICION DE FUNCION ---
+        def calcular_funcion(t_val, y_val):
+            return eval(ecuacion_str, globals(), {"t": t_val, "y": y_val})
+            
+        # Lista de valores historicos de f(t, w)
+        funciones = [calcular_funcion(t, w)]
+        i = 0
 
+        # --- FASE 1: ARRANQUE CON RK4 ---
+        puntos_necesarios = orden - 1
+        
+        for _ in range(puntos_necesarios):
+            if t >= meta: break
+            
+            k1 = paso * calcular_funcion(t, w)
+            k2 = paso * calcular_funcion(t + paso/2, w + k1/2)
+            k3 = paso * calcular_funcion(t + paso/2, w + k2/2)
+            k4 = paso * calcular_funcion(t + paso, w + k3)
+            
+            w = w + (k1 + 2*k2 + 2*k3 + k4) / 6.0
+            t += paso
+            i += 1
+            
+            resultados.append([i, t, w, w, "Arranque (RK4)"])
+            funciones.append(calcular_funcion(t, w))
+
+        # --- FASE 2: PREDICTOR-CORRECTOR ---
+        max_iter = 10000
+        while t < meta - (paso/1000.0) and i < max_iter:
+            
+            SeMeAcabaronLosombres = funciones
+            w_pred = 0.0
+            w_corr = 0.0
+            
+            # A) PREDICTOR (Bashforth)
+            if orden == 3:
+                w_pred = w + (paso/12.0) * (23*SeMeAcabaronLosombres[-1] - 16*SeMeAcabaronLosombres[-2] + 5*SeMeAcabaronLosombres[-3])
+            elif orden == 4:
+                w_pred = w + (paso/24.0) * (55*SeMeAcabaronLosombres[-1] - 59*SeMeAcabaronLosombres[-2] + 37*SeMeAcabaronLosombres[-3] - 9*SeMeAcabaronLosombres[-4])
+
+            # B) EVALUACION FUTURA
+            t_sig = t + paso
+            f_sig_pred = calcular_funcion(t_sig, w_pred)
+            
+            # C) CORRECTOR (Moulton)
+            if orden == 3:
+                w_corr = w + (paso/12.0) * (5*f_sig_pred + 8*SeMeAcabaronLosombres[-1] - SeMeAcabaronLosombres[-2])
+            elif orden == 4:
+                w_corr = w + (paso/24.0) * (9*f_sig_pred + 19*SeMeAcabaronLosombres[-1] - 5*SeMeAcabaronLosombres[-2] + SeMeAcabaronLosombres[-3])
+
+            w = w_corr 
+            t = t_sig
+            i += 1
+            
+            resultados.append([i, t, w_pred, w_corr, f"AM (Orden {orden})"])
+            funciones.append(calcular_funcion(t, w))
+            
+        return resultados
+
+    except Exception as e:
+        return f"Error AM: {str(e)}"

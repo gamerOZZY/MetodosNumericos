@@ -13,29 +13,33 @@ namespace MetodosNumericos
     public partial class adamsBa : Form
     {
         PythonBridge puente;
-        private void ConfigurarFormulario()
+
+        private void ConfigurarInicial()
         {
 
-            cboPasos.Items.Add("2 Pasos (Orden 2)");
-            cboPasos.Items.Add("3 Pasos (Orden 3)");
-            cboPasos.Items.Add("4 Pasos (Orden 4)");
-            cboPasos.Items.Add("5 Pasos (Orden 5)");
-            cboPasos.SelectedIndex = 2; 
-            cboPasos.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTipoMetodo.Items.Add("Adams-Bashforth (Explicito)");
+            cboTipoMetodo.Items.Add("Adams-Moulton (Predictor-Corrector)");
+            cboTipoMetodo.SelectedIndex = 0;
+            cboTipoMetodo.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
+            cboOrden.Items.Add("Orden 2");
+            cboOrden.Items.Add("Orden 3");
+            cboOrden.Items.Add("Orden 4");
+            cboOrden.Items.Add("Orden 5");
+            cboOrden.SelectedIndex = 2; 
+            cboOrden.DropDownStyle = ComboBoxStyle.DropDownList;
 
             dgvTablaAdams.AllowUserToAddRows = false;
             dgvTablaAdams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            dgvTablaAdams.Columns.Add("i", "Iteración");
-            dgvTablaAdams.Columns.Add("t", "ti");
-            dgvTablaAdams.Columns.Add("w", "wi");
-            dgvTablaAdams.Columns.Add("metodo", "Metodo Usado");
         }
+
         public adamsBa()
         {
             InitializeComponent();
             puente = new PythonBridge();
-            ConfigurarFormulario();
+            ConfigurarInicial();
+
         }
 
         private void adamsBa_Load(object sender, EventArgs e)
@@ -52,42 +56,78 @@ namespace MetodosNumericos
         {
             try
             {
+                // Inputs 
                 if (string.IsNullOrWhiteSpace(txtEcuacion.Text)) throw new Exception("Ingresa ecuacion.");
-
                 double t0 = double.Parse(txtT0.Text);
                 double w0 = double.Parse(txtW0.Text);
                 double h = double.Parse(txtH.Text);
                 double tf = double.Parse(txtTFinal.Text);
+                int orden = cboOrden.SelectedIndex + 2; 
 
-                // Determinar pasos (El indice 0 corresponde a 2 pasos, etc.)
-                int pasos = cboPasos.SelectedIndex + 2;
+                dgvTablaAdams.Columns.Clear();
 
-                var resultados = puente.ResolverAdams(txtEcuacion.Text, t0, w0, h, tf, pasos);
-
-                dgvTablaAdams.Rows.Clear();
-                foreach (var r in resultados)
+                
+                if (cboTipoMetodo.SelectedIndex == 0)
                 {
-                    int idx = dgvTablaAdams.Rows.Add();
-                    DataGridViewRow row = dgvTablaAdams.Rows[idx];
+                    // === CASO 1: BASHFORTH ===
+                    // Configurar columnas para Bashforth
+                    dgvTablaAdams.Columns.Add("i", "Iteracion");
+                    dgvTablaAdams.Columns.Add("t", "ti");
+                    dgvTablaAdams.Columns.Add("w", "wi (Aprox)");
+                    dgvTablaAdams.Columns.Add("met", "Método");
 
-                    row.Cells[0].Value = r.Iteracion;
-                    row.Cells[1].Value = r.T.ToString("F4");
-                    row.Cells[2].Value = r.W.ToString("F6");
-                    row.Cells[3].Value = r.Metodo;
+                    // Llamar Python
+                    var resultados = puente.ResolverBashforth(txtEcuacion.Text, t0, w0, h, tf, orden);
 
-                    // Estilo visual: Diferenciar RK4 de Adams
-                    if (r.Metodo.Contains("RK4"))
+                    // Llenar coso dgv
+                    foreach (var r in resultados)
                     {
-                        row.DefaultCellStyle.BackColor = Color.LightYellow; // Color rk4
+                        int idx = dgvTablaAdams.Rows.Add();
+                        var row = dgvTablaAdams.Rows[idx];
+                        row.Cells[0].Value = r.Iteracion;
+                        row.Cells[1].Value = r.T.ToString("F8");
+                        row.Cells[2].Value = r.W.ToString("F8");
+                        row.Cells[3].Value = r.Metodo;
+
+
+                        if (r.Metodo.Contains("RK4")) row.DefaultCellStyle.BackColor = Color.LightYellow;
                     }
-                    else if (r.Metodo.Contains("Adams"))
+                }
+                else
+                {
+
+                    dgvTablaAdams.Columns.Add("i", "Iteracion");
+                    dgvTablaAdams.Columns.Add("t", "ti");
+                    dgvTablaAdams.Columns.Add("w_pred", "Prediccion (Bash)");
+                    dgvTablaAdams.Columns.Add("w_corr", "Correccion (Moul)");
+                    dgvTablaAdams.Columns.Add("met", "Fase");
+
+                    // Llamar Python
+                    var resultados = puente.ResolverMoulton(txtEcuacion.Text, t0, w0, h, tf, orden);
+
+                    // Llenar coso
+                    foreach (var r in resultados) 
+                    /*CREO que no lo habia mencionado pero el foreach lo saque con chat pq 
+                     * nomas no me salia el ciclo (fue una tortura pq realmente ni chat  sabia lo que estaba haciendo)*/
                     {
-                        row.DefaultCellStyle.BackColor = Color.White; // Color normal
-                    }
-                    else
-                    {
-                        row.DefaultCellStyle.BackColor = Color.LightGray; // Inicio
-                        row.DefaultCellStyle.Font = new Font(dgvTablaAdams.Font, FontStyle.Bold);
+                        int idx = dgvTablaAdams.Rows.Add();
+                        var row = dgvTablaAdams.Rows[idx];
+                        row.Cells[0].Value = r.Iteracion;
+                        row.Cells[1].Value = r.T.ToString("F8");
+                        row.Cells[2].Value = r.W_Pred.ToString("F8");
+                        row.Cells[3].Value = r.W_Corr.ToString("F8");
+                        row.Cells[4].Value = r.Metodo;
+
+                        // Colorama
+                        if (r.Metodo.Contains("RK4"))
+                        {
+                            row.DefaultCellStyle.BackColor = Color.LightYellow;
+                            row.Cells[2].Value = "-"; 
+                        }
+                        else
+                        {
+                            row.DefaultCellStyle.BackColor = Color.LightGreen;
+                        }
                     }
                 }
             }
@@ -95,6 +135,7 @@ namespace MetodosNumericos
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
