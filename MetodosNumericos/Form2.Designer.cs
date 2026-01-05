@@ -87,7 +87,7 @@
             this.txtValorA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtValorA.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorA.Location = new System.Drawing.Point(84, 76);
-            this.txtValorA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtValorA.Margin = new System.Windows.Forms.Padding(2);
             this.txtValorA.Name = "txtValorA";
             this.txtValorA.Size = new System.Drawing.Size(113, 32);
             this.txtValorA.TabIndex = 2;
@@ -97,7 +97,7 @@
             this.txtValorB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtValorB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorB.Location = new System.Drawing.Point(84, 144);
-            this.txtValorB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtValorB.Margin = new System.Windows.Forms.Padding(2);
             this.txtValorB.Name = "txtValorB";
             this.txtValorB.Size = new System.Drawing.Size(113, 32);
             this.txtValorB.TabIndex = 4;
@@ -120,7 +120,7 @@
             this.txtNumMaxIter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtNumMaxIter.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumMaxIter.Location = new System.Drawing.Point(462, 76);
-            this.txtNumMaxIter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNumMaxIter.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumMaxIter.Name = "txtNumMaxIter";
             this.txtNumMaxIter.Size = new System.Drawing.Size(123, 32);
             this.txtNumMaxIter.TabIndex = 8;
@@ -144,7 +144,7 @@
             this.txtErrorMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtErrorMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtErrorMax.Location = new System.Drawing.Point(462, 143);
-            this.txtErrorMax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtErrorMax.Margin = new System.Windows.Forms.Padding(2);
             this.txtErrorMax.Name = "txtErrorMax";
             this.txtErrorMax.Size = new System.Drawing.Size(123, 32);
             this.txtErrorMax.TabIndex = 6;
@@ -170,7 +170,7 @@
             this.btmCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btmCalcular.Image = global::MetodosNumericos.Properties.Resources.Contraste_entre_negro_y_rojo;
             this.btmCalcular.Location = new System.Drawing.Point(1007, 88);
-            this.btmCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btmCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btmCalcular.Name = "btmCalcular";
             this.btmCalcular.Size = new System.Drawing.Size(175, 76);
             this.btmCalcular.TabIndex = 9;
@@ -198,7 +198,7 @@
             this.dgvBiseccion.GridColor = System.Drawing.Color.Black;
             this.dgvBiseccion.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.dgvBiseccion.Location = new System.Drawing.Point(11, 218);
-            this.dgvBiseccion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvBiseccion.Margin = new System.Windows.Forms.Padding(2);
             this.dgvBiseccion.Name = "dgvBiseccion";
             this.dgvBiseccion.ReadOnly = true;
             this.dgvBiseccion.RowHeadersWidth = 51;
@@ -280,8 +280,8 @@
             this.btnSalir.ForeColor = System.Drawing.Color.Red;
             this.btnSalir.Image = global::MetodosNumericos.Properties.Resources.Contraste_entre_negro_y_rojo;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalir.Location = new System.Drawing.Point(644, 617);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSalir.Location = new System.Drawing.Point(644, 663);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(140, 40);
             this.btnSalir.TabIndex = 11;
@@ -294,7 +294,7 @@
             this.txtFuncion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtFuncion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFuncion.Location = new System.Drawing.Point(748, 109);
-            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2);
             this.txtFuncion.Name = "txtFuncion";
             this.txtFuncion.Size = new System.Drawing.Size(200, 32);
             this.txtFuncion.TabIndex = 13;
@@ -314,12 +314,12 @@
             // 
             // frmBiseccion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.BackgroundImage = global::MetodosNumericos.Properties.Resources.Contraste_entre_negro_y_rojo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.txtFuncion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSalir);
@@ -335,10 +335,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmBiseccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBiseccion";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBiseccion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBiseccion)).EndInit();
             this.ResumeLayout(false);

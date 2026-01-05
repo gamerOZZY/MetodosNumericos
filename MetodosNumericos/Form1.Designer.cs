@@ -86,7 +86,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1370, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -107,42 +107,42 @@
             // biseccionToolStripMenuItem
             // 
             this.biseccionToolStripMenuItem.Name = "biseccionToolStripMenuItem";
-            this.biseccionToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.biseccionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.biseccionToolStripMenuItem.Text = "Biseccion";
             this.biseccionToolStripMenuItem.Click += new System.EventHandler(this.biseccionToolStripMenuItem_Click);
             // 
             // secanteToolStripMenuItem
             // 
             this.secanteToolStripMenuItem.Name = "secanteToolStripMenuItem";
-            this.secanteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.secanteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.secanteToolStripMenuItem.Text = "Secante";
             this.secanteToolStripMenuItem.Click += new System.EventHandler(this.secanteToolStripMenuItem_Click);
             // 
             // falsaPosicionToolStripMenuItem
             // 
             this.falsaPosicionToolStripMenuItem.Name = "falsaPosicionToolStripMenuItem";
-            this.falsaPosicionToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.falsaPosicionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.falsaPosicionToolStripMenuItem.Text = "Falsa posicion";
             this.falsaPosicionToolStripMenuItem.Click += new System.EventHandler(this.falsaPosicionToolStripMenuItem_Click);
             // 
             // newtonToolStripMenuItem
             // 
             this.newtonToolStripMenuItem.Name = "newtonToolStripMenuItem";
-            this.newtonToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.newtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newtonToolStripMenuItem.Text = "Newton";
             this.newtonToolStripMenuItem.Click += new System.EventHandler(this.newtonToolStripMenuItem_Click);
             // 
             // puntoFijoToolStripMenuItem
             // 
             this.puntoFijoToolStripMenuItem.Name = "puntoFijoToolStripMenuItem";
-            this.puntoFijoToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.puntoFijoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.puntoFijoToolStripMenuItem.Text = "Punto fijo";
             this.puntoFijoToolStripMenuItem.Click += new System.EventHandler(this.puntoFijoToolStripMenuItem_Click);
             // 
             // mullerToolStripMenuItem
             // 
             this.mullerToolStripMenuItem.Name = "mullerToolStripMenuItem";
-            this.mullerToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.mullerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mullerToolStripMenuItem.Text = "Muller";
             this.mullerToolStripMenuItem.Click += new System.EventHandler(this.mullerToolStripMenuItem_Click);
             // 
@@ -367,7 +367,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(183, 67);
+            this.label3.Location = new System.Drawing.Point(238, 128);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(895, 108);
@@ -379,7 +379,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(309, 346);
+            this.label4.Location = new System.Drawing.Point(373, 364);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(611, 55);
@@ -391,7 +391,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(309, 434);
+            this.label5.Location = new System.Drawing.Point(373, 527);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(588, 55);
@@ -404,12 +404,12 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(291, 519);
+            this.label6.Location = new System.Drawing.Point(339, 447);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(672, 55);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Edgar Andres Reynoso Pablo.";
+            this.label6.Text = "Reynoso Pablo Edgar Andres.";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
@@ -417,7 +417,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(518, 264);
+            this.label7.Location = new System.Drawing.Point(576, 273);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(200, 73);
@@ -426,11 +426,11 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
             this.BackgroundImage = global::MetodosNumericos.Properties.Resources.fondoMosaico;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -441,10 +441,11 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

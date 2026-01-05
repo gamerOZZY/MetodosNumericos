@@ -59,9 +59,10 @@
             this.btmCalcular.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btmCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btmCalcular.ForeColor = System.Drawing.Color.DarkOrange;
-            this.btmCalcular.Location = new System.Drawing.Point(1668, 153);
+            this.btmCalcular.Location = new System.Drawing.Point(1251, 124);
+            this.btmCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btmCalcular.Name = "btmCalcular";
-            this.btmCalcular.Size = new System.Drawing.Size(233, 93);
+            this.btmCalcular.Size = new System.Drawing.Size(175, 76);
             this.btmCalcular.TabIndex = 18;
             this.btmCalcular.Text = "Calcular Raiz";
             this.btmCalcular.UseVisualStyleBackColor = false;
@@ -71,20 +72,22 @@
             // 
             this.txtNumMaxIter.BackColor = System.Drawing.Color.BurlyWood;
             this.txtNumMaxIter.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumMaxIter.Location = new System.Drawing.Point(828, 131);
+            this.txtNumMaxIter.Location = new System.Drawing.Point(621, 106);
+            this.txtNumMaxIter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNumMaxIter.Name = "txtNumMaxIter";
-            this.txtNumMaxIter.Size = new System.Drawing.Size(100, 38);
+            this.txtNumMaxIter.Size = new System.Drawing.Size(76, 32);
             this.txtNumMaxIter.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label4.Location = new System.Drawing.Point(468, 133);
+            this.label4.Location = new System.Drawing.Point(351, 108);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(267, 36);
+            this.label4.Size = new System.Drawing.Size(180, 29);
             this.label4.TabIndex = 16;
             this.label4.Text = "Num. Max. Iter";
             // 
@@ -92,20 +95,22 @@
             // 
             this.txtErrorMax.BackColor = System.Drawing.Color.BurlyWood;
             this.txtErrorMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtErrorMax.Location = new System.Drawing.Point(737, 232);
+            this.txtErrorMax.Location = new System.Drawing.Point(553, 188);
+            this.txtErrorMax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtErrorMax.Name = "txtErrorMax";
-            this.txtErrorMax.Size = new System.Drawing.Size(191, 38);
+            this.txtErrorMax.Size = new System.Drawing.Size(144, 32);
             this.txtErrorMax.TabIndex = 15;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label5.Location = new System.Drawing.Point(468, 234);
+            this.label5.Location = new System.Drawing.Point(351, 190);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(213, 36);
+            this.label5.Size = new System.Drawing.Size(148, 29);
             this.label5.TabIndex = 14;
             this.label5.Text = "Error Max =";
             // 
@@ -113,20 +118,22 @@
             // 
             this.txtValorB.BackColor = System.Drawing.Color.BurlyWood;
             this.txtValorB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorB.Location = new System.Drawing.Point(136, 234);
+            this.txtValorB.Location = new System.Drawing.Point(102, 190);
+            this.txtValorB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtValorB.Name = "txtValorB";
-            this.txtValorB.Size = new System.Drawing.Size(100, 38);
+            this.txtValorB.Size = new System.Drawing.Size(76, 32);
             this.txtValorB.TabIndex = 13;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label3.Location = new System.Drawing.Point(64, 236);
+            this.label3.Location = new System.Drawing.Point(48, 192);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 36);
+            this.label3.Size = new System.Drawing.Size(50, 29);
             this.label3.TabIndex = 12;
             this.label3.Text = "b =";
             // 
@@ -134,20 +141,22 @@
             // 
             this.txtValorA.BackColor = System.Drawing.Color.BurlyWood;
             this.txtValorA.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorA.Location = new System.Drawing.Point(136, 134);
+            this.txtValorA.Location = new System.Drawing.Point(102, 109);
+            this.txtValorA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtValorA.Name = "txtValorA";
-            this.txtValorA.Size = new System.Drawing.Size(100, 38);
+            this.txtValorA.Size = new System.Drawing.Size(76, 32);
             this.txtValorA.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label2.Location = new System.Drawing.Point(64, 137);
+            this.label2.Location = new System.Drawing.Point(48, 111);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 36);
+            this.label2.Size = new System.Drawing.Size(49, 29);
             this.label2.TabIndex = 10;
             this.label2.Text = "a =";
             // 
@@ -157,9 +166,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 40.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label1.Location = new System.Drawing.Point(684, 9);
+            this.label1.Location = new System.Drawing.Point(513, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(632, 76);
+            this.label1.Size = new System.Drawing.Size(505, 62);
             this.label1.TabIndex = 19;
             this.label1.Text = "Metodo de la secante";
             // 
@@ -177,13 +187,14 @@
             this.fp2,
             this.ErrorAct});
             this.dgvSecante.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dgvSecante.Location = new System.Drawing.Point(118, 354);
+            this.dgvSecante.Location = new System.Drawing.Point(88, 288);
+            this.dgvSecante.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvSecante.Name = "dgvSecante";
             this.dgvSecante.ReadOnly = true;
             this.dgvSecante.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvSecante.RowHeadersWidth = 51;
             this.dgvSecante.RowTemplate.Height = 24;
-            this.dgvSecante.Size = new System.Drawing.Size(1783, 472);
+            this.dgvSecante.Size = new System.Drawing.Size(1337, 384);
             this.dgvSecante.TabIndex = 20;
             // 
             // IterAct
@@ -238,20 +249,22 @@
             // 
             this.txtFuncion.BackColor = System.Drawing.Color.BurlyWood;
             this.txtFuncion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFuncion.Location = new System.Drawing.Point(1271, 179);
+            this.txtFuncion.Location = new System.Drawing.Point(953, 145);
+            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFuncion.Name = "txtFuncion";
-            this.txtFuncion.Size = new System.Drawing.Size(248, 38);
+            this.txtFuncion.Size = new System.Drawing.Size(187, 32);
             this.txtFuncion.TabIndex = 22;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Unispace", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkOrange;
-            this.label6.Location = new System.Drawing.Point(1102, 181);
+            this.label6.Location = new System.Drawing.Point(826, 147);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 36);
+            this.label6.Size = new System.Drawing.Size(81, 29);
             this.label6.TabIndex = 21;
             this.label6.Text = "F(x) =";
             // 
@@ -264,9 +277,10 @@
             this.btnSalir.ForeColor = System.Drawing.Color.DarkOrange;
             this.btnSalir.Image = global::MetodosNumericos.Properties.Resources.fondoNaranja;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalir.Location = new System.Drawing.Point(960, 890);
+            this.btnSalir.Location = new System.Drawing.Point(720, 723);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(186, 49);
+            this.btnSalir.Size = new System.Drawing.Size(140, 40);
             this.btnSalir.TabIndex = 23;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
@@ -274,11 +288,11 @@
             // 
             // frmSecante
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
             this.BackgroundImage = global::MetodosNumericos.Properties.Resources.fondoNaranja;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1924, 988);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.txtFuncion);
             this.Controls.Add(this.label6);
@@ -294,8 +308,11 @@
             this.Controls.Add(this.txtValorA);
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmSecante";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSecante";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvSecante)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
