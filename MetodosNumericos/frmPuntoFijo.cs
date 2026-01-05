@@ -83,5 +83,10 @@ namespace MetodosNumericos
         {
             this.Close();
         }
+
+        private void dgvPuntoFijo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
