@@ -26,8 +26,8 @@ namespace MetodosNumericos
             dgvDatos.Columns.Add("Y", "Y");
 
             // Llenar combo
-            cboTipo.Items.Add("Newton Adelante");
-            cboTipo.Items.Add("Newton Atrás");
+            cboTipo.Items.Add("Hacia adelante");
+            cboTipo.Items.Add("Hacia atras Atras");
             cboTipo.SelectedIndex = 0;
         }
 
@@ -36,15 +36,14 @@ namespace MetodosNumericos
             try
             {
                 double xVal = double.Parse(txtX.Text);
-                string func = txtFuncion.Text.ToLower().Replace("^", "**"); // Limpieza básica
-
+                string func = txtFuncion.Text.ToLower().Replace("^", "**"); 
                 double yVal = puente.ObtenerY(func, xVal);
 
                 listaX.Add(xVal);
                 listaY.Add(yVal);
                 dgvDatos.Rows.Add(xVal, yVal);
 
-                txtX.Text = ""; txtX.Focus();
+                txtX.Text = ""; 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
 

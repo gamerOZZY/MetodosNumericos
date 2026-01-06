@@ -1,7 +1,6 @@
 ## P O R F A V O R
 ##COMENTAR HASTA EL MAS MINIMO DETALLE DE LAS FUNCIONES, somos 3 y aunque el codigo sea basura, tenemos que
 ##entender claramente que es lo que hacexd
-from urllib.request import parse_http_list
 import sympy as sp
 import numpy as np
 import matplotlib
@@ -481,8 +480,6 @@ def obtener_polinomio_texto(lista_x, lista_y, tipo):
         # Llamamos a la funcion corregida de arriba
         F = obtener_tabla_diferencias(lista_x, lista_y)
         
-        # Validacion: Si F es un string, es que hubo error en la tabla AUNQUE no creo que pase pero aja, ahi esta por si las dudas
-        if isinstance(F, str): return F 
 
         polinomio_str = "P(x) = "
         
@@ -511,9 +508,9 @@ def obtener_polinomio_texto(lista_x, lista_y, tipo):
         elif tipo == 'atras':
             # Los coeficientes estan en la ultima fila llena de cada columna
             # F[n-1][0] (no se usa para el polinomio, es y), F[n-1][1]... 
-            # Correcci�n logica Atras: Usamos la ultima fila disponible para ese orden
-            # El coef b0 esta en F[n-1][0]
-            # El coef b1 esta en F[n-1][1]
+            # Usamos la ultima fila disponible para ese orden
+            # El coefpiciente b0 esta en F[n-1][0]
+            # El coeficiente b1 esta en F[n-1][1] y asi
             coefs = F[n-1]
             
             for i in range(n):
@@ -660,7 +657,8 @@ def generar_grafica_lagrange_bytes(lista_x, lista_y, x_interes):
         plt.plot(x_suave, y_suave, 'purple', label='Lagrange', linewidth=1.5) # Color morado para variar
         plt.scatter(lista_x, lista_y, color='red', zorder=5)
         
-        # Punto de interes
+        # Punto de interes, por alguna razon, esta grafica me costo horrores cuando era casi igual a las demasxd,
+
         y_int = P_Lagrange(x_interes)
         plt.scatter([x_interes], [y_int], color='orange', marker='*', s=150, zorder=10, label='Interpolado')
 
@@ -1209,7 +1207,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
         orden_vars = list(range(n))
 
         # Para Pivoteo Escalado: Calculamos los factores de escala iniciales (maximo abs de cada fila)
-        # S[i] = max(|ai1|, |ai2|..., |ain(nein)|)xd
+        # S[i] = max(|ai1|, |ai2|..., |ain|)xd
         S = []
         if metodo == "Escalado":
             for i in range(n):
@@ -1243,7 +1241,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
                         fila_max = i
 
             elif metodo == "Total":
-                # Buscar el mayor valor absoluto en TODA la submatriz restante
+                # Buscar el mayor valor absoluto en TODA la submatriz restante, ESTA PARTE SALIO A PRUEBA Y ERROR JDASDJSAJKL
                 mayor_valor = 0
                 for i in range(k, n):
                     for j in range(k, n):
@@ -1271,7 +1269,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
                     S[k], S[fila_max] = S[fila_max], S[k]
 
             # Validacion: Si el pivote es 0, el sistema no tiene solucion unica
-            if abs(M[k][k]) < 1e-15:
+            if abs(M[k][k]) < 1e-15: #ya se que no es cero, pero si pasa de los 15 ceros, el float no lo va a guardar directamente
                 return f"Error: Pivote cercano a cero en paso {k}."
 
             # --- ELIMINACIÓN GAUSSIANA (Hacer ceros abajo) ---
@@ -1298,7 +1296,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
         # significa que val1 corresponde a x1 y val2 a x0.
         #ESTE SOLO BLOQUE DE CODIGO ME COSTO AGNOS DE VIDA, ACA DE CHICHARRINES
         #ME QUERIA SACAR LOS OJOS Y NO QUERIA SABER NADA DE NADIE
-        #ESTUVE APUNTO DE DECIRLES QUE ALCH NOS FUERAMOS A EXTRA DJDSAKJASDKLASDKJLADSKJLASDL;KJDSAKJLSADKJ;L
+        #ESTUVE APUNTO DE DECIRLES QUE NOS FUERAMOS A EXTRA DJDSAKJASDKLASDKJLADSKJLASDL;KJDSAKJLSADKJ;L
         
         x_final = [0.0] * n
         for i in range(n):
@@ -1379,7 +1377,7 @@ def analizar_metodos_disponibles(matriz_aumentada):
 
     return metodos
 
-# --- 3. ALGORITMOS DE FACTORIZACION ---
+# ---  ALGORITMOS DE FACTORIZACION ---
 
 def resolver_factorizacion(matriz, metodo):
     """Retorna [L, U, P] dependiendo del metodo."""
@@ -1394,7 +1392,7 @@ def resolver_factorizacion(matriz, metodo):
     try:
         if "Cholesky" in metodo:
             # --- CHOLESKY (LLT) ---
-            if not esMatrizDF(M): return "Error: La matriz no es Definida Positiva."
+            if not esMatrizDF(M): return "Error: La matriz no es Definida Positiva." #btw, esto nunca deberia de pasar
             
             for i in range(n):
                 for k in range(i + 1):
@@ -1820,7 +1818,7 @@ def resolver_rkf(ecuacion_str, t0, w0, h_input, t_final, tol_input, factor_input
         return f"Error RKF: {str(e)}"
     
 
-################################################ ADAMS BACHFORT Y MOULTON GG ##########################################
+################################################ ADAMS BACHFORT  GG ##########################################
 def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
     """
     Resuelve EDO usando Adams-Bashforth (Explicito).
@@ -1847,12 +1845,11 @@ def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
         resultados.append([i, t, w, "Inicio"])
         funciones.append(f(t, w)) # Guardamos f0
 
-        # --- FASE 1: ARRANQUE (Motor RK4) ---
+        # ---  ARRANQUE  ---
         # Necesitamos generar 'orden - 1' puntos extra para tener suficiente historia.
-        # Ejemplo: Si es Adams de 4 pasos, necesitamos 3 puntos extra (tenemos 0, necesitamos 1, 2, 3).
         
         for _ in range(orden - 1):
-            if t >= meta: break # Seguridad
+            if t >= meta: break 
 
             # Logica RK4 (Si, podria haber hecho a funcion simple y madnarla a llamar pero a este punto prefiero copiar y
             # pegar codigo para saber donde fue el error al debbugear, gracias a los throw Exceptions)
@@ -1869,7 +1866,7 @@ def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
             funciones.append(f(t, w)) # Guardamos la funcion de este nuevo punto
 
         # --- FASE 2: ADAMS-BASHFORTH ---
-        # Ahora que tenemos la lista 'pendientes' llena con los puntos necesarios...
+        # Ahora que tenemos la lista 'funciomes' llena con los puntos necesarios...
         
         max_iter = 10000
         while t < meta and i < max_iter:
@@ -1879,16 +1876,8 @@ def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
             # Accedemos a las funciones guardadas desde el final hacia atras
             # p[-1] es fi, p[-2] es fi-1, etc.
             p = funciones
-            
-            if orden == 2:
-                # w_i+1 = w_i + h/2 * (3fi - fi-1)
-                w_sig = w + (paso/2.0) * (3*p[-1] - p[-2])
-                
-            elif orden == 3:
-                # w_i+1 = w_i + h/12 * (23fi - 16fi-1 + 5fi-2)
-                w_sig = w + (paso/12.0) * (23*p[-1] - 16*p[-2] + 5*p[-3])
-                
-            elif orden == 4:
+                     
+            if orden == 4:
                 # w_i+1 = w_i + h/24 * (55fi - 59fi-1 + 37fi-2 - 9fi-3)
                 w_sig = w + (paso/24.0) * (55*p[-1] - 59*p[-2] + 37*p[-3] - 9*p[-4])
                 
@@ -1912,80 +1901,3 @@ def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
     except Exception as e:
         return f"Error Adams: {str(e)}"
 
-def resolver_adams_moulton(ecuacion_str, t0, w0, h, t_final, orden_input):
-    """
-    Implementa Predictor-Corrector (Adams-Bashforth + Adams-Moulton).
-    Variables renombradas al español.
-    """
-    try:
-        t = float(t0)
-        w = float(w0)
-        paso = float(h) 
-        meta = float(t_final)
-        orden = int(orden_input)
-        
-        resultados = [] 
-        # [i, t, w_pred, w_corr, metodo]
-        resultados.append([0, t, w, w, "Inicio"])
-        
-        # --- DEFINICION DE FUNCION ---
-        def calcular_funcion(t_val, y_val):
-            return eval(ecuacion_str, globals(), {"t": t_val, "y": y_val})
-            
-        # Lista de valores historicos de f(t, w)
-        funciones = [calcular_funcion(t, w)]
-        i = 0
-
-        # --- FASE 1: ARRANQUE CON RK4 ---
-        puntos_necesarios = orden - 1
-        
-        for _ in range(puntos_necesarios):
-            if t >= meta: break
-            
-            k1 = paso * calcular_funcion(t, w)
-            k2 = paso * calcular_funcion(t + paso/2, w + k1/2)
-            k3 = paso * calcular_funcion(t + paso/2, w + k2/2)
-            k4 = paso * calcular_funcion(t + paso, w + k3)
-            
-            w = w + (k1 + 2*k2 + 2*k3 + k4) / 6.0
-            t += paso
-            i += 1
-            
-            resultados.append([i, t, w, w, "Arranque (RK4)"])
-            funciones.append(calcular_funcion(t, w))
-
-        # --- FASE 2: PREDICTOR-CORRECTOR ---
-        max_iter = 10000
-        while t < meta - (paso/1000.0) and i < max_iter:
-            
-            SeMeAcabaronLosombres = funciones
-            w_pred = 0.0
-            w_corr = 0.0
-            
-            # A) PREDICTOR (Bashforth)
-            if orden == 3:
-                w_pred = w + (paso/12.0) * (23*SeMeAcabaronLosombres[-1] - 16*SeMeAcabaronLosombres[-2] + 5*SeMeAcabaronLosombres[-3])
-            elif orden == 4:
-                w_pred = w + (paso/24.0) * (55*SeMeAcabaronLosombres[-1] - 59*SeMeAcabaronLosombres[-2] + 37*SeMeAcabaronLosombres[-3] - 9*SeMeAcabaronLosombres[-4])
-
-            # B) EVALUACION FUTURA
-            t_sig = t + paso
-            f_sig_pred = calcular_funcion(t_sig, w_pred)
-            
-            # C) CORRECTOR (Moulton)
-            if orden == 3:
-                w_corr = w + (paso/12.0) * (5*f_sig_pred + 8*SeMeAcabaronLosombres[-1] - SeMeAcabaronLosombres[-2])
-            elif orden == 4:
-                w_corr = w + (paso/24.0) * (9*f_sig_pred + 19*SeMeAcabaronLosombres[-1] - 5*SeMeAcabaronLosombres[-2] + SeMeAcabaronLosombres[-3])
-
-            w = w_corr 
-            t = t_sig
-            i += 1
-            
-            resultados.append([i, t, w_pred, w_corr, f"AM (Orden {orden})"])
-            funciones.append(calcular_funcion(t, w))
-            
-        return resultados
-
-    except Exception as e:
-        return f"Error AM: {str(e)}"

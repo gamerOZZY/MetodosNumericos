@@ -30,7 +30,6 @@
         {
             this.txtEcuacion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboOrden = new System.Windows.Forms.ComboBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dgvTablaAdams = new System.Windows.Forms.DataGridView();
             this.txtT0 = new System.Windows.Forms.TextBox();
@@ -41,11 +40,10 @@
             this.txtH = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTFinal = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnCalcular = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.cboTipoMetodo = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboOrden = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablaAdams)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,14 +62,6 @@
             this.label1.Size = new System.Drawing.Size(31, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "f(t,y)";
-            // 
-            // cboOrden
-            // 
-            this.cboOrden.FormattingEnabled = true;
-            this.cboOrden.Location = new System.Drawing.Point(672, 26);
-            this.cboOrden.Name = "cboOrden";
-            this.cboOrden.Size = new System.Drawing.Size(121, 24);
-            this.cboOrden.TabIndex = 2;
             // 
             // btnLimpiar
             // 
@@ -157,15 +147,6 @@
             this.txtTFinal.Size = new System.Drawing.Size(100, 22);
             this.txtTFinal.TabIndex = 11;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(669, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 16);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Orden";
-            // 
             // btnCalcular
             // 
             this.btnCalcular.Location = new System.Drawing.Point(982, 26);
@@ -186,30 +167,28 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cboTipoMetodo
+            // label6
             // 
-            this.cboTipoMetodo.FormattingEnabled = true;
-            this.cboTipoMetodo.Location = new System.Drawing.Point(829, 28);
-            this.cboTipoMetodo.Name = "cboTipoMetodo";
-            this.cboTipoMetodo.Size = new System.Drawing.Size(121, 24);
-            this.cboTipoMetodo.TabIndex = 16;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(669, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 16);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Orden";
             // 
-            // label7
+            // cboOrden
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(826, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 16);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Metodo";
+            this.cboOrden.FormattingEnabled = true;
+            this.cboOrden.Location = new System.Drawing.Point(672, 26);
+            this.cboOrden.Name = "cboOrden";
+            this.cboOrden.Size = new System.Drawing.Size(121, 24);
+            this.cboOrden.TabIndex = 2;
             // 
             // adamsBa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 600);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.cboTipoMetodo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.label6);
@@ -239,7 +218,6 @@
 
         private System.Windows.Forms.TextBox txtEcuacion;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboOrden;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.DataGridView dgvTablaAdams;
         private System.Windows.Forms.TextBox txtT0;
@@ -250,10 +228,9 @@
         private System.Windows.Forms.TextBox txtH;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtTFinal;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox cboTipoMetodo;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboOrden;
     }
 }

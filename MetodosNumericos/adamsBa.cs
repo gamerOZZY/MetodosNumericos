@@ -14,31 +14,31 @@ namespace MetodosNumericos
     {
         PythonBridge puente;
 
-        private void ConfigurarInicial()
+        private void ConfigurarFormulario()
         {
-
-            cboTipoMetodo.Items.Add("Adams-Bashforth (Explicito)");
-            cboTipoMetodo.Items.Add("Adams-Moulton (Predictor-Corrector)");
-            cboTipoMetodo.SelectedIndex = 0;
-            cboTipoMetodo.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-            cboOrden.Items.Add("Orden 2");
-            cboOrden.Items.Add("Orden 3");
-            cboOrden.Items.Add("Orden 4");
-            cboOrden.Items.Add("Orden 5");
-            cboOrden.SelectedIndex = 2; 
+    
+            cboOrden.Items.Clear();
+            cboOrden.Items.Add("4 Pasos (Orden 4)"); 
+            cboOrden.Items.Add("5 Pasos (Orden 5)"); 
+            cboOrden.SelectedIndex = 0; 
             cboOrden.DropDownStyle = ComboBoxStyle.DropDownList;
 
             dgvTablaAdams.AllowUserToAddRows = false;
             dgvTablaAdams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTablaAdams.Columns.Clear();
+
+
+            dgvTablaAdams.Columns.Add("i", "Iteracion");
+            dgvTablaAdams.Columns.Add("t", "ti");
+            dgvTablaAdams.Columns.Add("w", "wi");
+            dgvTablaAdams.Columns.Add("metodo", "Metodo");
         }
 
         public adamsBa()
         {
             InitializeComponent();
             puente = new PythonBridge();
-            ConfigurarInicial();
+            ConfigurarFormulario();
 
         }
 
@@ -56,78 +56,38 @@ namespace MetodosNumericos
         {
             try
             {
-                // Inputs 
+
                 if (string.IsNullOrWhiteSpace(txtEcuacion.Text)) throw new Exception("Ingresa ecuacion.");
+
                 double t0 = double.Parse(txtT0.Text);
                 double w0 = double.Parse(txtW0.Text);
                 double h = double.Parse(txtH.Text);
                 double tf = double.Parse(txtTFinal.Text);
-                int orden = cboOrden.SelectedIndex + 2; 
 
-                dgvTablaAdams.Columns.Clear();
+                int pasos = cboOrden.SelectedIndex + 4;
 
-                
-                if (cboTipoMetodo.SelectedIndex == 0)
+
+                var resultados = puente.ResolverBashforth(txtEcuacion.Text, t0, w0, h, tf, pasos);
+
+
+                dgvTablaAdams.Rows.Clear();
+                foreach (var r in resultados)
                 {
-                    // === CASO 1: BASHFORTH ===
-                    // Configurar columnas para Bashforth
-                    dgvTablaAdams.Columns.Add("i", "Iteracion");
-                    dgvTablaAdams.Columns.Add("t", "ti");
-                    dgvTablaAdams.Columns.Add("w", "wi (Aprox)");
-                    dgvTablaAdams.Columns.Add("met", "Método");
+                    int idx = dgvTablaAdams.Rows.Add();
+                    DataGridViewRow row = dgvTablaAdams.Rows[idx];
 
-                    // Llamar Python
-                    var resultados = puente.ResolverBashforth(txtEcuacion.Text, t0, w0, h, tf, orden);
+                    row.Cells[0].Value = r.Iteracion;
+                    row.Cells[1].Value = r.T.ToString("F8");
+                    row.Cells[2].Value = r.W.ToString("F8");
+                    row.Cells[3].Value = r.Metodo;
 
-                    // Llenar coso dgv
-                    foreach (var r in resultados)
+                    if (r.Metodo.Contains("RK4")) /*puse la inicializacion de otro color gg*/
                     {
-                        int idx = dgvTablaAdams.Rows.Add();
-                        var row = dgvTablaAdams.Rows[idx];
-                        row.Cells[0].Value = r.Iteracion;
-                        row.Cells[1].Value = r.T.ToString("F8");
-                        row.Cells[2].Value = r.W.ToString("F8");
-                        row.Cells[3].Value = r.Metodo;
-
-
-                        if (r.Metodo.Contains("RK4")) row.DefaultCellStyle.BackColor = Color.LightYellow;
+                        row.DefaultCellStyle.BackColor = Color.LightYellow;
                     }
-                }
-                else
-                {
-
-                    dgvTablaAdams.Columns.Add("i", "Iteracion");
-                    dgvTablaAdams.Columns.Add("t", "ti");
-                    dgvTablaAdams.Columns.Add("w_pred", "Prediccion (Bash)");
-                    dgvTablaAdams.Columns.Add("w_corr", "Correccion (Moul)");
-                    dgvTablaAdams.Columns.Add("met", "Fase");
-
-                    // Llamar Python
-                    var resultados = puente.ResolverMoulton(txtEcuacion.Text, t0, w0, h, tf, orden);
-
-                    // Llenar coso
-                    foreach (var r in resultados) 
-                    /*CREO que no lo habia mencionado pero el foreach lo saque con chat pq 
-                     * nomas no me salia el ciclo (fue una tortura pq realmente ni chat  sabia lo que estaba haciendo)*/
+                    else
                     {
-                        int idx = dgvTablaAdams.Rows.Add();
-                        var row = dgvTablaAdams.Rows[idx];
-                        row.Cells[0].Value = r.Iteracion;
-                        row.Cells[1].Value = r.T.ToString("F8");
-                        row.Cells[2].Value = r.W_Pred.ToString("F8");
-                        row.Cells[3].Value = r.W_Corr.ToString("F8");
-                        row.Cells[4].Value = r.Metodo;
-
-                        // Colorama
-                        if (r.Metodo.Contains("RK4"))
-                        {
-                            row.DefaultCellStyle.BackColor = Color.LightYellow;
-                            row.Cells[2].Value = "-"; 
-                        }
-                        else
-                        {
-                            row.DefaultCellStyle.BackColor = Color.LightGreen;
-                        }
+                        row.DefaultCellStyle.BackColor = Color.White;
                     }
                 }
             }
@@ -135,6 +95,7 @@ namespace MetodosNumericos
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
 
         }
 
