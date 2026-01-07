@@ -201,6 +201,12 @@
     <Compile Include="lagranje.Designer.cs">
       <DependentUpon>lagranje.cs</DependentUpon>
     </Compile>
+    <Compile Include="minimosCuadrados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="minimosCuadrados.Designer.cs">
+      <DependentUpon>minimosCuadrados.cs</DependentUpon>
+    </Compile>
     <Compile Include="neville.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="lagranje.resx">
       <DependentUpon>lagranje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="minimosCuadrados.resx">
+      <DependentUpon>minimosCuadrados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="neville.resx">
       <DependentUpon>neville.cs</DependentUpon>

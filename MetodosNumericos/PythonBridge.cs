@@ -1084,7 +1084,7 @@ namespace MetodosNumericos
             public double Q { get; set; }
             public double QH { get; set; }
 
-            }
+        }
         public List<FilaRKF> ResolverRKF(string ec, double t0, double w0, double h, double tf, double tol, double fac)
         {
             using (Py.GIL())
@@ -1134,7 +1134,7 @@ namespace MetodosNumericos
 
 
 
-        /* =============================== ADAMS BASHHCOFT Y ADAMS MOULTON =========================== */
+        /* =============================== ADAMS BASHHCOFT =========================== */
 
         public class FilaBashforth
         {
@@ -1178,7 +1178,17 @@ namespace MetodosNumericos
             }
         }
 
-        public List<FilaMoulton> ResolverMoulton(string ec, double t0, double w0, double h, double tf, int orden)
+        /* ==================================== MINIMOS CUADRADOS ======================================== */
+        public class ResultadoMinimos
+        {
+            public string Ecuacion { get; set; }
+            public List<double> Coeficientes { get; set; }
+            public List<double> Y_Evaluadas { get; set; }
+            public Image Grafica { get; set; }
+        }
+
+
+        public ResultadoMinimos ResolverMinimosCuadrados(List<double> x, List<double> y, string tipo, int grado)
         {
             using (Py.GIL())
             {
@@ -1186,66 +1196,55 @@ namespace MetodosNumericos
                 sys.path.append(Directory.GetCurrentDirectory());
                 dynamic modulo = Py.Import("logica_math");
 
-                dynamic res = modulo.resolver_adams_moulton(ec, t0, w0, h, tf, orden);
+                dynamic res = modulo.resolver_minimos_cuadrados(x, y, tipo, grado);
 
-                if (CheckError(res)) throw new Exception(res.ToString());
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
 
-                var tabla = new List<FilaMoulton>();
-                int filas = (int)res.__len__();
+                ResultadoMinimos resultado = new ResultadoMinimos();
 
-                for (int i = 0; i < filas; i++)
+                // 1. Ecuacion (String)
+                resultado.Ecuacion = (string)res[0];
+
+                // 2. Coeficientes
+                resultado.Coeficientes = new List<double>();
+                dynamic listaCoef = res[1];
+                for (int i = 0; i < (int)listaCoef.__len__(); i++)
+                    resultado.Coeficientes.Add((double)listaCoef[i]);
+
+                // 3. Puntos Evaluados en la función (Y calculada)
+                resultado.Y_Evaluadas = new List<double>();
+                dynamic listaEval = res[2];
+                for (int i = 0; i < (int)listaEval.__len__(); i++)
+                    resultado.Y_Evaluadas.Add((double)listaEval[i]);
+
+                // 4. Decodificar Imagen Base64 
+                string b64Str = (string)res[3];
+                byte[] imageBytes = Convert.FromBase64String(b64Str);
+
+                using (MemoryStream ms = new MemoryStream(imageBytes))
                 {
-                    dynamic f = res[i];
-
-                    /*
-                     Seguramente se preguntaran que calajo es As<int>(), As<double>(), etc, pues bien, aca ya no solo estamos 
-                    pasando valores al azar, estamos pasado listas de python y estamos accediendo a sus valores mediante indices,
-                    se hace el parse con estas funciones para que no haya errores puesto que si no se hacen, lanza un error
-                    de q segun c no entiende lo que es un pythonObject cuando realmente es un dato primitivo (entre comillasxd)
-
-                    Es por eso que aca si no lo ponia, lanzaba un error
-                     */
-                    tabla.Add(new FilaMoulton
-                    {
-                        Iteracion = f[0].As<int>(),       
-                        T = f[1].As<double>(),            
-                        W_Pred = f[2].As<double>(),
-                        W_Corr = f[3].As<double>(),
-                        Metodo = f[4].As<string>()
-                    });
+                    // Creamos el Bitmap desde el stream
+                    resultado.Grafica = Image.FromStream(ms);
                 }
-                return tabla;
+
+                return resultado;
             }
+
+
+
+
+
         }
 
 
-        /*
-         * Esta funcion la llegue a usar en la prepa cuando usaba netbeans djkl;jdasldk, no sabia cual era el error
-         * y me vi forzado a improvisar, practicamente copia y pegue la funcion pq la tenia en una memoria, solamente 
-         * pues cambie las funciones de java a c#, pero en escencia, es lo mismo
-         * */
-        private bool CheckError(dynamic res)
-        {
-            // Si es un string o empieza con "Error", lanzamos excepción
-            try
-            {
-                string s = res.ToString();
-                return s.StartsWith("Error");
-            }
-            catch
-            {
-                return false; // Si no se puede convertir a string, asumimos que es una lista válida
-            }
-        }
+
 
 
 
 
 
     }
-
-
-
 }
 
 

@@ -230,5 +230,17 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void sistemasDeEcuacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void minimosCuadradosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            minimosCuadrados LOCURA = new minimosCuadrados();
+            LOCURA.Show();
+            LOCURA.WindowState = FormWindowState.Maximized;
+        }
     }
 }

@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import io
 from math import *
 import math
+import sys
+import base64
 
 #SYMPY NOS AHORRO AGNOS DE VIDA GGGGGGGGGGG
 
@@ -747,7 +749,7 @@ def generar_grafica_integracion(lista_x, lista_y, metodo, func_str):
 
         plt.figure(figsize=(5, 3.5))
         
-        # --- 1. DIBUJAR LA CURVA SUAVE (LA FUNCI�N REAL) ---
+        # --- 1. DIBUJAR LA CURVA SUAVE (LA FUNCIoN REAL) ---
         # Creamos una 'x' simbolica y convertimos el texto a funcion GRACIAS SYMPY TEAMO
         x_sym = sp.symbols('x')
         expr = sp.sympify(func_str)
@@ -760,7 +762,7 @@ def generar_grafica_integracion(lista_x, lista_y, metodo, func_str):
         x_suave = np.linspace(x_min, x_max, 200)
         y_suave = [f_real(val) for val in x_suave]
         
-        # Dibujamos la funci�n real en AZUL OSCURO
+        # Dibujamos la funcion real en AZUL OSCURO
         plt.plot(x_suave, y_suave, 'b-', linewidth=2, label=f'f(x) Real')
 
         # --- 2. SOMBREAR EL aREA (LA APROXIMACI�N) ---
@@ -1901,3 +1903,143 @@ def resolver_adams_bashforth(ecuacion_str, t0, w0, h, t_final, pasos_int):
     except Exception as e:
         return f"Error Adams: {str(e)}"
 
+    ###################################### COSO DE MINIMOS CUADRADOS #############################################
+
+def resolver_minimos_cuadrados(puntos_x, puntos_y, tipo, grado_poly=1):
+    """
+    Resuelve minimos cuadrados, evalua con Sympy y grafica con Matplotlib.
+    Retorna: [EcuacionStr, ListaCoeficientes, ListaYEvaluada, ImagenBase64]
+    Aunque el codigo se vea aca todo verboso, realmente ha sido de los metodos mas facilesxd
+    es posible que sea pq lo vimos en PPCD y casi que hice la misma implementacionxd, la unica
+    diferencia con la notebook de PPCD es q aca integramos nosotros el metodo de las ecuaciones,
+    de ahi en fuera, la mayor parte lo vimos en PPCD
+    """
+    try:
+        # -- PREPARACIÓN DE DATOS ---
+        X_proc = []
+        Y_proc = []
+        m = grado_poly #poly por monopoly (me gusta mucho el monopoly imperio JHKLDSAHKLSAD)
+
+        # Listas originales float para graficar los puntos dispersos
+        x_orig = [float(x) for x in puntos_x]
+        y_orig = [float(y) for y in puntos_y]
+
+        if tipo == "Polinomial":
+            X_proc = x_orig
+            Y_proc = y_orig
+            m = grado_poly
+            
+        elif tipo == "Exponencial 1": # y = be^(ax) -> ln(y) = ln(b) + ax
+            for i in range(len(x_orig)):
+                if y_orig[i] <= 0: return "Error: Y debe ser > 0 para Ln(y)"
+                X_proc.append(x_orig[i])
+                Y_proc.append(math.log(y_orig[i]))
+            m = 1 
+
+        elif tipo == "Exponencial 2": # y = bx^a -> ln(y) = ln(b) + a*ln(x)
+            for i in range(len(x_orig)):
+                if x_orig[i] <= 0 or y_orig[i] <= 0: return "Error: X,Y > 0 para Logaritmos"
+                X_proc.append(math.log(x_orig[i]))
+                Y_proc.append(math.log(y_orig[i]))
+            m = 1
+
+        n_puntos = len(X_proc)
+        
+        # ---  ARMADO DE MATRIZ Y SOLUCIÓN GAUSS  ---
+        matriz = [[0.0] * (m + 2) for _ in range(m + 1)]
+
+        for i in range(m + 1):
+            for j in range(m + 1):
+                matriz[i][j] = sum(val**(i+j) for val in X_proc)
+            matriz[i][m + 1] = sum(Y_proc[k] * (X_proc[k]**i) for k in range(n_puntos))
+
+        # Usamos el metodo que hice arriba 
+        res_gauss = resolver_gauss_general(matriz, "Total")
+        if isinstance(res_gauss, str): return res_gauss # Retornar error si falla (si amigos, if isintance esta cada 50 lineas kmadask)
+        
+        coefs = res_gauss[1] # [a0, a1, a2...]
+
+        # --- 3. CREACION DE FUNCION SIMBOLICA ---
+        x_sym = sp.symbols('x')
+        expr_sym = 0
+        
+        if tipo == "Polinomial":
+            # a0 + a1*x + a2*x^2 ...
+            for i, c in enumerate(coefs):
+                expr_sym += c * (x_sym**i)
+                
+        elif tipo == "Exponencial 1":
+            # coefs[0] = ln(b), coefs[1] = a
+            # y = e^ln(b) * e^(ax) -> b * exp(ax)
+            b = math.exp(coefs[0])
+            a = coefs[1]
+            expr_sym = b * sp.exp(a * x_sym)
+
+        elif tipo == "Exponencial 2":
+            # coefs[0] = ln(b), coefs[1] = a
+            # y = e^ln(b) * x^a -> b * x^a
+            b = math.exp(coefs[0])
+            a = coefs[1]
+            expr_sym = b * (x_sym**a)
+
+
+        f_eval = sp.lambdify(x_sym, expr_sym, "numpy")
+
+        # --  EVALUACION EN PUNTOS ORIGINALES ----
+        y_calculadas = []
+        for val_x in x_orig:
+            # Evaluamos usando sympy subs para precisión o la lambdify =========================================================================
+            try:
+                val = float(expr_sym.subs(x_sym, val_x))
+                y_calculadas.append(val)
+            except:
+                y_calculadas.append(0.0)
+
+        # --- 5. GRAFICACION CON MATPLOTLIB ---
+        plt.figure(figsize=(6, 4.5)) # Tamaño de figura
+        
+        # A) Puntos originales
+        plt.scatter(x_orig, y_orig, color='red', label='Datos', zorder=5)
+
+        # B) Curva de ajuste (suavizada)
+        try:
+            # Crear un rango denso de X para que la curva se vea bonita
+            gap = (max(x_orig) - min(x_orig)) * 0.1
+            if gap == 0: gap = 1
+            x_range = np.linspace(min(x_orig) - gap, max(x_orig) + gap, 200)
+            
+            # Evaluar la función en el rango
+            y_range = f_eval(x_range)
+            
+            # Si resulta una constante (ej: y=5), numpy devuelve un float, convertir a array
+            if np.isscalar(y_range): 
+                y_range = np.full_like(x_range, y_range)
+
+            plt.plot(x_range, y_range, color='blue', label=f'Ajuste {tipo}')
+        except Exception as plot_err:
+            plt.text(min(x_orig), min(y_orig), "Error graficando curva")
+
+        plt.title(f"Funcion con puntos calculados")
+        plt.xlabel("X")
+        plt.ylabel("Y")
+        plt.grid(True, linestyle='--', alpha=0.6)
+        plt.legend()
+        plt.tight_layout()
+
+        # Guardar en Buffer BytesIO (si, toda esta parte es un copy-paste de lo utilizado arriba)
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=100)
+        buf.seek(0)
+        plt.close() # Limpiar memoria de matplotlib
+
+        # Convertir a Base64 string para enviar a C#
+        img_b64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+
+        # ---  RETORNO ---
+        # Convertimos la expresion sympy a string bonito
+        ecuacion_str = str(expr_sym).replace("**", "^")
+        
+        return [ecuacion_str, coefs, y_calculadas, img_b64]
+
+    except Exception as e:
+        return f"Error Minimos Cuadrados: {str(e)}"
