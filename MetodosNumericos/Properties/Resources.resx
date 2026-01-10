@@ -118,20 +118,32 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="fondoAmarillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fondoAmarillo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Composición abstracta en colores geométricos" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Composición abstracta en colores geométricos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fondoAzul" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fondoAzul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="51" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\51.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fondoMosaico" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fondoMosaico.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EscudoESCOM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EscudoESCOM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoAmarillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoAmarillo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoIPN (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoIPN (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoIPN1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoIPN1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoIPN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoIPN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoNaranja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoNaranja.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoAzul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoAzul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fondoLavanda" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fondoLavanda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,13 +151,19 @@
   <data name="Contraste entre negro y rojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Contraste entre negro y rojo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Composición abstracta en colores geométricos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Composición abstracta en colores geométricos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FondoVerde" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FondoVerde.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fondoNaranja" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fondoNaranja.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fondoMosaico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fondoMosaico.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoIPN2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoIPN2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cuaderno" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cuaderno.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

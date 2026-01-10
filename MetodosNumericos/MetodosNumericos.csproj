@@ -392,6 +392,12 @@
     <Content Include="logica_math.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\cuaderno.jpg" />
+    <None Include="Resources\LogoIPN %282%29.png" />
+    <None Include="Resources\LogoIPN2.png" />
+    <None Include="Resources\LogoIPN1.png" />
+    <None Include="Resources\LogoIPN.png" />
+    <None Include="Resources\EscudoESCOM.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
