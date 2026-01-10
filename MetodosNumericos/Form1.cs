@@ -242,5 +242,20 @@ namespace MetodosNumericos
             LOCURA.Show();
             LOCURA.WindowState = FormWindowState.Maximized;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
