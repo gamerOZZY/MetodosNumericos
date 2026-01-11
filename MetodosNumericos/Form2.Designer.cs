@@ -1,4 +1,6 @@
-﻿namespace MetodosNumericos
+﻿using System;
+
+namespace MetodosNumericos
 {
     partial class frmBiseccion
     {
@@ -20,13 +22,18 @@
             base.Dispose(disposing);
         }
 
+        private void GetV()
+        {
+            return this.txtValorA.TextChanged += new System.EventHandler(this.txtValorA_TextChanged);
+        }
+
         #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(void v)
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBiseccion));
             this.label1 = new System.Windows.Forms.Label();
@@ -92,6 +99,7 @@
             this.txtValorA.Name = "txtValorA";
             this.txtValorA.Size = new System.Drawing.Size(113, 32);
             this.txtValorA.TabIndex = 2;
+            v;
             // 
             // txtValorB
             // 
@@ -348,6 +356,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void txtValorA_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
