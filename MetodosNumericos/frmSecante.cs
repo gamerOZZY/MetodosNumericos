@@ -79,5 +79,15 @@ namespace MetodosNumericos
         {
             this.Close();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmSecante_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

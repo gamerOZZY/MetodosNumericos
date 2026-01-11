@@ -22,9 +22,12 @@ namespace MetodosNumericos
             base.Dispose(disposing);
         }
 
+
+        //  correcion de error: return this.txtValorA.TextChanged += new System.EventHandler(this.txtValorA_TextChanged); cambios en la 26, 39 y 106
+
         private void GetV()
         {
-            return this.txtValorA.TextChanged += new System.EventHandler(this.txtValorA_TextChanged);
+            this.txtValorA.TextChanged += new System.EventHandler(this.txtValorA_TextChanged);
         }
 
         #region Windows Form Designer generated code
@@ -33,7 +36,8 @@ namespace MetodosNumericos
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(void v)
+        /// corrección de error raro ? este era el anterior private void InitializeComponent(void v)
+        private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBiseccion));
             this.label1 = new System.Windows.Forms.Label();
@@ -82,7 +86,7 @@ namespace MetodosNumericos
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(51, 95);
+            this.label2.Location = new System.Drawing.Point(414, 99);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 36);
@@ -94,18 +98,17 @@ namespace MetodosNumericos
             // 
             this.txtValorA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtValorA.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorA.Location = new System.Drawing.Point(106, 95);
+            this.txtValorA.Location = new System.Drawing.Point(469, 99);
             this.txtValorA.Margin = new System.Windows.Forms.Padding(2);
             this.txtValorA.Name = "txtValorA";
             this.txtValorA.Size = new System.Drawing.Size(113, 32);
             this.txtValorA.TabIndex = 2;
-            v;
             // 
             // txtValorB
             // 
             this.txtValorB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtValorB.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorB.Location = new System.Drawing.Point(106, 163);
+            this.txtValorB.Location = new System.Drawing.Point(469, 167);
             this.txtValorB.Margin = new System.Windows.Forms.Padding(2);
             this.txtValorB.Name = "txtValorB";
             this.txtValorB.Size = new System.Drawing.Size(113, 32);
@@ -117,7 +120,7 @@ namespace MetodosNumericos
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(52, 165);
+            this.label3.Location = new System.Drawing.Point(415, 169);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 34);
@@ -129,7 +132,7 @@ namespace MetodosNumericos
             // 
             this.txtNumMaxIter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtNumMaxIter.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumMaxIter.Location = new System.Drawing.Point(484, 95);
+            this.txtNumMaxIter.Location = new System.Drawing.Point(847, 99);
             this.txtNumMaxIter.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumMaxIter.Name = "txtNumMaxIter";
             this.txtNumMaxIter.Size = new System.Drawing.Size(123, 32);
@@ -141,7 +144,7 @@ namespace MetodosNumericos
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(278, 95);
+            this.label4.Location = new System.Drawing.Point(641, 99);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(205, 34);
@@ -153,7 +156,7 @@ namespace MetodosNumericos
             // 
             this.txtErrorMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtErrorMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtErrorMax.Location = new System.Drawing.Point(484, 162);
+            this.txtErrorMax.Location = new System.Drawing.Point(847, 166);
             this.txtErrorMax.Margin = new System.Windows.Forms.Padding(2);
             this.txtErrorMax.Name = "txtErrorMax";
             this.txtErrorMax.Size = new System.Drawing.Size(123, 32);
@@ -165,7 +168,7 @@ namespace MetodosNumericos
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(278, 165);
+            this.label5.Location = new System.Drawing.Point(641, 169);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(197, 34);
@@ -178,7 +181,7 @@ namespace MetodosNumericos
             this.btmCalcular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btmCalcular.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btmCalcular.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btmCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btmCalcular.Font = new System.Drawing.Font("Impact", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btmCalcular.Location = new System.Drawing.Point(1029, 107);
             this.btmCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btmCalcular.Name = "btmCalcular";
@@ -286,7 +289,7 @@ namespace MetodosNumericos
             // 
             this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Font = new System.Drawing.Font("Impact", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSalir.Location = new System.Drawing.Point(644, 663);
@@ -302,7 +305,7 @@ namespace MetodosNumericos
             // 
             this.txtFuncion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtFuncion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFuncion.Location = new System.Drawing.Point(770, 128);
+            this.txtFuncion.Location = new System.Drawing.Point(172, 130);
             this.txtFuncion.Margin = new System.Windows.Forms.Padding(2);
             this.txtFuncion.Name = "txtFuncion";
             this.txtFuncion.Size = new System.Drawing.Size(200, 32);
@@ -314,7 +317,7 @@ namespace MetodosNumericos
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(643, 130);
+            this.label6.Location = new System.Drawing.Point(45, 132);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 34);
@@ -327,7 +330,6 @@ namespace MetodosNumericos
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = global::MetodosNumericos.Properties.Resources.cuaderno;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.txtFuncion);

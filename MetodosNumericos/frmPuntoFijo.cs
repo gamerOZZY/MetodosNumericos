@@ -88,5 +88,20 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void txtErrorMax_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmPuntoFijo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNumMaxIter_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
