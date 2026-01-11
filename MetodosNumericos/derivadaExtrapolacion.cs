@@ -91,5 +91,10 @@ namespace MetodosNumericos
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        private void derivadaExtrapolacion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -133,5 +133,10 @@ namespace MetodosNumericos
         {
             this.Close();
         }
+
+        private void integracion_Compuesta_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
