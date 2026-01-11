@@ -262,7 +262,7 @@ namespace MetodosNumericos
 
         public double ObtenerY(string funcion, double x)
         {
-            using (Py.GIL()) // Bloqueo de seguridad de Python
+            using (Py.GIL())
             {
                 dynamic sys = Py.Import("sys");
                 sys.path.append(Directory.GetCurrentDirectory());
@@ -270,7 +270,7 @@ namespace MetodosNumericos
 
                 dynamic resultado = modulo.evaluar_y(funcion, x);
 
-                // Intentamos convertir a double, si falla es porque devolvió texto de error
+
                 try
                 {
                     return (double)resultado;
@@ -1238,6 +1238,43 @@ namespace MetodosNumericos
         }
 
 
+
+        /* =================================== SISTEMAS RK4 ======================================*/
+        public List<List<double>> ResolverSistemaRK4(List<string> ecuaciones, List<double> iniciales, double t0, double tf, double h)
+        {
+            using (Py.GIL())
+            {
+                dynamic sys = Py.Import("sys");
+                sys.path.append(Directory.GetCurrentDirectory());
+                dynamic modulo = Py.Import("logica_math");
+
+
+                dynamic res = modulo.resolver_rk4_sistemas(ecuaciones, iniciales, t0, tf, h);
+
+
+                if (res is string || res.ToString().StartsWith("Error"))
+                    throw new Exception(res.ToString());
+
+
+                List<List<double>> tabla = new List<List<double>>();
+
+                int filas = (int)res.__len__();
+                for (int i = 0; i < filas; i++)
+                {
+                    List<double> fila = new List<double>();
+                    dynamic filaPy = res[i];
+                    int cols = (int)filaPy.__len__();
+
+                    for (int j = 0; j < cols; j++)
+                    {
+                        fila.Add((double)filaPy[j]);
+                    }
+                    tabla.Add(fila);
+                }
+
+                return tabla;
+            }
+        }
 
 
 

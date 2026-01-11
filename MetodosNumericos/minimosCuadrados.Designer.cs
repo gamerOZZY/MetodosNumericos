@@ -53,7 +53,7 @@
             // 
             this.pbGrafica.Location = new System.Drawing.Point(261, 282);
             this.pbGrafica.Name = "pbGrafica";
-            this.pbGrafica.Size = new System.Drawing.Size(790, 304);
+            this.pbGrafica.Size = new System.Drawing.Size(814, 563);
             this.pbGrafica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbGrafica.TabIndex = 0;
             this.pbGrafica.TabStop = false;

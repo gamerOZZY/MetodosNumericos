@@ -233,7 +233,9 @@ namespace MetodosNumericos
 
         private void sistemasDeEcuacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            lol rk = new lol();
+            rk.Show();
+            rk.WindowState = FormWindowState.Maximized;
         }
 
         private void minimosCuadradosToolStripMenuItem_Click(object sender, EventArgs e)

@@ -2011,7 +2011,7 @@ def resolver_minimos_cuadrados(puntos_x, puntos_y, tipo, grado_poly=1):
             # Evaluar la función en el rango
             y_range = f_eval(x_range)
             
-            # Si resulta una constante (ej: y=5), numpy devuelve un float, convertir a array
+            # Si resulta una constante (ej: y=5), numpy devuelve un float, convertir a array (aca ya use arrayas pq namas era para la grafica)
             if np.isscalar(y_range): 
                 y_range = np.full_like(x_range, y_range)
 
@@ -2043,3 +2043,83 @@ def resolver_minimos_cuadrados(puntos_x, puntos_y, tipo, grado_poly=1):
 
     except Exception as e:
         return f"Error Minimos Cuadrados: {str(e)}"
+
+#############################################################3 SISTEMAS EDOs CON RK4 ########################################
+"""
+OKEY, este programa estuvo realmente raro, por alguna razon, funcionaxdddd, medio revise en internet como se realizaba (lo intente
+hacer como vimos en clase pero nomas no me quedo). Segun lo que encontre, es una funcion vectorial, la cual acepta t (tiempo) y
+un vector (u1,u2,u3,u4), ya con base a eso, realiza aproximaciones.
+
+Honestamente, este, el de factorizaciones de matrices y el rkfelberg, fueron los que mas me constaron, es chistoso ya que
+este es MUCHISIMO mas facil o al menos su codigo es mas sencillo que en los otros, pero eso de meter las funciones como u1 * 5-u2 o
+cosas asi, me confundio mucho. De ahi en fuera, creo que todo esta bienxd
+"""
+def resolver_rk4_sistemas(ecuaciones_str, valores_iniciales, t0, tf, h):
+    """
+    Resuelve sistema de EDOs usando RK4.
+   
+    """
+    try:
+        #  Definir variables simbolicas 
+        t = sp.symbols('t')
+        u1, u2, u3, u4 = sp.symbols('u1 u2 u3 u4')
+        
+        #Convertir strings a funciones 
+        funciones = []
+        # Argumentos para todas las funciones: f(t, u1, u2, u3, u4)
+        args_sym = [t, u1, u2, u3, u4]
+        
+        for ec_str in ecuaciones_str:
+            expr = sp.sympify(ec_str)
+            # Creamos una funcion rapida compatible (esta linea si me la saque de chat, perdonamigos)
+            f_lambda = sp.lambdify(args_sym, expr, modules=['numpy', 'math'])
+            funciones.append(f_lambda)
+
+        # 3. Inicializacion
+        t_actual = float(t0)
+        u_actual = np.array(valores_iniciales, dtype=float)
+        tf = float(tf)
+        h = float(h)
+        
+        # Estructura de resultados: Primera fila (Valores iniciales)
+        # Formato de fila: [t, u1, u2, ...]
+        resultados = []
+        fila_inicial = [t_actual] + u_actual.tolist()
+        resultados.append(fila_inicial)
+
+        #    Metodo RK4
+        pasos = int((tf - t0) / h)
+        
+        # Funcion auxiliar para evaluar el vector de derivadas en (ti, ui)
+        def evaluar_F(ti, ui):
+            # Preparamos los argumentos. Rellenamos con 0 si faltan variables 
+            vals = list(ui)
+            while len(vals) < 4: vals.append(0.0)
+            
+            derivadas = []
+            for f in funciones:
+                # f(t, u1, u2, u3, u4)
+                d = f(ti, vals[0], vals[1], vals[2], vals[3])
+                derivadas.append(d)
+            return np.array(derivadas, dtype=float)
+
+        for _ in range(pasos):
+            k1 = evaluar_F(t_actual, u_actual)
+            k2 = evaluar_F(t_actual + 0.5*h, u_actual + 0.5*h*k1)
+            k3 = evaluar_F(t_actual + 0.5*h, u_actual + 0.5*h*k2)
+            k4 = evaluar_F(t_actual + h, u_actual + h*k3)
+
+            # Formula RK4
+            u_siguiente = u_actual + (h / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
+            t_actual += h
+            
+            # Guardar resultados
+            fila = [t_actual] + u_siguiente.tolist()
+            resultados.append(fila)
+            
+            u_actual = u_siguiente
+
+        return resultados
+
+    except Exception as e:
+        return f"Error RK4: {str(e)}"
