@@ -1254,7 +1254,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
 
             # --- INTERCAMBIOS ---
             
-            # 1. Si es Pivoteo Total y el maximo esta en otra columna, cambiamos COLUMNAS
+            #  Si es Pivoteo Total y el maximo esta en otra columna, cambiamos COLUMNAS
             if metodo == "Total" and col_max != k:
                 # Intercambiar columnas en la matriz
                 for i in range(n):
@@ -1263,7 +1263,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
                 # IMPORTANTE: Recordar que cambiamos el orden de las variables
                 orden_vars[k], orden_vars[col_max] = orden_vars[col_max], orden_vars[k]
 
-            # 2. Intercambio de FILAS (Comun para todos los metodos)
+            #  Intercambio de FILAS (Comun para todos los metodos)
             if fila_max != k:
                 M[k], M[fila_max] = M[fila_max], M[k]
                 # En escalado, tambien intercambiamos el factor de escala correspondiente
@@ -1459,22 +1459,25 @@ def resolver_factorizacion(matriz, metodo):
 
     except Exception as e:
         return f"Error Algoritmo: {str(e)}"
-    
+   
 
 ############################## METODO DE EULER PARA ECUACIONES DIFERENCIALES ###########################
 """ 
 Para simplificar calculos y evitarnos hacer mucha alebra simbolica, opte por pedir la ecuacion con la y' ya 
 despejada (y tambien porque aun con sympy, no tengo ni la menor idea de como hacer despeje de variables
 de forma simbolicaxd)
+
+
+AVISO: Esto funciona con
 """
 
 def resolver_euler(ecuacion_str, x0, y0, h, x_final):
     """
     Resuelve EDO usando Euler.
-    Asume que el usuario ingresa codigo de confianza.
+    este funciona como f(x,y) y no cmo f(t,y) pq usa eval() y esa funciona solo con x,y gg
     """
     try:
-        # 1. Convertir datos que vienen de C# (strings) a numeros
+        #  Convertir datos que vienen de C# (strings) a numeros
         x = float(x0)
         y = float(y0)
         hh = float(h)
