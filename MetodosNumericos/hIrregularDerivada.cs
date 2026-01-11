@@ -122,5 +122,10 @@ namespace MetodosNumericos
         {
             this.Close();
         }
+
+        private void hIrregularDerivada_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
