@@ -1175,7 +1175,8 @@ def integrar_doble_simpson(func_str, a, b, c, d):
 
 ## A este punto, el codigo a partir de aqui, es PURA BASURA, la mayor parte salio con prueba y error,
 ## se que hace la mayor parte del codigo pero si me preguntan que hace x linea explicitamente, seguramente
-## no me voy a acordar del todo (si es muy compleja) puesto que unas partes (seguramente se van a dar
+## no me voy a acordar del todo (si es muy compleja. btw, segun yo, comente bien paso a paso
+# pero pues es igual) puesto que unas partes (seguramente se van a dar
 ## cuenta de cuales) tuve que investigarlas como hacerlas. MUY POSIBLEMENTE, habia formas mas eficientes
 ## o mas sencillas de realizarse, sin embargo, mi cerebro no me dio para masxd, si quieren, pueden tocar
 ## el codigo si ven que en alguna parte se podria hacer mas eficiente, sino, dejenlo como esta, si funciona,
@@ -1271,7 +1272,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
                     S[k], S[fila_max] = S[fila_max], S[k]
 
             # Validacion: Si el pivote es 0, el sistema no tiene solucion unica
-            if abs(M[k][k]) < 1e-15: #ya se que no es cero, pero si pasa de los 15 ceros, el float no lo va a guardar directamente
+            if abs(M[k][k]) < 1e-31: #ya se que no es cero, pero si pasa de los 15 ceros, el float no lo va a guardar directamente
                 return f"Error: Pivote cercano a cero en paso {k}."
 
             # --- ELIMINACIÓN GAUSSIANA (Hacer ceros abajo) ---
@@ -1287,7 +1288,7 @@ def resolver_gauss_general(matriz_aumentada, metodo):
         x_calc = [0.0] * n
         
         # Validacion final del último elemento (M[n-1][n-1])
-        if abs(M[n-1][n-1]) < 1e-15: return "Error: ultimo pivote 0."
+        if abs(M[n-1][n-1]) < 1e-31: return "Error: ultimo pivote 0."
 
         for i in range(n - 1, -1, -1):
             suma = sum(M[i][j] * x_calc[j] for j in range(i + 1, n))
@@ -1918,6 +1919,18 @@ def resolver_minimos_cuadrados(puntos_x, puntos_y, tipo, grado_poly=1):
     de ahi en fuera, la mayor parte lo vimos en PPCD
     """
     try:
+        #print(tipo)
+        """
+        NO TIENEN NI FOKIN IDEA DE LO QUE ME COSTO ESTE CODIGO, FUNCIONABA EN NOTEBOOKS Y TODO EPRO CASUALMENTE
+        CADA QUE ELEGIA EXPONENCIAL AQUI, daba pivote cercano a 0, pense que eran los numeros y me puse a hacer pruebas a mano
+        en la libreta, no encontraba nada, fui a c# y movi de todo para DESPUES DE TRES 3 HORAS DE MRD encontrara que el error
+        estaba en el combobox, porque c# enviaba la formula del exponencial pero en python lo tenia como Exponencial 1 o algo asi
+        entonces se saltaba los pasos de los elifs y metia una matriz 2x2 en una de tamano m+2 x m+1 entonces daba 0 el pivote al 
+        momento de resolver, NOTAR ESE ERROR ME COSTO HORAS DE VIDA, por eso deje ahi comentado el print pq fue gracioso que
+        despues de estar a punto de sacarme los ojos se me ocurriera imprimir el tipo que se estaba pasando y me diera esoxdddddd
+        """
+
+
         # -- PREPARACIÓN DE DATOS ---
         X_proc = []
         Y_proc = []
@@ -1932,14 +1945,14 @@ def resolver_minimos_cuadrados(puntos_x, puntos_y, tipo, grado_poly=1):
             Y_proc = y_orig
             m = grado_poly
             
-        elif tipo == "Exponencial 1": # y = be^(ax) -> ln(y) = ln(b) + ax
+        elif tipo == "y = ae^bx": # y = be^(ax) -> ln(y) = ln(b) + ax
             for i in range(len(x_orig)):
                 if y_orig[i] <= 0: return "Error: Y debe ser > 0 para Ln(y)"
                 X_proc.append(x_orig[i])
                 Y_proc.append(math.log(y_orig[i]))
             m = 1 
 
-        elif tipo == "Exponencial 2": # y = bx^a -> ln(y) = ln(b) + a*ln(x)
+        elif tipo == "y = ax^b": # y = bx^a -> ln(y) = ln(b) + a*ln(x)
             for i in range(len(x_orig)):
                 if x_orig[i] <= 0 or y_orig[i] <= 0: return "Error: X,Y > 0 para Logaritmos"
                 X_proc.append(math.log(x_orig[i]))
@@ -1962,7 +1975,7 @@ def resolver_minimos_cuadrados(puntos_x, puntos_y, tipo, grado_poly=1):
         
         coefs = res_gauss[1] # [a0, a1, a2...]
 
-        # --- 3. CREACION DE FUNCION SIMBOLICA ---
+        # ---  CREACION DE FUNCION SIMBOLICA ---
         x_sym = sp.symbols('x')
         expr_sym = 0
         
@@ -1971,14 +1984,14 @@ def resolver_minimos_cuadrados(puntos_x, puntos_y, tipo, grado_poly=1):
             for i, c in enumerate(coefs):
                 expr_sym += c * (x_sym**i)
                 
-        elif tipo == "Exponencial 1":
+        elif tipo == "y = ae^bx":
             # coefs[0] = ln(b), coefs[1] = a
             # y = e^ln(b) * e^(ax) -> b * exp(ax)
             b = math.exp(coefs[0])
             a = coefs[1]
             expr_sym = b * sp.exp(a * x_sym)
 
-        elif tipo == "Exponencial 2":
+        elif tipo == "y = ax^b":
             # coefs[0] = ln(b), coefs[1] = a
             # y = e^ln(b) * x^a -> b * x^a
             b = math.exp(coefs[0])

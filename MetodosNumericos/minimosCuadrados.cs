@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.FSharp.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,7 +19,7 @@ namespace MetodosNumericos
         private void ConfigurarCosoEste()
         {
 
-            cboTipo.Items.AddRange(new string[] { "Polinomial", " y = ae^bx", "y = ax^b" });
+            cboTipo.Items.AddRange(new string[] { "Polinomial", "y = ae^bx", "y = ax^b" });
             cboTipo.SelectedIndex = 0;
             cboTipo.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -69,7 +70,7 @@ namespace MetodosNumericos
                 string tipo = cboTipo.SelectedItem.ToString();
                 int grado = (int)numGrado.Value;
 
-
+                /*MessageBox.Show(tipo);*/
                 var resultado = puente.ResolverMinimosCuadrados(listaX, listaY, tipo, grado);
 
                 //  Mostrar Ecuacion
