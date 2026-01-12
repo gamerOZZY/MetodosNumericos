@@ -89,5 +89,15 @@ namespace MetodosNumericos
             txtEcuacion.Focus();
 
         }
+
+        private void dgvTablaEuler_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void eulerEDO_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -130,5 +130,15 @@ namespace MetodosNumericos
             txtTolerancia.Clear();
 
         }
+
+        private void RKF_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
