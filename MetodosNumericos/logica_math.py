@@ -345,7 +345,7 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
         n = len(lista_x)
         if n < 2: return None
 
-        # --- 1. Recalcular Coeficientes (Diferencias Divididas) ---
+        # ---  Recalcular Coeficientes (Diferencias Divididas) ---
         F = [[0] * n for _ in range(n)]
         for i in range(n): F[i][0] = lista_y[i]
 
@@ -358,8 +358,8 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
         
         b = [F[i][i] for i in range(n)] # Coeficientes
 
-        # --- 2. Crear funcion para evaluar el polinomio ---
-        # Esta funcion "lambda" eval�a P(x) usando los coeficientes b
+        # ---  Crear funcion para evaluar el polinomio ---
+        # Esta funcion  evalua P(x) usando los coeficientes b
         def P(x_val):
             resultado = b[0]
             factor = 1
@@ -368,9 +368,9 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
                 resultado = resultado + b[i] * factor
             return resultado
 
-        # --- 3. Configurar la Gr�fica con Matplotlib ---
+        # - Configurar la Grafica con Matplotlib ---
         plt.figure(figsize=(6, 4)) # Tamagnoo de la imagen
-        plt.style.use('seaborn-v0_8-whitegrid') # Estilo bonito (opcional)
+        plt.style.use('seaborn-v0_8-whitegrid') # Estilo bonito 
 
         # Generar dominio X suave para la curva (desde el minX hasta maxX un poco extendido)
         x_min, x_max = min(lista_x), max(lista_x)
@@ -386,7 +386,7 @@ def generar_grafica_newton_bytes(lista_x, lista_y, x_interes):
         y_interes = P(x_interes)
         plt.scatter([x_interes], [y_interes], color='green', s=100, marker='*', label='Punto Interes', zorder=10)
 
-        plt.title("Interpolacion de Newton")
+        plt.title("Grafica")
         plt.xlabel("X")
         plt.ylabel("Y")
         plt.legend()

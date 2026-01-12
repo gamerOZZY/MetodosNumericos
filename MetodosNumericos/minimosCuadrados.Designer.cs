@@ -51,7 +51,7 @@
             // 
             // pbGrafica
             // 
-            this.pbGrafica.Location = new System.Drawing.Point(261, 282);
+            this.pbGrafica.Location = new System.Drawing.Point(915, 430);
             this.pbGrafica.Name = "pbGrafica";
             this.pbGrafica.Size = new System.Drawing.Size(814, 563);
             this.pbGrafica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -65,7 +65,7 @@
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
-            this.dgvDatos.Size = new System.Drawing.Size(790, 241);
+            this.dgvDatos.Size = new System.Drawing.Size(864, 364);
             this.dgvDatos.TabIndex = 1;
             // 
             // txtX
@@ -166,20 +166,22 @@
             // lblEcuacion
             // 
             this.lblEcuacion.AutoSize = true;
-            this.lblEcuacion.Location = new System.Drawing.Point(23, 423);
+            this.lblEcuacion.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEcuacion.Location = new System.Drawing.Point(134, 388);
             this.lblEcuacion.Name = "lblEcuacion";
-            this.lblEcuacion.Size = new System.Drawing.Size(63, 16);
+            this.lblEcuacion.Size = new System.Drawing.Size(130, 24);
             this.lblEcuacion.TabIndex = 12;
-            this.lblEcuacion.Text = "Ecuacion";
+            this.lblEcuacion.Text = "__________";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 457);
+            this.label6.Font = new System.Drawing.Font("Unispace", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(22, 388);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 16);
+            this.label6.Size = new System.Drawing.Size(106, 24);
             this.label6.TabIndex = 13;
-            this.label6.Text = "__________________";
+            this.label6.Text = "Ecuacion";
             // 
             // button1
             // 
@@ -195,7 +197,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1516, 832);
+            this.ClientSize = new System.Drawing.Size(1741, 994);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblEcuacion);

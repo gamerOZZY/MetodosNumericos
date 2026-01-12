@@ -188,7 +188,7 @@
             this.dgvTablaRKF.Name = "dgvTablaRKF";
             this.dgvTablaRKF.RowHeadersWidth = 51;
             this.dgvTablaRKF.RowTemplate.Height = 24;
-            this.dgvTablaRKF.Size = new System.Drawing.Size(1065, 485);
+            this.dgvTablaRKF.Size = new System.Drawing.Size(1901, 485);
             this.dgvTablaRKF.TabIndex = 29;
             // 
             // button1
@@ -205,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1359, 653);
+            this.ClientSize = new System.Drawing.Size(1939, 653);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvTablaRKF);
             this.Controls.Add(this.label7);

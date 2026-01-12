@@ -27,7 +27,7 @@ namespace MetodosNumericos
 
             dgvTablaRK.Columns.Add("i", "Iteracion");
             dgvTablaRK.Columns.Add("t", "ti");
-            dgvTablaRK.Columns.Add("w", "wi (Resultado)");
+            dgvTablaRK.Columns.Add("w", "wi");
             dgvTablaRK.Columns.Add("k1", "k1");
             dgvTablaRK.Columns.Add("k2", "k2");
             dgvTablaRK.Columns.Add("k3", "k3");
@@ -79,9 +79,9 @@ namespace MetodosNumericos
                 {
                     // Preparamos los valores de K como strings
                     // Si el orden es 2, k3 y k4 seran "-"
-                    string sK1 = fila.K1.ToString("F8");
-                    string sK2 = fila.K2.ToString("F8");
-                    string sK3 = (orden >= 3) ? fila.K3.ToString("F8") : "-";
+                    string sK1 = fila.K1.ToString("F6");
+                    string sK2 = fila.K2.ToString("F6");
+                    string sK3 = (orden >= 3) ? fila.K3.ToString("F6") : "-";
                     string sK4 = (orden == 4) ? fila.K4.ToString("F8") : "-";
 
                     // La fila 0 no tiene Ks, ponemos guiones para que no se vea namas el espacio vacio gg
@@ -92,8 +92,8 @@ namespace MetodosNumericos
 
                     dgvTablaRK.Rows.Add(
                         fila.Iteracion,
-                        fila.T.ToString("F8"),
-                        fila.W.ToString("F8"),
+                        fila.T.ToString("F6"),
+                        fila.W.ToString("F6"),
                         sK1, sK2, sK3, sK4
                     );
                 }
