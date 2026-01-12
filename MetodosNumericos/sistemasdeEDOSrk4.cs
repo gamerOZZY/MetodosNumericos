@@ -125,5 +125,10 @@ namespace MetodosNumericos
         {
             ActualizarInputs((int)numEcuaciones.Value);
         }
+
+        private void dgvTabla_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

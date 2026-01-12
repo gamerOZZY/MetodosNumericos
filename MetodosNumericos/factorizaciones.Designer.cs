@@ -59,7 +59,7 @@
             // numDimension
             // 
             this.numDimension.Location = new System.Drawing.Point(33, 131);
-            this.numDimension.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numDimension.Margin = new System.Windows.Forms.Padding(2);
             this.numDimension.Name = "numDimension";
             this.numDimension.Size = new System.Drawing.Size(90, 27);
             this.numDimension.TabIndex = 0;
@@ -77,7 +77,7 @@
             // btnIniciar
             // 
             this.btnIniciar.Location = new System.Drawing.Point(177, 129);
-            this.btnIniciar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnIniciar.Margin = new System.Windows.Forms.Padding(2);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(64, 29);
             this.btnIniciar.TabIndex = 2;
@@ -89,7 +89,7 @@
             // 
             this.txtFilaInput.Enabled = false;
             this.txtFilaInput.Location = new System.Drawing.Point(33, 202);
-            this.txtFilaInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFilaInput.Margin = new System.Windows.Forms.Padding(2);
             this.txtFilaInput.Name = "txtFilaInput";
             this.txtFilaInput.Size = new System.Drawing.Size(76, 27);
             this.txtFilaInput.TabIndex = 3;
@@ -108,7 +108,7 @@
             // 
             this.btnAgregarFila.Enabled = false;
             this.btnAgregarFila.Location = new System.Drawing.Point(31, 240);
-            this.btnAgregarFila.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregarFila.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregarFila.Name = "btnAgregarFila";
             this.btnAgregarFila.Size = new System.Drawing.Size(73, 32);
             this.btnAgregarFila.TabIndex = 5;
@@ -121,7 +121,7 @@
             this.cboMetodo.Enabled = false;
             this.cboMetodo.FormattingEnabled = true;
             this.cboMetodo.Location = new System.Drawing.Point(31, 319);
-            this.cboMetodo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboMetodo.Margin = new System.Windows.Forms.Padding(2);
             this.cboMetodo.Name = "cboMetodo";
             this.cboMetodo.Size = new System.Drawing.Size(116, 28);
             this.cboMetodo.TabIndex = 6;
@@ -140,7 +140,7 @@
             // 
             this.dgvMatrizOriginal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMatrizOriginal.Location = new System.Drawing.Point(487, 129);
-            this.dgvMatrizOriginal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvMatrizOriginal.Margin = new System.Windows.Forms.Padding(2);
             this.dgvMatrizOriginal.Name = "dgvMatrizOriginal";
             this.dgvMatrizOriginal.RowHeadersWidth = 51;
             this.dgvMatrizOriginal.RowTemplate.Height = 24;
@@ -151,7 +151,7 @@
             // 
             this.dgvMatrizL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMatrizL.Location = new System.Drawing.Point(850, 129);
-            this.dgvMatrizL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvMatrizL.Margin = new System.Windows.Forms.Padding(2);
             this.dgvMatrizL.Name = "dgvMatrizL";
             this.dgvMatrizL.RowHeadersWidth = 51;
             this.dgvMatrizL.RowTemplate.Height = 24;
@@ -162,7 +162,7 @@
             // 
             this.dgvMatrizU.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMatrizU.Location = new System.Drawing.Point(487, 434);
-            this.dgvMatrizU.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvMatrizU.Margin = new System.Windows.Forms.Padding(2);
             this.dgvMatrizU.Name = "dgvMatrizU";
             this.dgvMatrizU.RowHeadersWidth = 51;
             this.dgvMatrizU.RowTemplate.Height = 24;
@@ -173,18 +173,19 @@
             // 
             this.dgvMatrizP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMatrizP.Location = new System.Drawing.Point(850, 434);
-            this.dgvMatrizP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvMatrizP.Margin = new System.Windows.Forms.Padding(2);
             this.dgvMatrizP.Name = "dgvMatrizP";
             this.dgvMatrizP.RowHeadersWidth = 51;
             this.dgvMatrizP.RowTemplate.Height = 24;
             this.dgvMatrizP.Size = new System.Drawing.Size(320, 226);
             this.dgvMatrizP.TabIndex = 11;
+            this.dgvMatrizP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMatrizP_CellContentClick);
             // 
             // btnCalcular
             // 
             this.btnCalcular.Enabled = false;
             this.btnCalcular.Location = new System.Drawing.Point(327, 224);
-            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(86, 32);
             this.btnCalcular.TabIndex = 12;
@@ -195,7 +196,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(327, 305);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(86, 29);
             this.btnLimpiar.TabIndex = 13;
@@ -263,7 +264,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(659, 698);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(67, 40);
             this.button1.TabIndex = 19;
@@ -309,7 +310,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numDimension);
             this.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "factorizaciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "factorizaciones";

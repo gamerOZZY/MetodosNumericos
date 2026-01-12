@@ -4,13 +4,13 @@
 import sympy as sp
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg') # Configuraciin lol (para python en las graficas )
 import matplotlib.pyplot as plt
-import io
+import io #pasar bytes a memoria ram
 from math import *
 import math
 import sys
-import base64
+import base64 #pasar las graficas
 
 #SYMPY NOS AHORRO AGNOS DE VIDA GGGGGGGGGGG
 

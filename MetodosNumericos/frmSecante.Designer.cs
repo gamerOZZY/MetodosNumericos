@@ -197,6 +197,7 @@
             this.dgvSecante.RowTemplate.Height = 24;
             this.dgvSecante.Size = new System.Drawing.Size(1337, 384);
             this.dgvSecante.TabIndex = 20;
+            this.dgvSecante.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSecante_CellContentClick);
             // 
             // IterAct
             // 

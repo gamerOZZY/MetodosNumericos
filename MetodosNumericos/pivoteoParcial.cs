@@ -51,7 +51,7 @@ namespace MetodosNumericos
                     return;
                 }
 
-                // Parsear texto: "2, 3.5, -4, 10" -> List<double>
+                // Parsear texto: 2, 3.5, -4, 10 List<double>
                 string[] partes = txtFilaInput.Text.Split(',');
 
                 if (partes.Length != dimensionN + 1)
@@ -61,7 +61,7 @@ namespace MetodosNumericos
 
                 List<double> filaNueva = new List<double>();
 
-                // Convertir y validar
+                // convertir y validar
                 foreach (var p in partes)
                 {
                     if (!double.TryParse(p.Trim(), out double val))
@@ -69,17 +69,17 @@ namespace MetodosNumericos
                     filaNueva.Add(val);
                 }
 
-                // Agregar a memoria y al Grid
+                // agregar a memoria y al Grid
                 matrizInput.Add(filaNueva);
 
-                // Convertir List<double> a object[] para el DataGridView
+                // convertir List<double> a object[] para el DataGridView
                 object[] rowObjects = filaNueva.Select(x => (object)x).ToArray();
                 dgvMatrizOriginal.Rows.Add(rowObjects);
 
                 txtFilaInput.Clear();
                 txtFilaInput.Focus();
 
-                // Verificar si terminamos
+                // verificar si terminamos
                 if (matrizInput.Count == dimensionN)
                 {
                     MessageBox.Show("Matriz completa. Pulsa Calcular.");
@@ -89,7 +89,7 @@ namespace MetodosNumericos
                 }
                 else
                 {
-                    // Indicador visual de qué fila sigue
+                    // indicador visual de que fila sigue
                     lblInstruccion.Text = $"Ingresa fila {matrizInput.Count + 1}:";
                 }
 
@@ -105,14 +105,14 @@ namespace MetodosNumericos
         {
             try
             {
-                // Validar que eligieron un metodo
+                // validar que eligieron un metodo
                 if (cboMetodo.SelectedItem == null) throw new Exception("Selecciona un metodo de pivoteo.");
                 string metodoElegido = cboMetodo.SelectedItem.ToString();
 
-                // Llamar al puente con el metodo
+                // llamar al puente con el metodo
                 var resultado = puente.ResolverGauss(matrizInput, metodoElegido);
 
-                // A) Mostrar Matriz Triangular
+                // A) mostrar matriz triangular
                 dgvMatrizTriangular.Rows.Clear();
                 dgvMatrizTriangular.Columns.Clear();
 
@@ -186,6 +186,11 @@ namespace MetodosNumericos
         }
 
         private void cboMetodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvMatrizTriangular_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

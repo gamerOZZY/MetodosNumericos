@@ -63,7 +63,7 @@
             // numEcuaciones
             // 
             this.numEcuaciones.Location = new System.Drawing.Point(129, 157);
-            this.numEcuaciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numEcuaciones.Margin = new System.Windows.Forms.Padding(2);
             this.numEcuaciones.Name = "numEcuaciones";
             this.numEcuaciones.Size = new System.Drawing.Size(90, 27);
             this.numEcuaciones.TabIndex = 0;
@@ -82,7 +82,7 @@
             // txtT0
             // 
             this.txtT0.Location = new System.Drawing.Point(129, 214);
-            this.txtT0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtT0.Margin = new System.Windows.Forms.Padding(2);
             this.txtT0.Name = "txtT0";
             this.txtT0.Size = new System.Drawing.Size(76, 27);
             this.txtT0.TabIndex = 2;
@@ -110,7 +110,7 @@
             // txtTf
             // 
             this.txtTf.Location = new System.Drawing.Point(129, 264);
-            this.txtTf.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTf.Margin = new System.Windows.Forms.Padding(2);
             this.txtTf.Name = "txtTf";
             this.txtTf.Size = new System.Drawing.Size(76, 27);
             this.txtTf.TabIndex = 4;
@@ -128,15 +128,15 @@
             // txtH
             // 
             this.txtH.Location = new System.Drawing.Point(129, 327);
-            this.txtH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtH.Margin = new System.Windows.Forms.Padding(2);
             this.txtH.Name = "txtH";
             this.txtH.Size = new System.Drawing.Size(76, 27);
             this.txtH.TabIndex = 6;
             // 
             // btnCalcular
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(157, 376);
-            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCalcular.Location = new System.Drawing.Point(405, 342);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(76, 28);
             this.btnCalcular.TabIndex = 8;
@@ -146,8 +146,8 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(294, 376);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Location = new System.Drawing.Point(405, 396);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(76, 28);
             this.btnLimpiar.TabIndex = 9;
@@ -158,13 +158,14 @@
             // dgvTabla
             // 
             this.dgvTabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTabla.Location = new System.Drawing.Point(698, 257);
-            this.dgvTabla.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvTabla.Location = new System.Drawing.Point(699, 305);
+            this.dgvTabla.Margin = new System.Windows.Forms.Padding(2);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.RowHeadersWidth = 51;
             this.dgvTabla.RowTemplate.Height = 24;
-            this.dgvTabla.Size = new System.Drawing.Size(417, 147);
+            this.dgvTabla.Size = new System.Drawing.Size(417, 386);
             this.dgvTabla.TabIndex = 10;
+            this.dgvTabla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTabla_CellContentClick);
             // 
             // lblU1
             // 
@@ -179,7 +180,7 @@
             // txtEc1
             // 
             this.txtEc1.Location = new System.Drawing.Point(702, 154);
-            this.txtEc1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEc1.Margin = new System.Windows.Forms.Padding(2);
             this.txtEc1.Name = "txtEc1";
             this.txtEc1.Size = new System.Drawing.Size(76, 27);
             this.txtEc1.TabIndex = 11;
@@ -197,7 +198,7 @@
             // txtVal1
             // 
             this.txtVal1.Location = new System.Drawing.Point(702, 217);
-            this.txtVal1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVal1.Margin = new System.Windows.Forms.Padding(2);
             this.txtVal1.Name = "txtVal1";
             this.txtVal1.Size = new System.Drawing.Size(76, 27);
             this.txtVal1.TabIndex = 13;
@@ -215,7 +216,7 @@
             // txtVal2
             // 
             this.txtVal2.Location = new System.Drawing.Point(809, 217);
-            this.txtVal2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVal2.Margin = new System.Windows.Forms.Padding(2);
             this.txtVal2.Name = "txtVal2";
             this.txtVal2.Size = new System.Drawing.Size(76, 27);
             this.txtVal2.TabIndex = 17;
@@ -233,7 +234,7 @@
             // txtEc2
             // 
             this.txtEc2.Location = new System.Drawing.Point(808, 156);
-            this.txtEc2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEc2.Margin = new System.Windows.Forms.Padding(2);
             this.txtEc2.Name = "txtEc2";
             this.txtEc2.Size = new System.Drawing.Size(76, 27);
             this.txtEc2.TabIndex = 15;
@@ -251,7 +252,7 @@
             // txtVal3
             // 
             this.txtVal3.Location = new System.Drawing.Point(924, 217);
-            this.txtVal3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVal3.Margin = new System.Windows.Forms.Padding(2);
             this.txtVal3.Name = "txtVal3";
             this.txtVal3.Size = new System.Drawing.Size(76, 27);
             this.txtVal3.TabIndex = 21;
@@ -269,7 +270,7 @@
             // txtEc3
             // 
             this.txtEc3.Location = new System.Drawing.Point(923, 156);
-            this.txtEc3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEc3.Margin = new System.Windows.Forms.Padding(2);
             this.txtEc3.Name = "txtEc3";
             this.txtEc3.Size = new System.Drawing.Size(76, 27);
             this.txtEc3.TabIndex = 19;
@@ -287,7 +288,7 @@
             // txtVal4
             // 
             this.txtVal4.Location = new System.Drawing.Point(1040, 217);
-            this.txtVal4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVal4.Margin = new System.Windows.Forms.Padding(2);
             this.txtVal4.Name = "txtVal4";
             this.txtVal4.Size = new System.Drawing.Size(76, 27);
             this.txtVal4.TabIndex = 25;
@@ -305,17 +306,17 @@
             // txtEc4
             // 
             this.txtEc4.Location = new System.Drawing.Point(1039, 156);
-            this.txtEc4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEc4.Margin = new System.Windows.Forms.Padding(2);
             this.txtEc4.Name = "txtEc4";
             this.txtEc4.Size = new System.Drawing.Size(76, 27);
             this.txtEc4.TabIndex = 23;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(657, 719);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(56, 662);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 19);
+            this.button1.Size = new System.Drawing.Size(56, 29);
             this.button1.TabIndex = 27;
             this.button1.Text = "Salir";
             this.button1.UseVisualStyleBackColor = true;
@@ -356,7 +357,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numEcuaciones);
             this.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "lol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "sistemasdeEDOSrk4";

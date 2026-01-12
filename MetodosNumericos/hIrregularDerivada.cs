@@ -46,7 +46,7 @@ namespace MetodosNumericos
         {
             try
             {
-                // Validar inputs
+
                 if (string.IsNullOrWhiteSpace(txtFuncionNewton.Text)) throw new Exception("Falta la función");
                 if (string.IsNullOrWhiteSpace(txtX.Text)) throw new Exception("Falta X");
 

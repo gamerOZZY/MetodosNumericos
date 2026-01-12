@@ -89,7 +89,7 @@ namespace MetodosNumericos
             cboMetodo.Enabled = true;
 
 
-            // Crear columnas  (x0, x1, x2...)
+            // crear columnas  (x0, x1, x2...)
             for (int i = 0; i < dimensionN; i++)
             {
                 dgvMatrizOriginal.Columns.Add($"c{i}", $"Col {i + 1}");
@@ -111,7 +111,7 @@ namespace MetodosNumericos
             {
                 if (matrizInput.Count >= dimensionN) return;
 
-                // 1. Parsear datos
+                
                 string[] partes = txtFilaInput.Text.Split(',');
                 if (partes.Length != dimensionN)
                     throw new Exception($"Se requieren {dimensionN} valores.");
@@ -124,13 +124,13 @@ namespace MetodosNumericos
                     filaNueva.Add(val);
                 }
 
-                // 2. Agregar a memoria y Grid
+               
                 matrizInput.Add(filaNueva);
                 dgvMatrizOriginal.Rows.Add(filaNueva.Select(x => (object)x).ToArray());
                 txtFilaInput.Clear();
                 txtFilaInput.Focus();
 
-                // 3. Verificar si terminamos
+               
                 if (matrizInput.Count == dimensionN)
                 {
                     FinalizarIngresoDatos();
@@ -212,6 +212,11 @@ namespace MetodosNumericos
         }
 
         private void lol_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvMatrizP_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

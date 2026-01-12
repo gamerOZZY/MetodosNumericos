@@ -330,6 +330,7 @@ namespace MetodosNumericos
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::MetodosNumericos.Properties.Resources.cuaderno;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.txtFuncion);

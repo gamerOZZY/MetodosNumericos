@@ -89,5 +89,10 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void dgvSecante_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

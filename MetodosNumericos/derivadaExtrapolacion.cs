@@ -17,8 +17,6 @@ namespace MetodosNumericos
         {
             InitializeComponent();
             puente = new PythonBridge();
-
-            // Llenar combo de niveles por defecto
             cboNiveles.Items.AddRange(new object[] { "3", "4", "5", "6" });
             cboNiveles.SelectedIndex = 1; // Selecciona 4 por defecto
         }
