@@ -44,23 +44,28 @@
             this.lblNodos = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picGrafica)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(50, 106);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 16);
+            this.label1.Size = new System.Drawing.Size(121, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "Funcion";
             // 
             // btnCalcular
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(27, 255);
+            this.btnCalcular.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalcular.Location = new System.Drawing.Point(57, 483);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcular.Size = new System.Drawing.Size(94, 38);
             this.btnCalcular.TabIndex = 1;
             this.btnCalcular.Text = "Calcular";
             this.btnCalcular.UseVisualStyleBackColor = true;
@@ -68,64 +73,79 @@
             // 
             // txtFuncion
             // 
-            this.txtFuncion.Location = new System.Drawing.Point(15, 28);
+            this.txtFuncion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFuncion.Location = new System.Drawing.Point(57, 147);
+            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFuncion.Name = "txtFuncion";
-            this.txtFuncion.Size = new System.Drawing.Size(100, 22);
+            this.txtFuncion.Size = new System.Drawing.Size(114, 26);
             this.txtFuncion.TabIndex = 2;
             // 
             // txtA
             // 
-            this.txtA.Location = new System.Drawing.Point(15, 142);
+            this.txtA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtA.Location = new System.Drawing.Point(57, 294);
+            this.txtA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtA.Name = "txtA";
-            this.txtA.Size = new System.Drawing.Size(100, 22);
+            this.txtA.Size = new System.Drawing.Size(114, 26);
             this.txtA.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 123);
+            this.label2.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(50, 253);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 16);
+            this.label2.Size = new System.Drawing.Size(194, 39);
             this.label2.TabIndex = 3;
             this.label2.Text = "limite inferior";
             // 
             // txtB
             // 
-            this.txtB.Location = new System.Drawing.Point(15, 84);
+            this.txtB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtB.Location = new System.Drawing.Point(57, 220);
+            this.txtB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtB.Name = "txtB";
-            this.txtB.Size = new System.Drawing.Size(100, 22);
+            this.txtB.Size = new System.Drawing.Size(114, 26);
             this.txtB.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 65);
+            this.label3.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(50, 179);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 16);
+            this.label3.Size = new System.Drawing.Size(209, 39);
             this.label3.TabIndex = 5;
             this.label3.Text = "limite superior";
             // 
             // txtError
             // 
-            this.txtError.Location = new System.Drawing.Point(15, 200);
+            this.txtError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtError.Location = new System.Drawing.Point(57, 391);
+            this.txtError.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtError.Name = "txtError";
-            this.txtError.Size = new System.Drawing.Size(100, 22);
+            this.txtError.Size = new System.Drawing.Size(114, 26);
             this.txtError.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 181);
+            this.label4.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(50, 333);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 16);
+            this.label4.Size = new System.Drawing.Size(198, 39);
             this.label4.TabIndex = 7;
             this.label4.Text = "Error deseado";
             // 
             // picGrafica
             // 
-            this.picGrafica.Location = new System.Drawing.Point(156, 28);
+            this.picGrafica.Location = new System.Drawing.Point(407, 106);
+            this.picGrafica.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picGrafica.Name = "picGrafica";
-            this.picGrafica.Size = new System.Drawing.Size(763, 281);
+            this.picGrafica.Size = new System.Drawing.Size(876, 496);
             this.picGrafica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picGrafica.TabIndex = 9;
             this.picGrafica.TabStop = false;
@@ -134,18 +154,21 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(197, 340);
+            this.label5.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(692, 606);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(157, 16);
+            this.label5.Size = new System.Drawing.Size(206, 23);
             this.label5.TabIndex = 10;
             this.label5.Text = "Numero de subintervalos";
             // 
             // lblResultado
             // 
             this.lblResultado.AutoSize = true;
-            this.lblResultado.Location = new System.Drawing.Point(756, 365);
+            this.lblResultado.Location = new System.Drawing.Point(1111, 642);
+            this.lblResultado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(119, 16);
+            this.lblResultado.Size = new System.Drawing.Size(103, 13);
             this.lblResultado.TabIndex = 11;
             this.lblResultado.Text = "________________";
             this.lblResultado.Click += new System.EventHandler(this.lblResultado_Click);
@@ -153,9 +176,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(770, 340);
+            this.label7.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1120, 606);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 16);
+            this.label7.Size = new System.Drawing.Size(90, 23);
             this.label7.TabIndex = 12;
             this.label7.Text = "Resultado";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -163,17 +188,20 @@
             // lblNodos
             // 
             this.lblNodos.AutoSize = true;
-            this.lblNodos.Location = new System.Drawing.Point(197, 365);
+            this.lblNodos.Location = new System.Drawing.Point(692, 642);
+            this.lblNodos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNodos.Name = "lblNodos";
-            this.lblNodos.Size = new System.Drawing.Size(112, 16);
+            this.lblNodos.Size = new System.Drawing.Size(97, 13);
             this.lblNodos.TabIndex = 13;
             this.lblNodos.Text = "_______________";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(27, 404);
+            this.btnLimpiar.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(407, 606);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(98, 49);
             this.btnLimpiar.TabIndex = 14;
             this.btnLimpiar.Text = "Reiniciar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -181,19 +209,33 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(918, 404);
+            this.button1.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(639, 708);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(77, 30);
             this.button1.TabIndex = 15;
             this.button1.Text = "salir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(306, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(904, 80);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Cuadratura Gaussiana Adaptativa";
+            // 
             // cuadratura_adaptiva
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 449);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
+            this.BackgroundImage = global::MetodosNumericos.Properties.Resources.cuaderno;
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblNodos);
@@ -210,8 +252,12 @@
             this.Controls.Add(this.txtFuncion);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "cuadratura_adaptiva";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "cuadratura_adaptiva";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.cuadratura_adaptiva_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picGrafica)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -236,5 +282,6 @@
         private System.Windows.Forms.Label lblNodos;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
     }
 }

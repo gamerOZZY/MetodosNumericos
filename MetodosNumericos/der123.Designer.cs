@@ -49,43 +49,48 @@
             // txtFuncion
             // 
             this.txtFuncion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.txtFuncion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFuncion.Location = new System.Drawing.Point(216, 134);
             this.txtFuncion.Margin = new System.Windows.Forms.Padding(2);
             this.txtFuncion.Name = "txtFuncion";
-            this.txtFuncion.Size = new System.Drawing.Size(223, 20);
+            this.txtFuncion.Size = new System.Drawing.Size(223, 29);
             this.txtFuncion.TabIndex = 0;
+            this.txtFuncion.TextChanged += new System.EventHandler(this.txtFuncion_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(103, 129);
+            this.label1.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(83, 131);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 29);
+            this.label1.Size = new System.Drawing.Size(129, 36);
             this.label1.TabIndex = 1;
             this.label1.Text = "Función =";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(492, 129);
+            this.label2.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(472, 131);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 29);
+            this.label2.Size = new System.Drawing.Size(47, 36);
             this.label2.TabIndex = 2;
             this.label2.Text = "x =";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtX
             // 
             this.txtX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.txtX.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtX.Location = new System.Drawing.Point(525, 134);
             this.txtX.Margin = new System.Windows.Forms.Padding(2);
             this.txtX.Name = "txtX";
-            this.txtX.Size = new System.Drawing.Size(99, 20);
+            this.txtX.Size = new System.Drawing.Size(99, 29);
             this.txtX.TabIndex = 3;
             // 
             // btnAgregar
@@ -93,7 +98,7 @@
             this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnAgregar.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnAgregar.Location = new System.Drawing.Point(647, 125);
+            this.btnAgregar.Location = new System.Drawing.Point(662, 131);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(113, 45);
@@ -119,21 +124,24 @@
             // lstTabla
             // 
             this.lstTabla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lstTabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstTabla.FormattingEnabled = true;
+            this.lstTabla.ItemHeight = 24;
             this.lstTabla.Location = new System.Drawing.Point(64, 206);
             this.lstTabla.Margin = new System.Windows.Forms.Padding(2);
             this.lstTabla.Name = "lstTabla";
-            this.lstTabla.Size = new System.Drawing.Size(696, 407);
+            this.lstTabla.Size = new System.Drawing.Size(696, 388);
             this.lstTabla.TabIndex = 6;
             // 
             // cboPuntos
             // 
             this.cboPuntos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cboPuntos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPuntos.FormattingEnabled = true;
-            this.cboPuntos.Location = new System.Drawing.Point(923, 131);
+            this.cboPuntos.Location = new System.Drawing.Point(946, 131);
             this.cboPuntos.Margin = new System.Windows.Forms.Padding(2);
             this.cboPuntos.Name = "cboPuntos";
-            this.cboPuntos.Size = new System.Drawing.Size(92, 21);
+            this.cboPuntos.Size = new System.Drawing.Size(92, 32);
             this.cboPuntos.TabIndex = 7;
             this.cboPuntos.SelectedIndexChanged += new System.EventHandler(this.cboPuntos_SelectedIndexChanged);
             // 
@@ -141,22 +149,23 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(833, 129);
+            this.label3.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(832, 131);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 29);
+            this.label3.Size = new System.Drawing.Size(104, 36);
             this.label3.TabIndex = 8;
             this.label3.Text = "Puntos:";
             // 
             // cboMetodos
             // 
             this.cboMetodos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cboMetodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMetodos.FormattingEnabled = true;
-            this.cboMetodos.Location = new System.Drawing.Point(1159, 131);
+            this.cboMetodos.Location = new System.Drawing.Point(1225, 131);
             this.cboMetodos.Margin = new System.Windows.Forms.Padding(2);
             this.cboMetodos.Name = "cboMetodos";
-            this.cboMetodos.Size = new System.Drawing.Size(92, 21);
+            this.cboMetodos.Size = new System.Drawing.Size(92, 32);
             this.cboMetodos.TabIndex = 9;
             this.cboMetodos.SelectedIndexChanged += new System.EventHandler(this.cboMetodos_SelectedIndexChanged);
             // 
@@ -164,11 +173,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1055, 129);
+            this.label4.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(1086, 133);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 29);
+            this.label4.Size = new System.Drawing.Size(121, 36);
             this.label4.TabIndex = 10;
             this.label4.Text = "Derivada";
             // 
@@ -177,7 +186,7 @@
             this.btnCalcular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnCalcular.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalcular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnCalcular.Location = new System.Drawing.Point(946, 216);
+            this.btnCalcular.Location = new System.Drawing.Point(946, 240);
             this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(108, 35);
@@ -191,7 +200,7 @@
             this.lblResultado.AutoSize = true;
             this.lblResultado.BackColor = System.Drawing.Color.Transparent;
             this.lblResultado.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResultado.Location = new System.Drawing.Point(920, 323);
+            this.lblResultado.Location = new System.Drawing.Point(941, 403);
             this.lblResultado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResultado.Name = "lblResultado";
             this.lblResultado.Size = new System.Drawing.Size(130, 29);
@@ -203,7 +212,7 @@
             this.lblPasoH.AutoSize = true;
             this.lblPasoH.BackColor = System.Drawing.Color.Transparent;
             this.lblPasoH.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPasoH.Location = new System.Drawing.Point(920, 409);
+            this.lblPasoH.Location = new System.Drawing.Point(941, 489);
             this.lblPasoH.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPasoH.Name = "lblPasoH";
             this.lblPasoH.Size = new System.Drawing.Size(130, 29);

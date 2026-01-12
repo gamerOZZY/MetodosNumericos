@@ -87,5 +87,10 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void cuadratura_adaptiva_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

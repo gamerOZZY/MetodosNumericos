@@ -72,5 +72,10 @@ namespace MetodosNumericos
         {
 
         }
+
+        private void txtFuncion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
