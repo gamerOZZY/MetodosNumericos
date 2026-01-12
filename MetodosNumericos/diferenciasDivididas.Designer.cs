@@ -42,6 +42,7 @@
             this.picGrafica = new System.Windows.Forms.PictureBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGrafica)).BeginInit();
@@ -49,41 +50,49 @@
             // 
             // txtFuncion
             // 
-            this.txtFuncion.Location = new System.Drawing.Point(37, 53);
+            this.txtFuncion.Location = new System.Drawing.Point(133, 91);
+            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFuncion.Name = "txtFuncion";
-            this.txtFuncion.Size = new System.Drawing.Size(100, 22);
+            this.txtFuncion.Size = new System.Drawing.Size(180, 20);
             this.txtFuncion.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 17);
+            this.label1.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(57, 86);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 16);
+            this.label1.Size = new System.Drawing.Size(72, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "funcion";
+            this.label1.Text = "Función";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 108);
+            this.label2.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(57, 122);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 16);
+            this.label2.Size = new System.Drawing.Size(17, 23);
             this.label2.TabIndex = 3;
             this.label2.Text = "x";
             // 
             // txtX
             // 
-            this.txtX.Location = new System.Drawing.Point(37, 144);
+            this.txtX.Location = new System.Drawing.Point(57, 147);
+            this.txtX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtX.Name = "txtX";
-            this.txtX.Size = new System.Drawing.Size(100, 22);
+            this.txtX.Size = new System.Drawing.Size(104, 20);
             this.txtX.TabIndex = 2;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(37, 186);
+            this.btnAgregar.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(55, 189);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.Size = new System.Drawing.Size(106, 30);
             this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "introducir";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -92,71 +101,83 @@
             // dgvDatos
             // 
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatos.Location = new System.Drawing.Point(179, 53);
+            this.dgvDatos.Location = new System.Drawing.Point(165, 115);
+            this.dgvDatos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
-            this.dgvDatos.Size = new System.Drawing.Size(444, 213);
+            this.dgvDatos.Size = new System.Drawing.Size(333, 185);
             this.dgvDatos.TabIndex = 5;
             // 
             // cboTipo
             // 
             this.cboTipo.FormattingEnabled = true;
-            this.cboTipo.Location = new System.Drawing.Point(40, 361);
+            this.cboTipo.Location = new System.Drawing.Point(57, 365);
+            this.cboTipo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboTipo.Name = "cboTipo";
-            this.cboTipo.Size = new System.Drawing.Size(121, 24);
+            this.cboTipo.Size = new System.Drawing.Size(92, 21);
             this.cboTipo.TabIndex = 6;
             // 
             // btnCalcular
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(40, 404);
+            this.btnCalcular.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalcular.Location = new System.Drawing.Point(59, 404);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcular.Size = new System.Drawing.Size(90, 30);
             this.btnCalcular.TabIndex = 7;
-            this.btnCalcular.Text = "calcular";
+            this.btnCalcular.Text = "Calcular";
             this.btnCalcular.UseVisualStyleBackColor = true;
             this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 
             // dgvTabla
             // 
             this.dgvTabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTabla.Location = new System.Drawing.Point(182, 361);
+            this.dgvTabla.Location = new System.Drawing.Point(167, 365);
+            this.dgvTabla.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.RowHeadersWidth = 51;
             this.dgvTabla.RowTemplate.Height = 24;
-            this.dgvTabla.Size = new System.Drawing.Size(441, 251);
+            this.dgvTabla.Size = new System.Drawing.Size(331, 204);
             this.dgvTabla.TabIndex = 8;
             // 
             // txtPolinomio
             // 
-            this.txtPolinomio.Location = new System.Drawing.Point(811, 108);
+            this.txtPolinomio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPolinomio.Location = new System.Drawing.Point(821, 199);
+            this.txtPolinomio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPolinomio.Name = "txtPolinomio";
-            this.txtPolinomio.Size = new System.Drawing.Size(398, 22);
+            this.txtPolinomio.Size = new System.Drawing.Size(300, 26);
             this.txtPolinomio.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(969, 80);
+            this.label3.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(930, 174);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 16);
+            this.label3.Size = new System.Drawing.Size(90, 23);
             this.label3.TabIndex = 10;
-            this.label3.Text = "polinomio";
+            this.label3.Text = "Polinomio";
             // 
             // picGrafica
             // 
-            this.picGrafica.Location = new System.Drawing.Point(652, 214);
+            this.picGrafica.Location = new System.Drawing.Point(718, 233);
+            this.picGrafica.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picGrafica.Name = "picGrafica";
-            this.picGrafica.Size = new System.Drawing.Size(590, 369);
+            this.picGrafica.Size = new System.Drawing.Size(496, 336);
             this.picGrafica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picGrafica.TabIndex = 11;
             this.picGrafica.TabStop = false;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(37, 225);
+            this.btnLimpiar.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(408, 304);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(90, 30);
             this.btnLimpiar.TabIndex = 12;
             this.btnLimpiar.Text = "Reiniciar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -164,19 +185,33 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1118, 599);
+            this.button1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(650, 707);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(71, 31);
             this.button1.TabIndex = 13;
-            this.button1.Text = "salir";
+            this.button1.Text = "Salir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(451, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(590, 80);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Diferencias Divididas";
+            // 
             // diferenciasDivididas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1271, 649);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
+            this.BackgroundImage = global::MetodosNumericos.Properties.Resources.cuaderno;
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.picGrafica);
@@ -191,8 +226,11 @@
             this.Controls.Add(this.txtX);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFuncion);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "diferenciasDivididas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "diferenciasDivididas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGrafica)).EndInit();
@@ -217,5 +255,6 @@
         private System.Windows.Forms.PictureBox picGrafica;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
     }
 }

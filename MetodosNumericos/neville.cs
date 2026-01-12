@@ -110,5 +110,10 @@ namespace MetodosNumericos
             lblResultado.Text = "Resultado: --";
             if (picGrafica.Image != null) picGrafica.Image = null;
         }
+
+        private void dgvTablaNeville_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

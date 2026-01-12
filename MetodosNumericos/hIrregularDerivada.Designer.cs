@@ -172,19 +172,20 @@
             // 
             this.lblResultado.AutoSize = true;
             this.lblResultado.BackColor = System.Drawing.Color.Transparent;
+            this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultado.Location = new System.Drawing.Point(692, 259);
             this.lblResultado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(103, 13);
+            this.lblResultado.Size = new System.Drawing.Size(153, 20);
             this.lblResultado.TabIndex = 10;
             this.lblResultado.Text = "________________";
             // 
             // picGrafica
             // 
-            this.picGrafica.Location = new System.Drawing.Point(571, 401);
+            this.picGrafica.Location = new System.Drawing.Point(571, 307);
             this.picGrafica.Margin = new System.Windows.Forms.Padding(2);
             this.picGrafica.Name = "picGrafica";
-            this.picGrafica.Size = new System.Drawing.Size(599, 202);
+            this.picGrafica.Size = new System.Drawing.Size(599, 296);
             this.picGrafica.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picGrafica.TabIndex = 11;
             this.picGrafica.TabStop = false;
