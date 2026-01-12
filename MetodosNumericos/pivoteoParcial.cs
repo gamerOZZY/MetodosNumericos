@@ -179,5 +179,15 @@ namespace MetodosNumericos
             MessageBox.Show($"Ingresa los {dimensionN + 1} valores de la Fila 1 separados por coma.");
             txtFilaInput.Focus();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboMetodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

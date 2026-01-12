@@ -48,6 +48,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblInstruccion = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numDimension)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrizOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrizL)).BeginInit();
@@ -57,25 +58,28 @@
             // 
             // numDimension
             // 
-            this.numDimension.Location = new System.Drawing.Point(12, 32);
+            this.numDimension.Location = new System.Drawing.Point(33, 131);
+            this.numDimension.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numDimension.Name = "numDimension";
-            this.numDimension.Size = new System.Drawing.Size(120, 22);
+            this.numDimension.Size = new System.Drawing.Size(90, 27);
             this.numDimension.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(33, 110);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
+            this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Dimension";
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(12, 61);
+            this.btnIniciar.Location = new System.Drawing.Point(177, 129);
+            this.btnIniciar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(75, 23);
+            this.btnIniciar.Size = new System.Drawing.Size(64, 29);
             this.btnIniciar.TabIndex = 2;
             this.btnIniciar.Text = "Iniciar";
             this.btnIniciar.UseVisualStyleBackColor = true;
@@ -84,26 +88,29 @@
             // txtFilaInput
             // 
             this.txtFilaInput.Enabled = false;
-            this.txtFilaInput.Location = new System.Drawing.Point(12, 119);
+            this.txtFilaInput.Location = new System.Drawing.Point(33, 202);
+            this.txtFilaInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFilaInput.Name = "txtFilaInput";
-            this.txtFilaInput.Size = new System.Drawing.Size(100, 22);
+            this.txtFilaInput.Size = new System.Drawing.Size(76, 27);
             this.txtFilaInput.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 100);
+            this.label2.Location = new System.Drawing.Point(33, 180);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 16);
+            this.label2.Size = new System.Drawing.Size(31, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Fila";
             // 
             // btnAgregarFila
             // 
             this.btnAgregarFila.Enabled = false;
-            this.btnAgregarFila.Location = new System.Drawing.Point(12, 147);
+            this.btnAgregarFila.Location = new System.Drawing.Point(31, 240);
+            this.btnAgregarFila.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregarFila.Name = "btnAgregarFila";
-            this.btnAgregarFila.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarFila.Size = new System.Drawing.Size(73, 32);
             this.btnAgregarFila.TabIndex = 5;
             this.btnAgregarFila.Text = "Agregar";
             this.btnAgregarFila.UseVisualStyleBackColor = true;
@@ -113,66 +120,73 @@
             // 
             this.cboMetodo.Enabled = false;
             this.cboMetodo.FormattingEnabled = true;
-            this.cboMetodo.Location = new System.Drawing.Point(12, 209);
+            this.cboMetodo.Location = new System.Drawing.Point(31, 319);
+            this.cboMetodo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboMetodo.Name = "cboMetodo";
-            this.cboMetodo.Size = new System.Drawing.Size(121, 24);
+            this.cboMetodo.Size = new System.Drawing.Size(116, 28);
             this.cboMetodo.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 190);
+            this.label3.Location = new System.Drawing.Point(30, 291);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 16);
+            this.label3.Size = new System.Drawing.Size(57, 20);
             this.label3.TabIndex = 7;
             this.label3.Text = "Metodo";
             // 
             // dgvMatrizOriginal
             // 
             this.dgvMatrizOriginal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatrizOriginal.Location = new System.Drawing.Point(195, 61);
+            this.dgvMatrizOriginal.Location = new System.Drawing.Point(487, 129);
+            this.dgvMatrizOriginal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvMatrizOriginal.Name = "dgvMatrizOriginal";
             this.dgvMatrizOriginal.RowHeadersWidth = 51;
             this.dgvMatrizOriginal.RowTemplate.Height = 24;
-            this.dgvMatrizOriginal.Size = new System.Drawing.Size(426, 278);
+            this.dgvMatrizOriginal.Size = new System.Drawing.Size(320, 226);
             this.dgvMatrizOriginal.TabIndex = 8;
             // 
             // dgvMatrizL
             // 
             this.dgvMatrizL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatrizL.Location = new System.Drawing.Point(679, 61);
+            this.dgvMatrizL.Location = new System.Drawing.Point(850, 129);
+            this.dgvMatrizL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvMatrizL.Name = "dgvMatrizL";
             this.dgvMatrizL.RowHeadersWidth = 51;
             this.dgvMatrizL.RowTemplate.Height = 24;
-            this.dgvMatrizL.Size = new System.Drawing.Size(426, 278);
+            this.dgvMatrizL.Size = new System.Drawing.Size(320, 226);
             this.dgvMatrizL.TabIndex = 9;
             // 
             // dgvMatrizU
             // 
             this.dgvMatrizU.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatrizU.Location = new System.Drawing.Point(195, 386);
+            this.dgvMatrizU.Location = new System.Drawing.Point(487, 434);
+            this.dgvMatrizU.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvMatrizU.Name = "dgvMatrizU";
             this.dgvMatrizU.RowHeadersWidth = 51;
             this.dgvMatrizU.RowTemplate.Height = 24;
-            this.dgvMatrizU.Size = new System.Drawing.Size(426, 278);
+            this.dgvMatrizU.Size = new System.Drawing.Size(320, 226);
             this.dgvMatrizU.TabIndex = 10;
             // 
             // dgvMatrizP
             // 
             this.dgvMatrizP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatrizP.Location = new System.Drawing.Point(679, 386);
+            this.dgvMatrizP.Location = new System.Drawing.Point(850, 434);
+            this.dgvMatrizP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvMatrizP.Name = "dgvMatrizP";
             this.dgvMatrizP.RowHeadersWidth = 51;
             this.dgvMatrizP.RowTemplate.Height = 24;
-            this.dgvMatrizP.Size = new System.Drawing.Size(426, 278);
+            this.dgvMatrizP.Size = new System.Drawing.Size(320, 226);
             this.dgvMatrizP.TabIndex = 11;
             // 
             // btnCalcular
             // 
             this.btnCalcular.Enabled = false;
-            this.btnCalcular.Location = new System.Drawing.Point(16, 268);
+            this.btnCalcular.Location = new System.Drawing.Point(327, 224);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(75, 23);
+            this.btnCalcular.Size = new System.Drawing.Size(86, 32);
             this.btnCalcular.TabIndex = 12;
             this.btnCalcular.Text = "Calcular";
             this.btnCalcular.UseVisualStyleBackColor = true;
@@ -180,9 +194,10 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(16, 316);
+            this.btnLimpiar.Location = new System.Drawing.Point(327, 305);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(86, 29);
             this.btnLimpiar.TabIndex = 13;
             this.btnLimpiar.Text = "Reiniciar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -191,63 +206,88 @@
             // lol
             // 
             this.lol.AutoSize = true;
-            this.lol.Location = new System.Drawing.Point(378, 34);
+            this.lol.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lol.Location = new System.Drawing.Point(500, 104);
+            this.lol.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lol.Name = "lol";
-            this.lol.Size = new System.Drawing.Size(89, 16);
+            this.lol.Size = new System.Drawing.Size(124, 23);
             this.lol.TabIndex = 14;
             this.lol.Text = "Matriz original";
+            this.lol.Click += new System.EventHandler(this.lol_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(868, 32);
+            this.label5.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(867, 102);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 16);
+            this.label5.Size = new System.Drawing.Size(69, 23);
             this.label5.TabIndex = 15;
             this.label5.Text = "Matriz L";
             // 
             // lblU
             // 
             this.lblU.AutoSize = true;
-            this.lblU.Location = new System.Drawing.Point(378, 367);
+            this.lblU.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblU.Location = new System.Drawing.Point(510, 409);
+            this.lblU.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblU.Name = "lblU";
-            this.lblU.Size = new System.Drawing.Size(55, 16);
+            this.lblU.Size = new System.Drawing.Size(72, 23);
             this.lblU.TabIndex = 16;
             this.lblU.Text = "Matriz U";
+            this.lblU.Click += new System.EventHandler(this.lblU_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(827, 367);
+            this.label7.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(846, 409);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(153, 16);
+            this.label7.Size = new System.Drawing.Size(206, 23);
             this.label7.TabIndex = 17;
             this.label7.Text = "Matriz de permutaciones";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // lblInstruccion
             // 
             this.lblInstruccion.AutoSize = true;
-            this.lblInstruccion.Location = new System.Drawing.Point(16, 386);
+            this.lblInstruccion.Location = new System.Drawing.Point(277, 180);
+            this.lblInstruccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInstruccion.Name = "lblInstruccion";
-            this.lblInstruccion.Size = new System.Drawing.Size(83, 16);
+            this.lblInstruccion.Size = new System.Drawing.Size(87, 20);
             this.lblInstruccion.TabIndex = 18;
             this.lblInstruccion.Text = "Esperando...";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 582);
+            this.button1.Location = new System.Drawing.Point(659, 698);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(67, 40);
             this.button1.TabIndex = 19;
             this.button1.Text = "Salir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(209, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(1013, 80);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Foctorización PLU, LU y LLT (Cholevsky)";
+            // 
             // factorizaciones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 730);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
+            this.BackgroundImage = global::MetodosNumericos.Properties.Resources.cuaderno;
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblInstruccion);
             this.Controls.Add(this.label7);
@@ -268,8 +308,13 @@
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numDimension);
+            this.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "factorizaciones";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "factorizaciones";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.factorizaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numDimension)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrizOriginal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatrizL)).EndInit();
@@ -302,5 +347,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblInstruccion;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
     }
 }

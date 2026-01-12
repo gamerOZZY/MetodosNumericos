@@ -195,5 +195,25 @@ namespace MetodosNumericos
         {
             this.Close();
         }
+
+        private void factorizaciones_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblU_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lol_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

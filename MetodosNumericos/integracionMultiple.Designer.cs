@@ -65,7 +65,7 @@
             // 
             this.txtFuncion.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFuncion.Location = new System.Drawing.Point(199, 137);
-            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFuncion.Margin = new System.Windows.Forms.Padding(2);
             this.txtFuncion.Name = "txtFuncion";
             this.txtFuncion.Size = new System.Drawing.Size(281, 38);
             this.txtFuncion.TabIndex = 1;
@@ -75,7 +75,7 @@
             // 
             this.btnCalcular.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalcular.Location = new System.Drawing.Point(501, 479);
-            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(170, 52);
             this.btnCalcular.TabIndex = 2;
@@ -87,7 +87,7 @@
             // 
             this.txtXb.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtXb.Location = new System.Drawing.Point(501, 225);
-            this.txtXb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtXb.Margin = new System.Windows.Forms.Padding(2);
             this.txtXb.Name = "txtXb";
             this.txtXb.Size = new System.Drawing.Size(76, 43);
             this.txtXb.TabIndex = 4;
@@ -118,7 +118,7 @@
             // 
             this.txtXa.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtXa.Location = new System.Drawing.Point(501, 306);
-            this.txtXa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtXa.Margin = new System.Windows.Forms.Padding(2);
             this.txtXa.Name = "txtXa";
             this.txtXa.Size = new System.Drawing.Size(76, 43);
             this.txtXa.TabIndex = 7;
@@ -138,7 +138,7 @@
             // 
             this.txtYc.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtYc.Location = new System.Drawing.Point(746, 306);
-            this.txtYc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtYc.Margin = new System.Windows.Forms.Padding(2);
             this.txtYc.Name = "txtYc";
             this.txtYc.Size = new System.Drawing.Size(76, 43);
             this.txtYc.TabIndex = 12;
@@ -169,7 +169,7 @@
             // 
             this.txtYd.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtYd.Location = new System.Drawing.Point(746, 225);
-            this.txtYd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtYd.Margin = new System.Windows.Forms.Padding(2);
             this.txtYd.Name = "txtYd";
             this.txtYd.Size = new System.Drawing.Size(76, 43);
             this.txtYd.TabIndex = 9;
@@ -189,7 +189,7 @@
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.Location = new System.Drawing.Point(691, 479);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(170, 52);
             this.btnLimpiar.TabIndex = 13;
@@ -223,7 +223,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(650, 703);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(61, 35);
             this.button1.TabIndex = 16;
@@ -236,7 +236,7 @@
             this.cboMetodo.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMetodo.FormattingEnabled = true;
             this.cboMetodo.Location = new System.Drawing.Point(595, 389);
-            this.cboMetodo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboMetodo.Margin = new System.Windows.Forms.Padding(2);
             this.cboMetodo.Name = "cboMetodo";
             this.cboMetodo.Size = new System.Drawing.Size(166, 44);
             this.cboMetodo.TabIndex = 17;
@@ -265,8 +265,8 @@
             // 
             // integracionMultiple
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
             this.BackgroundImage = global::MetodosNumericos.Properties.Resources.cuaderno;
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.label10);
@@ -289,9 +289,11 @@
             this.Controls.Add(this.txtFuncion);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "integracionMultiple";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "integracionMultiple";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 
